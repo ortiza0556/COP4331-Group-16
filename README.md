@@ -27,10 +27,10 @@ Each item should link to the actual product, be it a google spreadsheet, google 
 -  [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart&oq=sprint+burndown+chart)
 -  [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/requirements.md)
 -  Design Documents
-  - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/architecture.md)
-  - Class Diagrams
-  - Sequence Diagrams
-  - etc.
+   - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/sprint1/architecture.md)
+   - Class Diagrams
+   - Sequence Diagrams
+   - etc.
 -  INCOMPLETE Source Code
 -  INCOMPLETE Test Cases
 -  INCOMPLETE Product Demonstration
