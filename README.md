@@ -24,7 +24,7 @@ Each item should link to the actual product, be it a google spreadsheet, google 
 
 -  [Product Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/BackLog.md)
 -  [Sprint Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint1/BackLog.md)
--  Burndown Chart
+-  [Burndown Chart](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint1/BurndownChart.png)
 -  [Requirements](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Requirements.md)
 -  Design Documents
    - [System Architecture](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArcitecture.md)
