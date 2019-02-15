@@ -8,16 +8,9 @@
 - Andrew Pepin
 - Caleb Phillips
 
-## Vision Statement INCOMPLETE
+## Vision Statement
 
-Your vision statement should contain the following information and be formatted as one or more paragraphs.
-
-1. For ... (the product’s target market)
-2. Who/That ... (describe what need your product solves)
-3. The product ... (product name,or product category)
-4. That leads to ... (main advantage, appealing reason for purchase)
-5. Unlike the ... (principal competing alternatives)
-6. Our product offers ... (describe main differentiation)
+For a consumer of media who needs to keep track of the individual status of consumption for each of their media artifacts, Get Your Shit Together keeps track of the status of their consumption for each media artifact and recommends new media artifacts based on consumption. Unlike MyAnimeList, Cinetrak, and Backloggery which can only keep track of and recommend new media artifacts in a single medium, our product can keep track of and recommend across mediums.
 
 # Sprint 1   INCOMPLETE
 Each item should link to the actual product, be it a google spreadsheet, google doc, github markdown file, etc. Do not link to a markdown file that contains only a link to another location - link directly from the appropriate item below. Add any additional items required for the specific sprint submission.
