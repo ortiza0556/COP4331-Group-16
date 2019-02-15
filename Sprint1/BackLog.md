@@ -3,7 +3,7 @@
 | ID | User Story | Est. Hours | Priority | Validation Criteria | Owner | Status | 
 |----|------------|--------|----------|---------------------|-------|--------|
 | 000 | As a project member, I want to create the github site framework so that the project will be well organized | 4 | 1 | All nessesary pages for the github site are created, ready to be populated, and accessible by the project members and professor | C. Phillips |WORKING|
-|001||1|1|Vision Statement is created that clearly states target customer, needs, product name and category, product benefit, competitors, and differentiation or value propostion.||NOT STARTED|
+|001||1|1|Vision Statement is created that clearly states target customer, needs, product name and category, product benefit, competitors, and differentiation or value propostion.|A. Pepin|DONE|
 |002||2|1|All user stories for product backlog adhere to the format:"As a <stakeholder>, I want <functionality>, so that <justification>." Additionally, All user stories must include each letter of the INVEST Acronym|| NOT STARTED |
 |003||2|1|All requirements will trace to a user story. Functional and non-functional requirements are included|| NOT STARTED |
 |004||3|1|Product backlog is populated with a complete list of user stories and validation criteria. All list items must contain the following: user story, validation requirements; priority; estimate, and status ||NOT STARTED|
