@@ -47,7 +47,7 @@
 |            054 |           025 | Get Your Shit Together shall have an option for displaying each backlog by the date each entry was added to the backlog.
 |            055 |           025 | Get Your Shit Together shall have an option for displaying each backlog by the current status of the entry (In Progress, To Watch/Play, Dropped, Completed).
 |            056 |           025 | “Get Your Shit Together” shall have an option for displaying each backlog by the priority number.
-|            056 |           026 | Get Your Shit Together shall have an incentive system that awards users badges for completing media in their various backlogs.
+|            057 |           026 | Get Your Shit Together shall have an incentive system that awards users badges for completing media in their various backlogs.
 
 
 
