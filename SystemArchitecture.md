@@ -13,7 +13,8 @@ Populate each section with information as it applies to your project. If a secti
 # Resource Management
 
 # Security
- test for sql injection.
+"Get your shit together" will test for SQL injections on each user input.
+
 # Performance
 
 # Scalability
