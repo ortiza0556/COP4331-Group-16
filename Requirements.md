@@ -33,7 +33,7 @@
 |            030 |           017 | Get Your Shit Together shall have a separate tab in the anime backlog that shows all of the user’s completed anime.| Verified |
 |            031 |           018 | Get Your Shit Together shall have a separate tab in the video game backlog that shows all of the user’s completed video games.| Verified |
 |            032 |           019 | Get Your Shit Together shall have a search feature that can query the database of media to see if an entry exists, or contains the entered keyword.| Verified |
-|            043 |           019 | Get Your Shit Together shall have the ability to display the movies, TV shows, anime, and video games in the database in separate locations the user can look through.
+|            043 |           019 | Get Your Shit Together shall have the ability to display the movies, TV shows, anime, and video games in the database in separate locations the user can look through.| Verified |
 |            044 |           019 | Get Your Shit Together shall have the ability to display the movies, TV shows, anime, and video games in the database in separate locations the user can look through.| Verified |
 |            045 |           020 | Get Your Shit Together shall have a clickable link at the bottom of a user’s search that allows them to make a custom entry if they don’t find the piece of media they’re looking for.| Verified |
 |            046 |           020 | Get Your Shit Together shall have a form for a user to fill out for a custom media entry, including fields specific to each media type.| Verified |
