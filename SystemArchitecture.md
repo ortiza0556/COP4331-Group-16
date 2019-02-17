@@ -22,6 +22,7 @@ Populate each section with information as it applies to your project. If a secti
 # Interoperability
 
 # Internationalization/Localization
+Unnecessary for the scope of this project.
 
 # Input/Output
 
@@ -34,6 +35,7 @@ Populate each section with information as it applies to your project. If a secti
 # Overengineering
 
 # Build-vs-Buy Decisions
+We will build Get Your Shit Together without buying any additional pieces of software or hardware.
 
 # Reuse
 
