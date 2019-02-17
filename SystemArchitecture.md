@@ -5,7 +5,7 @@ Populate each section with information as it applies to your project. If a secti
 # Major Classes
 
 # Data Design
-
+Database ERD: https://imgur.com/a/iFXv1dS
 # Business Rules
 
 # User Interface Design
