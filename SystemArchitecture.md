@@ -64,9 +64,17 @@ Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
 Develop an fully operacional program using the agile methodology.
 
 # User Interface Design
-Backlog View:
+* Backlog View:
 
-![mainpage](https://i.imgur.com/Wko9SKa.png)
+![mainpage](https://i.imgur.com/ogjqQ0s.png)
+
+* Recommendation View:
+
+![mainpage](https://i.imgur.com/AQMipDW.png)
+
+* Badge View
+
+![mainpage](https://i.imgur.com/WL3nzk9.png)
 
 
 # Resource Management
