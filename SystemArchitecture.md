@@ -5,7 +5,7 @@ Populate each section with information as it applies to your project. If a secti
 # Major Classes
 
 # Data Design
-Database ERD: https://imgur.com/a/E8P2qQk
+Database ERD: ![mainpage](https://imgur.com/a/E8P2qQk)
 # Business Rules
 Develop an fully operacional program using the agile methodology.
 
