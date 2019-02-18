@@ -10,8 +10,33 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods:
     
+* **Movie Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:
+    
+* **TVShow Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:
+    
+* **Anime Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:
+    
+* **VideoGame Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:    
+
 
 ![mainpage](https://i.imgur.com/0UnzRLR.png)
+
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
 # Business Rules
