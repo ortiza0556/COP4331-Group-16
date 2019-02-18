@@ -12,45 +12,48 @@ Populate each section with information as it applies to your project. If a secti
    
 * **Movie Class extends Media Class**
     
-    Data Fields:
+    Data Fields: genre (String), title (String), rating (float), releaseDate(int), synopsis (String), id (int), studio (String),             director (String)
     
-    Methods:
+    Methods: Movie(DatabaseInterface database), getTitle(), getGenre(), getRating(), getReleaseDate(), getSynopsis(), getID(),               getStudio(),  getStudio(), getDirector()
     
 * **TVShow Class extends Media Class**
     
-    Data Fields:
+    Data Fields: genre (String), title (String), rating (float), releaseDate(int), synopsis (String), id (int), studio (String),             directors (array of Strings)
     
-    Methods:
+    Methods: TVShow(DatabaseInterface database), getTitle(), getGenre(), getRating(), getReleaseDate(), getSynopsis(), getID(),             getStudio(), String getStudio(), String[] getDirectors()
     
 * **Anime Class extends Media Class**
     
-    Data Fields:
+    Data Fields:  genre (String), title(String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String)
     
-    Methods:
+    Methods: Anime (DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(), String       getSynopsis(), int getID(), String getStudio()
     
 * **VideoGame Class extends Media Class**
     
-    Data Fields:
+    Data Fields: genre (String), title(String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String),             platform (String)
     
-    Methods:    
+    Methods: VideoGame(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(),           String getSynopsis(), int getID(), String getStudio(), String getPlatform()
+   
 
 * **DatabaseInterface Class extends Media Class**
     
-    Data Fields:
+    Data Fields: String dbPath
     
-    Methods:
+    Methods: DatabaseInterface(String dbPath)
     
 * **BacklogItem Class extends Media Class**
     
-    Data Fields:
+    Data Fields: int databaseID
     
-    Methods:
+    Methods: BacklogItem(Media mediaItem)
     
 * **Backlog Class extends Media Class**
     
-    Data Fields:
+    Data Fields: BacklogItem[] backlog, int size
     
-    Methods:
+    Methods: Backlog(), editEntry(BacklogItem), void store(BacklogItem), BacklogItem 
+    retrieve(), void display()
+
 
 ![mainpage](https://i.imgur.com/0UnzRLR.png)
 
