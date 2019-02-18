@@ -34,6 +34,23 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods:    
 
+* **DatabaseInterface Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:
+    
+* **BacklogItem Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:
+    
+* **Backlog Class extends Media Class**
+    
+    Data Fields:
+    
+    Methods:
 
 ![mainpage](https://i.imgur.com/0UnzRLR.png)
 
