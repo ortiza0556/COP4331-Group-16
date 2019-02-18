@@ -78,7 +78,7 @@ Covered in "Requirements" document.
 
 
 # Resource Management
- 
+
 
 # Security
 "Get Your Shit Together" will test for SQL injections on each user input.
@@ -99,10 +99,10 @@ Unnecessary for the scope of this project.
 Input would be taken from the user when they search for a piece of media to add to their backlog. Input is also taken from the user when they add or edit an entry. Output is everything we display on the screen, including the backlogs, recommendations, media, and the UI.   
 
 # Error Processing
-If an object searched by the user is not found in the database the user will be given an option to add a custom entry, which allows us to avoid any "entry not found" errors. Every major bug in the program will be handled by an error message since robustness is more important than correctness in this program.
+If an object searched by the user is not found in the database the user will be given an option to add a custom entry, which allows us to avoid any "entry not found" errors.
 
 # Fault Tolerance
-The backlog is robust in nature unless a major crash occur the program will not shutdown. But the program will shutdown on certain timeout conditions.
+The backlog is robust in nature unless a major crash occurs the program will not shutdown, however the program will shutdown on certain timeout conditions.
 
 # Architectural Feasibility
 The API setup will be difficult, as there are a few API we will need to use to gather entries.
@@ -117,5 +117,4 @@ We will build Get Your Shit Together without buying any additional pieces of sof
 Most of the set up for each backlog will be the same, so code has the potential to be reused between them. Recommendations will also follow the same algorithm, so this code will be reused for each media type.
 
 # Change Strategy
-Since the classes of the program are not tightly coupled it should be easy to add new features. Even starting everything from scratch if necessary.    
-
+Since the classes of the program are not tightly coupled it should be easy to add new features if necessary.
