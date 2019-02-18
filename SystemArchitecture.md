@@ -11,6 +11,7 @@ Develop an fully operacional program using the agile methodology.
 
 # User Interface Design
 Backlog View:
+\272
 ![mainpage](https://i.imgur.com/Wko9SKa.png)
 
 
