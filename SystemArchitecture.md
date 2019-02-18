@@ -61,7 +61,7 @@ Populate each section with information as it applies to your project. If a secti
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
 
 # Business Rules
-Develop an fully operacional program using the agile methodology.
+Covered in "Requirements" document.
 
 # User Interface Design
 * Backlog View:
@@ -78,13 +78,13 @@ Develop an fully operacional program using the agile methodology.
 
 
 # Resource Management
-Aubrey is playing the consumer role so must of design decisions pass through him. Lucas and Austin are working with the documentation. Andrew and Caleb are doing code. 
+ 
 
 # Security
 "Get Your Shit Together" will test for SQL injections on each user input.
 
 # Performance
-Every page of the backlog is assessible within 6 clicks from every order page. Sorting and organization algorithms are on the order of n^2. The suggestions algorithms are performed within 10 seconds delay. 
+ 
 
 # Scalability
 As the backlog gets more massive, because of the information inputted, the program itself shouldn't crash. Also additional new features for the backlog can be added. New types of backlog classes should be easy to add.
