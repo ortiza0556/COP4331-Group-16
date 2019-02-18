@@ -6,10 +6,10 @@ Populate each section with information as it applies to your project. If a secti
 
 * **Media Class**
     
-    Data Fields:
+    Data Fields: genre (String), title (String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String)
     
-    Methods:
-    
+    Methods: Media(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(), String       getSynopsis(), int getID(), String getStudio()
+   
 * **Movie Class extends Media Class**
     
     Data Fields:
