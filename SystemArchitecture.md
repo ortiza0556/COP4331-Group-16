@@ -59,6 +59,7 @@ Populate each section with information as it applies to your project. If a secti
 
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
+
 # Business Rules
 Develop an fully operacional program using the agile methodology.
 
@@ -78,33 +79,34 @@ Aubrey is playing the consumer role so must of design decisions pass through him
 Every page of the backlog is assessible within 6 clicks from every order page. Sorting and organization algorithms are on the order of n^2. The suggestions algorithms are performed within 10 seconds delay. 
 
 # Scalability
-  As the backlog gets more massive, because of the information inputted, the program itself shouldn't crash. Also additional new features for the backlog can be added. New types of backlog classes should be easy to add.        
-# Interoperability
-  The backlog will interact directly with the database. If a new feature can successfully interact with both database an the backlog it should be able to be implemented.
+As the backlog gets more massive, because of the information inputted, the program itself shouldn't crash. Also additional new features for the backlog can be added. New types of backlog classes should be easy to add.
 
+# Interoperability
+"Get Your Shit Together" will directly interact with our database, which will store all of the media we pull from different sources using APIs, and the user's personal backlogs.
 
 # Internationalization/Localization
 Unnecessary for the scope of this project.
 
 # Input/Output
-The user should input the name of the video game/anime/movies/ and received specifications from the database as well as an organized list the classifies the current status of the game/anime/movies.   
+Input would be taken from the user when they search for a piece of media to add to their backlog. Input is also taken from the user when they add or edit an entry. Output is everything we display on the screen, including the backlogs, recommendations, media, and the UI.   
 
 # Error Processing
-If an object searched by the user is not found in the database the user will be given an option to add a custom entry. If the item was suppose to be there the program will return an error message. Every major bug in the program will be handled by an error message since robustness is more important than correctness in this program.   
+If an object searched by the user is not found in the database the user will be given an option to add a custom entry, which allows us to avoid any "entry not found" errors. Every major bug in the program will be handled by an error message since robustness is more important than correctness in this program.
+
 # Fault Tolerance
 The backlog is robust in nature unless a major crash occur the program will not shutdown. But the program will shutdown on certain timeout conditions.
 
 # Architectural Feasibility
-The project is very feasible. The only part that might be more difficult than expected is the database, the API setup and the incentive. Since the incentive might include animation.
+The API setup will be difficult, as there are a few API we will need to use to gather entries.
 
 # Overengineering
-Unnecessary features will be trimmed off. The user interface will be maintained clean as much as possible.   
+Unnecessary features will be trimmed off and the user interface will be maintained as clean as possible.   
 
 # Build-vs-Buy Decisions
 We will build Get Your Shit Together without buying any additional pieces of software or hardware.
 
 # Reuse
-Most of the reuse code will be accomplished by using abstract classes and oder refractoring techniques. 
+Most of the set up for each backlog will be the same, so code has the potential to be reused between them. Recommendations will also follow the same algorithm, so this code will be reused for each media type.
 
 # Change Strategy
 Since the classes of the program are not tightly coupled it should be easy to add new features. Even starting everything from scratch if necessary.    
