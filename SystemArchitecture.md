@@ -10,7 +10,7 @@ Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
 Develop an fully operacional program using the agile methodology.
 
 # User Interface Design
-![mainpage](https://user-images.githubusercontent.com/35438829/52923070-ae0c6380-32f3-11e9-8487-4d8eed4aaf3f.png)
+![mainpage](https://i.imgur.com/Wko9SKa.png)
 
 
 # Resource Management
