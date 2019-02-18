@@ -5,7 +5,9 @@ Populate each section with information as it applies to your project. If a secti
 # Major Classes
 
 * **Media Class**
+    
     Data Fields:
+    
     Methods:
     
 
