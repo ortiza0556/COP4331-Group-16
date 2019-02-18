@@ -14,7 +14,7 @@ Develop an fully operacional program using the agile methodology.
 
 
 # Resource Management
-Aubrey has the consumer role. Lucas and Austin are working with the documentation. Andrew and Caleb are doing code. 
+Aubrey is playing the consumer role so must of design decisions pass through him. Lucas and Austin are working with the documentation. Andrew and Caleb are doing code. 
 
 # Security
 "Get Your Shit Together" will test for SQL injections on each user input.
@@ -23,24 +23,24 @@ Aubrey has the consumer role. Lucas and Austin are working with the documentatio
 Every page of the backlog is assessible within 6 clicks from every order page. Sorting and organization algorithms are on the order of n^2. The suggestions algorithms are performed within 10 seconds delay. 
 
 # Scalability
-  As the backlog gets more massive because of the information inputted on it the program itself shouldn't crash. Also additional new features for the backlog can be added. New types of backlogs should with specific features should be easy to add.        
+  As the backlog gets more massive, because of the information inputted, the program itself shouldn't crash. Also additional new features for the backlog can be added. New types of backlog classes should be easy to add.        
 # Interoperability
-  The backlog is on
+  The backlog will interact directly with the database. If a new feature can successfully interact with both database an the backlog it should be able to be implemented.
 
 
 # Internationalization/Localization
 Unnecessary for the scope of this project.
 
 # Input/Output
-The user should input the name of the video game/anime/movies/ and received specifications from the database as well as an organized list classified by the current status of the game.   
+The user should input the name of the video game/anime/movies/ and received specifications from the database as well as an organized list the classifies the current status of the game/anime/movies.   
 
 # Error Processing
-If an object searched by the user is not found in the database the user will be given an option to add a custom entry. If the item was suppose to be there it the program will return an error message. Every major bug in the backlog will be handled by an error message since robustness is more important than correctness in this program.   
+If an object searched by the user is not found in the database the user will be given an option to add a custom entry. If the item was suppose to be there the program will return an error message. Every major bug in the program will be handled by an error message since robustness is more important than correctness in this program.   
 # Fault Tolerance
-The backlog is robust in nature unless a major crash occur the program will not shutdown. But the program will shutdown if certains it reaches a timeout.
+The backlog is robust in nature unless a major crash occur the program will not shutdown. But the program will shutdown on certain timeout conditions.
 
 # Architectural Feasibility
-The project is very feasible. The only part that might be more difficult than expected is the database and API setup and the incentive. Since the incentive might include animation.
+The project is very feasible. The only part that might be more difficult than expected is the database, the API setup and the incentive. Since the incentive might include animation.
 
 # Overengineering
 Unnecessary features will be trimmed off. The user interface will be maintained clean as much as possible.   
@@ -49,7 +49,7 @@ Unnecessary features will be trimmed off. The user interface will be maintained 
 We will build Get Your Shit Together without buying any additional pieces of software or hardware.
 
 # Reuse
-Most of the reuse will be accomplished by using abstract classes. 
+Most of the reuse code will be accomplished by using abstract classes and oder refractoring techniques. 
 
 # Change Strategy
 Since the classes of the program are not tightly coupled it should be easy to add new features. Even starting everything from scratch if necessary.    
