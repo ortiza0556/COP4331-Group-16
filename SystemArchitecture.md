@@ -79,6 +79,20 @@ Covered in "Requirements" document.
 
 # Resource Management
 
+**Time**
+  
+  * Meetings will occur mostly on discord, unless otherwise needed. These meetings will ideally take place two to three times a week.
+  * Project members are expect to complete work in a timely manner. Any roadblocks or issues will be addressed during meetings.
+
+**Computer Resources**
+
+  * Github will be used for source control.
+  * Coding will be done on personal computers.
+  
+**Money**
+
+  * We will be using open-source software, so no software licenses will be needed.
+  * No additional hardware needed.
 
 # Security
 "Get Your Shit Together" will test for SQL injections on each user input.
