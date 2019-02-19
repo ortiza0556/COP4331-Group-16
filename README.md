@@ -25,5 +25,5 @@ Each item should link to the actual product, be it a google spreadsheet, google 
    - Sequence Diagrams
    - etc.
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint1/src)
--  INCOMPLETE Test Cases
+-  [Test Cases](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint1/TestCases)
 -  [Product Demonstration](https://youtu.be/wXjwVzIEsGM)
