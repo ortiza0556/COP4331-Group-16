@@ -24,6 +24,6 @@ Each item should link to the actual product, be it a google spreadsheet, google 
    - Class Diagrams
    - Sequence Diagrams
    - etc.
--  INCOMPLETE Source Code
+-  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint1/src)
 -  INCOMPLETE Test Cases
 -  INCOMPLETE Product Demonstration
