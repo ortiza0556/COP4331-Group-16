@@ -26,4 +26,4 @@ Each item should link to the actual product, be it a google spreadsheet, google 
    - etc.
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint1/src)
 -  INCOMPLETE Test Cases
--  INCOMPLETE Product Demonstration
+-  [Product Demonstration](https://youtu.be/wXjwVzIEsGM)
