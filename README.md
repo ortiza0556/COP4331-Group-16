@@ -19,11 +19,7 @@ This sprint mainly was concerned with setting up the framework for the project a
 -  [Sprint Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint1/BackLog.md)
 -  [Burndown Chart](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint1/BurndownChart.png)
 -  [Requirements](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Requirements.md)
--  Design Documents
-   - [System Architecture](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArchitecture.md)
-   - Class Diagrams
-   - Sequence Diagrams
-   - etc.
+-  [System Architecture and Design Specification](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArchitecture.md)
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint1/src)
 -  [Test Cases](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint1/TestCases)
 -  [Product Demonstration](https://youtu.be/wXjwVzIEsGM)
