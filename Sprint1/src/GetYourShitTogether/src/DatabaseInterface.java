@@ -9,22 +9,22 @@ import java.sql.Statement;
 
 public class DatabaseInterface {
 	
-		private static String filePath;
-		private static Connection conn;
+		private String filePath;
+		private Connection conn;
 	
-		public DatabaseInterface (String fp) {
+		public DatabaseInterface (String filePath) {
 			
-			filePath = fp;
+			this.filePath = filePath;
 			connect();
 			
 		}
 		
-		private static void connect() {
+		private void connect() {
 			
 			try {
 				
-				String database = "jdbc:sqlite:" + filePath;
-				conn = DriverManager.getConnection(database);
+				String database = "jdbc:sqlite:" + this.filePath;
+				this.conn = DriverManager.getConnection(database);
 				
 				System.out.println("Connection made");
 				
@@ -35,7 +35,7 @@ public class DatabaseInterface {
 		
 		public void close() {
 			try {
-				conn.close();
+				this.conn.close();
 				
 				System.out.println("Connection closed");
 				
@@ -48,7 +48,7 @@ public class DatabaseInterface {
 			String sql = "INSERT INTO Anime (Title,Release,Genre,Rating,Plot,ProductionStudio) "
 					+ "VALUES(?,?,?,?,?,?)";
 			try {
-				PreparedStatement stmt = conn.prepareStatement(sql);
+				PreparedStatement stmt = this.conn.prepareStatement(sql);
 				stmt.setString(1,title);
 				stmt.setInt(2, release);
 				stmt.setString(3, genre);
@@ -70,7 +70,7 @@ public class DatabaseInterface {
 					+ "Title LIKE '%" + title + "%'";
 			
 			try {
-				Statement stmt = conn.createStatement();
+				Statement stmt = this.conn.createStatement();
 				
 				ResultSet rs = stmt.executeQuery(sql);
 				
