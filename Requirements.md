@@ -15,9 +15,9 @@
 |            018 |           009 | Get Your Shit Together shall have a separate tab that displays entries in the video game backlog.| Verified |
 |            019 |           010 | A way for users to rate media when marked as completed or dropped shall exist.| Verified |
 |            020 |           010 | User ratings shall be stored in the database alongside the entry.| Verified |
-|            021 |  011,12,13,14 | Recommendations shall be offered to the user in a separate tab.| Verified |
-|            022 |  011,12,13,14 | Users shall have the ability to add recommended media to their backlogs on the recommendations tab.| Verified |
-|            023 |  011,12,13,14 | Recommendations shall be able to be ignored if the user is uninterested in the recommended media.| Verified |
+|            021 |  011,012,013,014 | Recommendations shall be offered to the user in a separate tab.| Verified |
+|            022 |  011,012,013,014 | Users shall have the ability to add recommended media to their backlogs on the recommendations tab.| Verified |
+|            023 |  011,012,013,014 | Recommendations shall be able to be ignored if the user is uninterested in the recommended media.| Verified |
 |            024 |           011 | Movie recommendations shall be based off of the user’s ratings of movies they have watched.| Verified |
 |            025 |           012 | TV show  recommendations shall be based off of the user’s ratings of TV shows they have watched.| Verified |
 |            026 |           013 |	Anime recommendations shall be based off of the user’s ratings of anime they have watched.| Verified |
