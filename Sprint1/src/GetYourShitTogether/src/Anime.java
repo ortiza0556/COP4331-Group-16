@@ -1,8 +1,7 @@
 
 public class Anime extends Media{
 	
-	public Anime(DatabaseInterface db)
-	{
+	public Anime(DatabaseInterface db){
 		
 	}
 }
