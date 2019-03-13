@@ -3,7 +3,7 @@ abstract class Media {
 	
 	private String title;
 	private String genre;
-	private float rating;
+	private String rating;
 	private int releaseDate;
 	private String plot;
 	private int id;
@@ -17,7 +17,7 @@ abstract class Media {
 		return this.genre;
 	}
 	
-	public float getRating(){
+	public String getRating(){
 		return this.rating;
 	}
 	
