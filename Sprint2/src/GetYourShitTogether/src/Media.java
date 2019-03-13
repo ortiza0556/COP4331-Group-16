@@ -1,13 +1,13 @@
 
 abstract class Media {
 	
-	private String title;
-	private String genre;
-	private float rating;
-	private int releaseDate;
-	private String plot;
-	private int id;
-	private String studio;
+	protected String title;
+	protected String genre;
+	protected float rating;
+	protected int releaseDate;
+	protected String plot;
+	protected int id;
+	protected String studio;
 	
 	public String getTitle(){
 		return this.title;
