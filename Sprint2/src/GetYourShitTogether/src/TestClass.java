@@ -1,4 +1,4 @@
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class TestClass {
@@ -14,5 +14,18 @@ public class TestClass {
 		dbi.SearchAnimeTable("Anohana");
 		dbi.close();
 		*/
+	}
+	
+	@Test
+	public void AnimeCreate() {
+		Anime biganimetiddies = new Anime("Jojo's Bizarre Adventure", "Shonen", "10", 2011, "Big boy jojo does jojo things ora ora ora", "David Production");
+		
+		assertEquals(biganimetiddies.getTitle(), "Jojo's Bizarre Adventure");
+		assertEquals(biganimetiddies.getGenre(), "Shonen");
+		assertEquals(biganimetiddies.getRating(), "10");
+		assertEquals(biganimetiddies.getReleaseDate(), 2011);
+		assertEquals(biganimetiddies.getPlot(), "Big boy jojo does jojo things ora ora ora");
+		assertEquals(biganimetiddies.getStudio(), "David Production");
+		
 	}
 }
