@@ -3,7 +3,7 @@ public class VideoGame extends Media{
 
 	private String platform;
 	
-	public VideoGame(DatabaseInterface db) {
+	public VideoGame(Database db) {
 		
 	}
 	

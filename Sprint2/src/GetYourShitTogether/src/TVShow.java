@@ -3,7 +3,7 @@ public class TVShow extends Media{
 	
 	private String[] directors;
 	
-	public TVShow(DatabaseInterface db){
+	public TVShow(Database db){
 		
 	}
 	
