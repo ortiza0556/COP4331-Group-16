@@ -3,7 +3,7 @@ public class Movie extends Media {
 	
 	private String director;
 	
-	public Movie(DatabaseInterface db)
+	public Movie(Database db)
 	{
 		
 	}
