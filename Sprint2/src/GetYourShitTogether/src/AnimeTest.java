@@ -7,7 +7,7 @@ class AnimeTest {
 	Anime biganimetiddies = new Anime("Jojo's Bizarre Adventure", "Shonen", "10", 2011, "Big boy jojo does jojo things ora ora ora", "David Production");
 	
 	@Test
-	void testAnimeCreate() {
+	void testAnime() {
 		
 		assertEquals(biganimetiddies.getTitle(), "Jojo's Bizarre Adventure");
 		assertEquals(biganimetiddies.getGenre(), "Shonen");
