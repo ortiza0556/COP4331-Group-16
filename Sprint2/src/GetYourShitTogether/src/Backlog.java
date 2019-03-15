@@ -5,7 +5,7 @@ public class Backlog extends Media {
 	private int size;
 	
 	public Backlog() {
-		// TODO Auto-generated constructor stub
+		this.size = 0;
 	}
 
 	public void editEntry(Media BacklogItem) {

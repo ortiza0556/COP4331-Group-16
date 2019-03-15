@@ -4,7 +4,7 @@ public class BacklogItem extends Media {
 	private int databaseID;
 	
 	public BacklogItem(Media mediaItem) {
-		// TODO Auto-generated constructor stub
+		this.databaseID = -1;
 	}
 
 	public int getDatabaseID() {
