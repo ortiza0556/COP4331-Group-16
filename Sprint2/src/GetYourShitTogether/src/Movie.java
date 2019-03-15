@@ -28,7 +28,7 @@ public class Movie extends Media {
 		this.plot = plot;
 		this.studio = studio;
 		this.id = id;
-		
+		this.director = director;
 	}
 	
 	public String getDirector()
