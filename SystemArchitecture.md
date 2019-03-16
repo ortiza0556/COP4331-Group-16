@@ -47,7 +47,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: BacklogItem(Media mediaItem)
     
-* **Backlog Class extends Media Class**
+* **Backlog Class **
     
     Data Fields: BacklogItem[] backlog, int size
     
