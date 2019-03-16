@@ -13,7 +13,7 @@ public class Backlog {
 	}
 	
 	public void store(Media BacklogItem) {
-		
+		this.size++;
 	}
 	
 	public BacklogItem retrieve() {
