@@ -35,7 +35,7 @@ Populate each section with information as it applies to your project. If a secti
     Methods: VideoGame(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(),           String getSynopsis(), int getID(), String getStudio(), String getPlatform()
    
 
-* **DatabaseInterface Class extends Media Class**
+* **DatabaseInterface Class**
     
     Data Fields: String dbPath
     
