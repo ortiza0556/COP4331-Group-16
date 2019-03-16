@@ -1,5 +1,5 @@
 
-public class Backlog extends Media {
+public class Backlog {
 
 	// NEED TO INITIALIZE CONTAINER OF BACKLOG ITEMS (using List? Array? Arraylist?)
 	private int size;
