@@ -72,7 +72,7 @@ public class VideoGameDatabase extends Database<VideoGame> {
 
 	@Override
 	public ResultSet Search (String title) {
-        String sql = "SELECT Title,Release,Genre,Rating,Plot,ProductionStudio FROM VideoGames WHERE "
+        String sql = "SELECT VGID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM VideoGames WHERE "
                 + "Title LIKE '%" + title + "%'";
         
         try {
@@ -82,6 +82,7 @@ public class VideoGameDatabase extends Database<VideoGame> {
             
             while(rs.next()) {
                 
+            	System.out.println("ID:" + rs.getString("VGID"));
                 System.out.println("Title:" + rs.getString("Title"));
                 System.out.println("Release:" + rs.getInt("Release"));
                 System.out.println("Genre:" + rs.getString("Genre"));
