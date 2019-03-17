@@ -2,7 +2,9 @@ import java.sql.ResultSet;
 
 abstract class Database<M extends Media> {
 	
-		protected String filePath;
+		protected FilePath fp = new FilePath();
+		
+		protected String filePath = fp.getFilePath();
 		
 		protected abstract void connect();
 		
