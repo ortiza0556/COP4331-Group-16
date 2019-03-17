@@ -4,12 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TVShowBacklog <M extends Media>{
+public class VideoGameBacklog {
 
 	private Connection conn;
 	protected String filePath;
 	
-	public TVShowBacklog () {
+	public VideoGameBacklog () {
 		connect();
 		
 	}
@@ -39,22 +39,22 @@ public class TVShowBacklog <M extends Media>{
 		}
 	}
 	
-	public void Insert(TVShow t, WatchableMediaStatus s, String userRating, int priority) {
+	public void Insert(VideoGame v, VideoGameStatus s, String userRating, int priority) {
 		
-		int id = t.getID();
+		int id = v.getID();
 		
 		if(CheckIfExists(id) == 0) {
 			
-			String sql = "INSERT INTO TVShows_Backlog (TVID,Status,UserRating,Priority) "
+			String sql = "INSERT INTO VideoGames_Backlog (VGID,Status,UserRating,Priority) "
                 + "VALUES(?,?,?,?)";			
 	        try {
 	            PreparedStatement stmt = this.conn.prepareStatement(sql);
 	            stmt.setInt(1,id);
 	            
 	            switch(s) {
-	            	case TO_WATCH: stmt.setString(2, "To Watch"); 
+	            	case TO_PLAY: stmt.setString(2, "To Watch"); 
 	            	break;
-	            	case WATCHING: stmt.setString(2, "Watching"); 
+	            	case PLAYING: stmt.setString(2, "Watching"); 
 	            	break;
 	            	case ON_HOLD: stmt.setString(2, "On Hold"); 
 	            	break;
@@ -77,13 +77,13 @@ public class TVShowBacklog <M extends Media>{
 		
 	}
 	
-	public void Delete(TVShow t) {
+	public void Delete(VideoGame v) {
 		
-		int id = t.getID();
+		int id = v.getID();
 		
 		if(CheckIfExists(id) == 0) {
 			
-			String sql = "DELETE FROM TVShows_Backlog WHERE TVID = ?";
+			String sql = "DELETE FROM VideoGames_Backlog WHERE VGID = ?";
 			
 	        try {
 	            PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -101,12 +101,12 @@ public class TVShowBacklog <M extends Media>{
 		
 	}
 
-	public void Update(TVShow t, String status, String userRating, int priority) {
-		int id = t.getID();
+	public void Update(VideoGame v, String status, String userRating, int priority) {
+		int id = v.getID();
 		
 		if(CheckIfExists(id) == 0) {
 			
-			String sql = "UPDATE TVShows_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE TVID = ?";
+			String sql = "UPDATE VideoGames_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE VGID = ?";
 			
 			
 	        try {
@@ -129,7 +129,7 @@ public class TVShowBacklog <M extends Media>{
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM TVShows_Backlog WHERE TVID = ? LIMIT 1)";
+        String sql = "SELECT EXISTS(SELECT 1 FROM VideoGames_Backlog WHERE VGID = ? LIMIT 1)";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);

@@ -1,4 +1,4 @@
 
 public enum VideoGameStatus {
-	TO_PLAY, PLAYING, IN_PROGRESS, ON_HOLD, DROPPED
+	TO_PLAY, PLAYING, ON_HOLD, DROPPED
 }
