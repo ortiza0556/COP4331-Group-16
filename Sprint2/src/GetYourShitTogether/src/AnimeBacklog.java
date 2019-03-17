@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class AnimeBacklog {
 
 	private Connection conn;
-	protected String filePath;
+	protected FilePath fp = new FilePath();
+	protected String filePath = fp.getFilePath();
 	
 	public AnimeBacklog () {
 		connect();

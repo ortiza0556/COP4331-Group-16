@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class TVShowBacklog <M extends Media>{
 
 	private Connection conn;
-	protected String filePath;
+	protected FilePath fp = new FilePath();
+	protected String filePath = fp.getFilePath();
 	
 	public TVShowBacklog () {
 		connect();
