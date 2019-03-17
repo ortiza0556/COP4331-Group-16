@@ -1,4 +1,3 @@
-
 import java.sql.ResultSet;
 
 abstract class Database<M extends Media> {
