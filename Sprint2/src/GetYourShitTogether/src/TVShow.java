@@ -7,11 +7,11 @@ public class TVShow extends Media{
 		
 	}
 	
-	public TVShow(String title, String genre, String rating, int release, String plot, String studio, String[] creators){
+	public TVShow(String title, String genre, String rating, int releaseDate, String plot, String studio, String[] creators){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = release;
+		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
 		this.id = -1;
@@ -20,11 +20,11 @@ public class TVShow extends Media{
 		
 	}
 	
-	private TVShow(String title, String genre, String rating, int release, String plot, int id, String studio, String[] creators){
+	private TVShow(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String[] creators){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = release;
+		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
 		this.id = id;

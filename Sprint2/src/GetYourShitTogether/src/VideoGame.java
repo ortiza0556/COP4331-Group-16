@@ -7,11 +7,11 @@ public class VideoGame extends Media{
 		
 	}
 	
-	public VideoGame(String title, String genre, String rating, int release, String plot, String studio, String platform){
+	public VideoGame(String title, String genre, String rating, int releaseDate, String plot, String studio, String platform){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = release;
+		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
 		this.platform = platform;
@@ -19,11 +19,11 @@ public class VideoGame extends Media{
 		
 	}
 	
-	private VideoGame(String title, String genre, String rating, int release, String plot, int id, String studio, String platform){
+	private VideoGame(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String platform){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = release;
+		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
 		this.id = id;
