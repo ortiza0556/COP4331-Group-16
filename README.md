@@ -32,7 +32,7 @@ This sprint mainly was concerned with setting up the framework for the project a
 
 -  [Product Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/BackLog.md)
 -  [Sprint Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint2/BackLog.md)
--  [Burndown Chart]
+-  [Burndown Chart](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint2/BurndownChart.png) to be updated
 -  [Requirements](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Requirements.md)
 -  [System Architecture and Design Specification](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArchitecture.md)
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint2/src)
