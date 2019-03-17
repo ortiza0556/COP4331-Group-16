@@ -1,7 +1,7 @@
 
 public class FilePath {
 	
-	protected String filePath = "C:\\Users\\aubre\\Documents\\GitHub\\COP4331-Group-16\\Sprint2\\src\\getYourShitTogether.sqlite";
+	protected String filePath = "C:\\Users\\Austin\\Documents\\GitHub\\COP4331-Group-16-mstr\\Sprint2\\src\\getYourShitTogether.sqlite";
 	
 	public FilePath() {
 		
