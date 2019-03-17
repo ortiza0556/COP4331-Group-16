@@ -20,7 +20,7 @@ public class GetYourShitTogether extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Get Thine Shit Together, Cur");
+        primaryStage.setTitle("Get Thine Shite Together, Cur");
 
         // Create the registration form grid pane
         VBox vbox = new VBox();
