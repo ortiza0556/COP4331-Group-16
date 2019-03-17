@@ -43,65 +43,85 @@ public class MovieBacklog <M extends Media>{
 		}
 	}
 	
-	protected void Insert(Movie m, MovieStatus s, String userRating, int priority) {
+	public void Insert(Movie m, MovieStatus s, String userRating, int priority) {
 		
 		int id = m.getID();
 		
-		String sql = "INSERT INTO Movies_Backlog (MovieID,Status,UserRating,Priority) "
-                + "VALUES(?,?,?,?)";
-        try {
-            PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setInt(1,id);
-            
-            switch(s) {
-            	case TO_WATCH: stmt.setString(2, "To Watch"); 
-            	break;
-            	case WATCHING: stmt.setString(2, "Watching"); 
-            	break;
-            	case ON_HOLD: stmt.setString(2, "On Hold"); 
-            	break;
-            	case DROPPED: stmt.setString(2, "Dropped"); 
-            	break;
-            };
-            
-            stmt.setString(3, userRating);
-            stmt.setInt(4, priority);
-            
-            stmt.executeUpdate();
-            
-            System.out.println("Entry added");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
+		if(CheckIfExists(id) == 0) {
+			
+			String sql = "INSERT INTO Movies_Backlog (MovieID,Status,UserRating,Priority) "
+                + "VALUES(?,?,?,?)";			
+	        try {
+	            PreparedStatement stmt = this.conn.prepareStatement(sql);
+	            stmt.setInt(1,id);
+	            
+	            switch(s) {
+	            	case TO_WATCH: stmt.setString(2, "To Watch"); 
+	            	break;
+	            	case WATCHING: stmt.setString(2, "Watching"); 
+	            	break;
+	            	case ON_HOLD: stmt.setString(2, "On Hold"); 
+	            	break;
+	            	case DROPPED: stmt.setString(2, "Dropped"); 
+	            	break;
+	            };
+	            
+	            stmt.setString(3, userRating);
+	            stmt.setInt(4, priority);
+	            
+	            stmt.executeUpdate();
+	            
+	            System.out.println("Entry added.");
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+		}else {
+			System.out.println("Entry already exists.");
+		}
+		
+	}
+	
+	public void Delete(Movie m) {
+		
+		int id = m.getID();
+		
+		if(CheckIfExists(id) == 0) {
+			
+			String sql = "DELETE FROM Movies_Backlog WHERE ID = ?";
+			
+			
+	        try {
+	            PreparedStatement stmt = this.conn.prepareStatement(sql);
+	            stmt.setInt(1,id);
+	            
+	            stmt.executeUpdate();
+	            
+	            System.out.println("Entry deleted.");
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+		}else {
+			System.out.println("Entry does not exist.");
+		}
 		
 	}
 
-	public ResultSet Search (String title) {
-        String sql = "SELECT Title,Release,Genre,Rating,Plot,ProductionStudio FROM Movies WHERE "
-                + "Title LIKE '%" + title + "%'";
+	private int CheckIfExists (int id) {
+        String sql = "SELECT EXISTS(SELECT 1 FROM Movies_Backlog WHERE UniqueID=UniqueIDToCHECK LIMIT 1)";
         
         try {
             Statement stmt = this.conn.createStatement();
             
             ResultSet rs = stmt.executeQuery(sql);
             
-            while(rs.next()) {
-                
-                System.out.println("Title:" + rs.getString("Title"));
-                System.out.println("Release:" + rs.getInt("Release"));
-                System.out.println("Genre:" + rs.getString("Genre"));
-                System.out.println("Rating:" + rs.getString("Rating"));
-                System.out.println("Plot:" + rs.getString("Plot"));
-                System.out.println("ProductionStudio:" + rs.getString("ProductionStudio"));
-            }
-            
-            return rs;
+            int result= rs.getInt(0);
+
+            return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         
-        return null;
+        return 1;
         
     }
 }
