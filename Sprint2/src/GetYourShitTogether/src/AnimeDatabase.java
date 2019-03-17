@@ -26,7 +26,7 @@ public class AnimeDatabase extends Database<Anime> {
 			System.out.println("Connection made");
 			
 		} catch (SQLException e) {
-			System.out.println("Failed to connect to databse:" + e.getMessage());
+			System.out.println("Failed to connect to database:" + e.getMessage());
 		}
 	}
 	
