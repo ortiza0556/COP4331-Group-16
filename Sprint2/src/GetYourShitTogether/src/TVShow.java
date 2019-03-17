@@ -3,10 +3,6 @@ public class TVShow extends Media{
 	
 	private String[] creators;
 	
-	public TVShow(Database db){
-		
-	}
-	
 	public TVShow(String title, String genre, String rating, int releaseDate, String plot, String studio, String[] creators){
 		this.title = title;
 		this.genre = genre;
@@ -20,7 +16,7 @@ public class TVShow extends Media{
 		
 	}
 	
-	private TVShow(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String[] creators){
+	public TVShow(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String[] creators){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;

@@ -3,10 +3,6 @@ public class VideoGame extends Media{
 
 	private String platform;
 	
-	public VideoGame(Database db) {
-		
-	}
-	
 	public VideoGame(String title, String genre, String rating, int releaseDate, String plot, String studio, String platform){
 		this.title = title;
 		this.genre = genre;
@@ -19,7 +15,7 @@ public class VideoGame extends Media{
 		
 	}
 	
-	private VideoGame(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String platform){
+	public VideoGame(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String platform){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;

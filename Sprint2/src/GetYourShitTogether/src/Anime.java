@@ -1,9 +1,6 @@
 
 public class Anime extends Media{
 	
-	public Anime(Database db){
-		
-	}
 	
 	public Anime(String title, String genre, String rating, int releaseDate, String plot, String studio){
 		this.title = title;
@@ -16,7 +13,7 @@ public class Anime extends Media{
 		
 	}
 	
-	private Anime(String title, String genre, String rating, int releaseDate, String plot, int id, String studio){
+	public Anime(String title, String genre, String rating, int releaseDate, String plot, int id, String studio){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;

@@ -3,11 +3,6 @@ public class Movie extends Media {
 	
 	private String director;
 	
-	public Movie(Database db)
-	{
-		
-	}
-	
 	public Movie(String title, String genre, String rating, int releaseDate, String plot, String studio, String director){
 		this.title = title;
 		this.genre = genre;
@@ -20,7 +15,7 @@ public class Movie extends Media {
 		
 	}
 	
-	private Movie(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String director){
+	public Movie(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String director){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
