@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Backlog {
 
-	// NEED TO INITIALIZE CONTAINER OF BACKLOG ITEMS (using List? Array? Arraylist?)
 	private ArrayList<Media> backlogArray;
 	private int size;
 	
@@ -24,7 +23,7 @@ public class Backlog {
 		return this.size;
 	}
 	
-	public BacklogItem retrieve() {
+	public Media retrieve() {
 		return null;
 	}
 	
