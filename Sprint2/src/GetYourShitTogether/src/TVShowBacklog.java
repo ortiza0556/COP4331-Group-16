@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MovieBacklog <M extends Media>{
-	
+public class TVShowBacklog <M extends Media>{
+
 	private Connection conn;
 	protected String filePath;
 	
-	public MovieBacklog () {
+	public TVShowBacklog () {
 		connect();
 		
 	}
@@ -40,13 +40,13 @@ public class MovieBacklog <M extends Media>{
 		}
 	}
 	
-	public void Insert(Movie m, WatchableMediaStatus s, String userRating, int priority) {
+	public void Insert(TVShow t, WatchableMediaStatus s, String userRating, int priority) {
 		
-		int id = m.getID();
+		int id = t.getID();
 		
 		if(CheckIfExists(id) == 0) {
 			
-			String sql = "INSERT INTO Movies_Backlog (MovieID,Status,UserRating,Priority) "
+			String sql = "INSERT INTO TVShows_Backlog (TVID,Status,UserRating,Priority) "
                 + "VALUES(?,?,?,?)";			
 	        try {
 	            PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -78,14 +78,13 @@ public class MovieBacklog <M extends Media>{
 		
 	}
 	
-	public void Delete(Movie m) {
+	public void Delete(TVShow t) {
 		
-		int id = m.getID();
+		int id = t.getID();
 		
 		if(CheckIfExists(id) == 0) {
 			
-			String sql = "DELETE FROM Movies_Backlog WHERE MovieID = ?";
-			
+			String sql = "DELETE FROM TVShows_Backlog WHERE TVID = ?";
 			
 	        try {
 	            PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -103,12 +102,12 @@ public class MovieBacklog <M extends Media>{
 		
 	}
 
-	public void Update(Movie m, String status, String userRating, int priority) {
-		int id = m.getID();
+	public void Update(TVShow t, String status, String userRating, int priority) {
+		int id = t.getID();
 		
 		if(CheckIfExists(id) == 0) {
 			
-			String sql = "UPDATE Movies_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE MovieID = ?";
+			String sql = "UPDATE TVShows_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE TVID = ?";
 			
 			
 	        try {
@@ -131,12 +130,12 @@ public class MovieBacklog <M extends Media>{
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM Movies_Backlog WHERE MovieID = ? LIMIT 1)";
+        String sql = "SELECT EXISTS(SELECT 1 FROM TVShows_Backlog WHERE TVID = ? LIMIT 1)";
         
         try {
-        	PreparedStatement stmt = this.conn.prepareStatement(sql);
-        	stmt.setInt(1,id);
-        	
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1,id);
+            
             ResultSet rs = stmt.executeQuery(sql);
             
             int result= rs.getInt(0);

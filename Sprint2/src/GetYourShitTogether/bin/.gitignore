@@ -26,3 +26,7 @@
 /BacklogItem.class
 /MovieBacklog.class
 /MovieStatus.class
+/VideoGameStatus.class
+/ShowStatus.class
+/WatchableMediaStatus.class
+/TVShowBacklog.class
