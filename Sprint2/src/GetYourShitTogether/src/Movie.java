@@ -8,11 +8,11 @@ public class Movie extends Media {
 		
 	}
 	
-	public Movie(String title, String genre, String rating, int release, String plot, String studio, String director){
+	public Movie(String title, String genre, String rating, int releaseDate, String plot, String studio, String director){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = release;
+		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
 		this.director = director;
@@ -20,11 +20,11 @@ public class Movie extends Media {
 		
 	}
 	
-	private Movie(String title, String genre, String rating, int release, String plot, int id, String studio, String director){
+	private Movie(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String director){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = release;
+		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
 		this.id = id;
