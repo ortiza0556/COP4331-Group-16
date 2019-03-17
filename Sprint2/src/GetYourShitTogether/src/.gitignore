@@ -19,3 +19,17 @@
 /MovieDatabase.class
 /TVShowDatabase.class
 /VideoGameDatabase.class
+/AnimeTest.class
+/Backlog.class
+/BacklogItem.class
+/MovieTest.class
+/TVShowTest.class
+/VideoGameTest.class
+/GetYourShitTogether$1.class
+/AnimeBacklog.class
+/MovieBacklog.class
+/TVShowBacklog.class
+/VideoGameBacklog.class
+/VideoGameStatus.class
+/WatchableMediaStatus.class
+/FilePath.class
