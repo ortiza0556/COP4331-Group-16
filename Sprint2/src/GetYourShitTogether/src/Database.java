@@ -1,5 +1,7 @@
 import java.sql.ResultSet;
 
+import javafx.collections.ObservableList;
+
 abstract class Database<M extends Media> {
 	
 		protected FilePath fp = new FilePath();
@@ -12,6 +14,6 @@ abstract class Database<M extends Media> {
 		
 		protected abstract void Insert (M m);
 		
-		protected abstract ResultSet Search (String title);
+		protected abstract ObservableList<M> Search (String title);
 
 }

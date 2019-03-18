@@ -3,7 +3,11 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.sql.Connection;
+
 
 public class AnimeDatabase extends Database<Anime> {
 	
@@ -72,9 +76,12 @@ public class AnimeDatabase extends Database<Anime> {
 	}
 
 	@Override
-	public ResultSet Search (String title) {
+	public ObservableList<Anime> Search (String title) {
         String sql = "SELECT AnimeID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM Anime WHERE "
                 + "Title LIKE '%" + title + "%'";
+        
+        ObservableList<Anime> result = FXCollections.observableArrayList();
+        boolean added = false;
         
         try {
             Statement stmt = this.conn.createStatement();
@@ -82,17 +89,19 @@ public class AnimeDatabase extends Database<Anime> {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                
-            	System.out.println("ID:" + rs.getString("AnimeID"));
-                System.out.println("Title:" + rs.getString("Title"));
-                System.out.println("Release:" + rs.getInt("Release"));
-                System.out.println("Genre:" + rs.getString("Genre"));
-                System.out.println("Rating:" + rs.getString("Rating"));
-                System.out.println("Plot:" + rs.getString("Plot"));
-                System.out.println("ProductionStudio:" + rs.getString("ProductionStudio"));
+            	Anime currAnime = new Anime(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
+            			rs.getInt("Release"), rs.getString("Plot"), rs.getInt("AnimeID"), rs.getString("ProductionStudio"));
+            	
+            	added = result.add(currAnime);
+            	
+            	if(!added){
+            		System.out.println("Error, anime not added properly");
+            	}else {
+            		added = false;
+            	}
             }
             
-            return rs;
+            return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -100,5 +109,7 @@ public class AnimeDatabase extends Database<Anime> {
         return null;
         
     }
+	
+	
 	
 }

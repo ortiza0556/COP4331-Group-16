@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class MovieDatabase extends Database<Movie> {
 		
 	private Connection conn;
@@ -72,9 +75,12 @@ public class MovieDatabase extends Database<Movie> {
 	}
 
 	@Override
-	public ResultSet Search (String title) {
-        String sql = "SELECT MovieID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM Movies WHERE "
+	public ObservableList<Movie> Search (String title) {
+        String sql = "SELECT MovieID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM Movies WHERE "
                 + "Title LIKE '%" + title + "%'";
+        
+        ObservableList<Movie> result = FXCollections.observableArrayList();
+        boolean added = false;
         
         try {
             Statement stmt = this.conn.createStatement();
@@ -82,17 +88,18 @@ public class MovieDatabase extends Database<Movie> {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                
-            	System.out.println("ID:" + rs.getString("MovieID"));
-                System.out.println("Title:" + rs.getString("Title"));
-                System.out.println("Release:" + rs.getInt("Release"));
-                System.out.println("Genre:" + rs.getString("Genre"));
-                System.out.println("Rating:" + rs.getString("Rating"));
-                System.out.println("Plot:" + rs.getString("Plot"));
-                System.out.println("ProductionStudio:" + rs.getString("ProductionStudio"));
+                Movie currMovie = new Movie(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
+            			rs.getInt("Release"), rs.getString("Plot"), rs.getInt("MovieID"), rs.getString("ProductionStudio"), rs.getString("Director"));
+            	added = result.add(currMovie);
+            	
+            	if(!added){
+            		System.out.println("Error, movie not added properly");
+            	}else {
+            		added = false;
+            	}
             }
             
-            return rs;
+            return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
