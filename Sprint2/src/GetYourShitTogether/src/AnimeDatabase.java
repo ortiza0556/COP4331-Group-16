@@ -12,6 +12,7 @@ import java.sql.Connection;
 public class AnimeDatabase extends Database<Anime> {
 	
 	private Connection conn;
+	public String resultText = null;
 
 	public AnimeDatabase () {
 		
@@ -47,6 +48,7 @@ public class AnimeDatabase extends Database<Anime> {
 
 	@Override
 	protected void Insert(Anime a) {
+		resultText = null;
 		String title = a.getTitle();
 		int release = a.getReleaseDate();
 		String genre = a.getGenre();
@@ -68,6 +70,7 @@ public class AnimeDatabase extends Database<Anime> {
             stmt.executeUpdate();
             
             System.out.println("Entry added");
+            resultText = "Anime successfully added.";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -79,7 +82,7 @@ public class AnimeDatabase extends Database<Anime> {
 	public ObservableList<Anime> Search (String title) {
         String sql = "SELECT AnimeID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM Anime WHERE "
                 + "Title LIKE '%" + title + "%'";
-        
+        resultText = null;
         ObservableList<Anime> result = FXCollections.observableArrayList();
         boolean added = false;
         
@@ -100,7 +103,7 @@ public class AnimeDatabase extends Database<Anime> {
             		added = false;
             	}
             }
-            
+            resultText = "Results found";
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -109,7 +112,5 @@ public class AnimeDatabase extends Database<Anime> {
         return null;
         
     }
-	
-	
 	
 }
