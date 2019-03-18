@@ -3,6 +3,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TVShowBacklog {
 
@@ -148,4 +152,37 @@ public class TVShowBacklog {
         return 1;
         
     }
+	
+	public ObservableList<TVShowBacklogItem> fetchAll() {
+		
+		 String sql = "SELECT Title,Genre,Status,UserRating,Priority FROM TVShows JOIN TVShows_backlog ON TVShows.TVID IS TVShows_backlog.TVID";
+	        
+	        ObservableList<TVShowBacklogItem> result = FXCollections.observableArrayList();
+	        boolean added = false;
+	        
+	        try {
+	            Statement stmt = this.conn.createStatement();
+	            
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            while(rs.next()) {
+	            	TVShowBacklogItem currTVShow = new TVShowBacklogItem(rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
+	            	
+	            	added = result.add(currTVShow);
+	            	
+	            	if(!added){
+	            		System.out.println("Error, tvshow not added properly");
+	            	}else {
+	            		added = false;
+	            	}
+	            }
+	            
+	            return result;
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+	        
+	        return null;
+		
+	}
 }
