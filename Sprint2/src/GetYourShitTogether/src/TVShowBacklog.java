@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TVShowBacklog <M extends Media>{
+public class TVShowBacklog {
 
 	private Connection conn;
 	protected FilePath fp = new FilePath();

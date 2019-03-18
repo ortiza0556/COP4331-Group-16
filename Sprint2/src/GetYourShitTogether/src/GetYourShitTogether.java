@@ -17,6 +17,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.stage.Window;
 
 public class GetYourShitTogether extends Application {
+	
+	private AnimeBacklog animeBacklog = new AnimeBacklog();
+	private TVShowBacklog tvBacklog = new TVShowBacklog();
+	
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -30,7 +34,7 @@ public class GetYourShitTogether extends Application {
         GridPane gridPane = new GridPane();
         vbox.getChildren().add(gridPane);
         // Add UI controls to the registration form grid pane
-        addUIControls(vbox);
+        addUIControls(vbox,"TVShows");
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(vbox, 1440, 760);
         // Set the scene in primary stage	
@@ -39,13 +43,13 @@ public class GetYourShitTogether extends Application {
         primaryStage.show();
     }
 
-    private void addUIControls(VBox vbox) {
-        
+    private void addUIControls(VBox vbox, String mediaType) {
+    	
         this.InitializeButtonPane(vbox);
         
-        @SuppressWarnings("rawtypes")
-		TableView table = initializeTable();
-        vbox.getChildren().add(table);
+    	TableView<TVShow> tvTable = loadTVTable();
+        vbox.getChildren().set(0, tvTable);
+          
         
         this.InitializeButtomButtons(vbox);
         
@@ -112,7 +116,7 @@ public class GetYourShitTogether extends Application {
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	private TableView initializeTable() {
+	private TableView<TVShow> loadTVTable() {
     	
     	TableView table = new TableView();
 
