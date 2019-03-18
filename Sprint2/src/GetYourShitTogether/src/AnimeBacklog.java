@@ -3,6 +3,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AnimeBacklog {
 
@@ -149,5 +153,38 @@ public class AnimeBacklog {
         return 1;
         
     }
+	
+	 public ObservableList<AnimeBacklogItem> fetchAll() {
+			
+		 String sql = "SELECT Title,Genre,Status,UserRating,Priority FROM Anime JOIN Anime_backlog ON Anime.AnimeID IS Anime_backlog.AnimeID";
+	        
+	        ObservableList<AnimeBacklogItem> result = FXCollections.observableArrayList();
+	        boolean added = false;
+	        
+	        try {
+	            Statement stmt = this.conn.createStatement();
+	            
+	            ResultSet rs = stmt.executeQuery(sql);
+	            
+	            while(rs.next()) {
+	            	AnimeBacklogItem currAnime = new AnimeBacklogItem(rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
+	            	
+	            	added = result.add(currAnime);
+	            	
+	            	if(!added){
+	            		System.out.println("Error, videogame not added properly");
+	            	}else {
+	            		added = false;
+	            	}
+	            }
+	            
+	            return result;
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+	        
+	        return null;
+		
+	}
 	
 }
