@@ -1,11 +1,12 @@
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class TVShowTest {
 	
-	String[] creators = {"Greg Daniels", "Ricky Gervais", "Stephen Merchant"};
-	String[] creators2 = {"David Benioff", "D.B. Weiss"};
+	String creators = "Greg Daniels, Ricky Gervais, Stephen Merchant";
+	String creators2 = "David Benioff, D.B. Weiss";
 
 	TVShow show = new TVShow("The Office", "Comedy", "10", 2005, "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.",
 							"NBC", creators);
@@ -20,13 +21,14 @@ class TVShowTest {
 		assertEquals(show2.getReleaseDate(), 2011);
 		assertEquals(show2.getPlot(), "Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for thousands of years.");
 		assertEquals(show2.getStudio(), "HBO");
-		assertEquals(Arrays.toString(show2.getCreators()), Arrays.toString(creators2));
+		assertArrayEquals(show2.getCreators(), creators2.split(","));
 		assertEquals(show2.getID(), -1);
+		
 	}
 
 	@Test
 	void testGetCreators() {
-		assertEquals(Arrays.toString(show.getCreators()), Arrays.toString(creators));
+		assertArrayEquals(show.getCreators(),creators.split(","));
 	}
 
 	@Test

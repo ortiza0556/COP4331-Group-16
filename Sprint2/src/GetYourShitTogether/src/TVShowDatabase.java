@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class TVShowDatabase extends Database<TVShow> {
 	private Connection conn;
 
@@ -71,9 +74,12 @@ public class TVShowDatabase extends Database<TVShow> {
 	}
 
 	@Override
-	public ResultSet Search (String title) {
-        String sql = "SELECT TVID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM TVShows WHERE "
+	public ObservableList<TVShow> Search (String title) {
+        String sql = "SELECT TVID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM TVShows WHERE "
                 + "Title LIKE '%" + title + "%'";
+        
+        ObservableList<TVShow> result = FXCollections.observableArrayList();
+        boolean added = false;
         
         try {
             Statement stmt = this.conn.createStatement();
@@ -81,17 +87,19 @@ public class TVShowDatabase extends Database<TVShow> {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                
-            	System.out.println("ID:" + rs.getString("TVID"));
-                System.out.println("Title:" + rs.getString("Title"));
-                System.out.println("Release:" + rs.getInt("Release"));
-                System.out.println("Genre:" + rs.getString("Genre"));
-                System.out.println("Rating:" + rs.getString("Rating"));
-                System.out.println("Plot:" + rs.getString("Plot"));
-                System.out.println("ProductionStudio:" + rs.getString("ProductionStudio"));
+            	TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
+            			rs.getInt("Release"), rs.getString("Plot"), rs.getInt("AnimeID"), rs.getString("ProductionStudio"), rs.getString("Director"));
+            	
+            	added = result.add(currTVShow);
+            	
+            	if(!added){
+            		System.out.println("Error, anime not added properly");
+            	}else {
+            		added = false;
+            	}
             }
             
-            return rs;
+            return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

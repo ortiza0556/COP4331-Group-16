@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class VideoGameDatabase extends Database<VideoGame> {
 	private Connection conn;
 
@@ -71,9 +74,12 @@ public class VideoGameDatabase extends Database<VideoGame> {
 	}
 
 	@Override
-	public ResultSet Search (String title) {
-        String sql = "SELECT VGID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM VideoGames WHERE "
+	public ObservableList<VideoGame> Search (String title) {
+        String sql = "SELECT VGID,Title,Release,Genre,Rating,Synopsis,DevStudio,Platform FROM VideoGames WHERE "
                 + "Title LIKE '%" + title + "%'";
+        
+        ObservableList<VideoGame> result = FXCollections.observableArrayList();
+        boolean added = false;
         
         try {
             Statement stmt = this.conn.createStatement();
@@ -81,17 +87,18 @@ public class VideoGameDatabase extends Database<VideoGame> {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                
-            	System.out.println("ID:" + rs.getString("VGID"));
-                System.out.println("Title:" + rs.getString("Title"));
-                System.out.println("Release:" + rs.getInt("Release"));
-                System.out.println("Genre:" + rs.getString("Genre"));
-                System.out.println("Rating:" + rs.getString("Rating"));
-                System.out.println("Plot:" + rs.getString("Plot"));
-                System.out.println("ProductionStudio:" + rs.getString("ProductionStudio"));
+                VideoGame currVG = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getString("Synopsis"), 
+                		rs.getInt("VGID"), rs.getString("DevStudio"), rs.getString("Platform"));
+            	added = result.add(currVG);
+            	
+            	if(!added){
+            		System.out.println("Error, movie not added properly");
+            	}else {
+            		added = false;
+            	}
             }
             
-            return rs;
+            return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

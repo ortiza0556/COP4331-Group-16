@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 class MovieTest {
@@ -10,7 +12,7 @@ class MovieTest {
 	@Test
 	void testMovie() {
 		Movie testFilm2 = new Movie("Avengers: Endgame", "Action", "9.5", 2019, "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble "
-				+ "once more in order to undo Thanos' actions and restore order to the universe.", "Marvel Studios", "Anthony Russo");
+				+ "once more in order to undo Thanos' actions and restore order to the universe.", "Marvel Studios", "Anthony Russo,Joe Russo");
 		assertEquals(testFilm2.getTitle(), "Avengers: Endgame");
 		assertEquals(testFilm2.getGenre(), "Action");
 		assertEquals(testFilm2.getRating(), "9.5");
@@ -19,12 +21,12 @@ class MovieTest {
 				+ "With the help of remaining allies, the Avengers assemble once more in order to undo Thanos' actions and restore order to the universe.");
 		assertEquals(testFilm2.getID(), -1);
 		assertEquals(testFilm2.getStudio(),"Marvel Studios");
-		
+		assertEquals(Arrays.toString(testFilm.getDirectors()), "Anthony Russo,Joe Russo");
 	}
 
 	@Test
 	void testGetDirector() {
-		assertEquals(testFilm.getDirector(), "Rob Letterman");
+		assertEquals(Arrays.toString(testFilm.getDirectors()), "Rob Letterman");
 	}
 
 	@Test

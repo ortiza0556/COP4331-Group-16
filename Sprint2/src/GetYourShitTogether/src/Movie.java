@@ -1,21 +1,21 @@
 
 public class Movie extends Media {
 	
-	private String director;
+	private String[] directors;
 	
-	public Movie(String title, String genre, String rating, int releaseDate, String plot, String studio, String director){
+	public Movie(String title, String genre, String rating, int releaseDate, String plot, String studio, String directors){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
 		this.releaseDate = releaseDate;
 		this.plot = plot;
 		this.studio = studio;
-		this.director = director;
+		this.directors = directors.split(",");
 		this.id = -1;
 		
 	}
 	
-	public Movie(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String director){
+	public Movie(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String directors){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
@@ -23,12 +23,12 @@ public class Movie extends Media {
 		this.plot = plot;
 		this.studio = studio;
 		this.id = id;
-		this.director = director;
+		this.directors = directors.split(",");
 	}
 	
-	public String getDirector()
+	public String[] getDirectors()
 	{
-		return this.director;
+		return this.directors;
 	}
 	
 }
