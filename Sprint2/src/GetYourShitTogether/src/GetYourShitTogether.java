@@ -54,7 +54,7 @@ public class GetYourShitTogether extends Application {
         vbox.getChildren().add(tvTable);
           
         
-        this.InitializeButtomButtons(vbox);
+        this.InitializeBottomButtons(vbox);
         
     }
     
@@ -265,7 +265,7 @@ public class GetYourShitTogether extends Application {
     	return table;
     }
 
-    private void InitializeButtomButtons(VBox vbox) {
+    private void InitializeBottomButtons(VBox vbox) {
     	HBox bottomRow = new HBox();
     	
     	// initialize delete button
