@@ -4,12 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class VideoGameDatabase extends Database<VideoGame> {
 	private Connection conn;
+	public String resultText = null;
 
 	public VideoGameDatabase () {
 		
@@ -45,27 +47,33 @@ public class VideoGameDatabase extends Database<VideoGame> {
 	
 	@Override
 	protected void Insert(VideoGame v) {
+		resultText = null;
 		String title = v.getTitle();
 		int release = v.getReleaseDate();
 		String genre = v.getGenre();
 		String rating = v.getRating();
-		String plot = v.getPlot();
-		String prodStudio = v.getStudio();
+		String synopsis = v.getPlot();
+		String devStudio = v.getStudio();
+		String platform = Arrays.toString(v.getPlatform());
+		platform = platform.substring(1, platform.length()-1);
 		
-		String sql = "INSERT INTO VideoGames (Title,Release,Genre,Rating,Plot,ProductionStudio) "
-                + "VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO VideoGames (Title,Release,Genre,Rating,Synopsis,DevStudio,Platform) "
+                + "VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1,title);
             stmt.setInt(2, release);
             stmt.setString(3, genre);
             stmt.setString(4, rating);
-            stmt.setString(5, plot);
-            stmt.setString(6, prodStudio);
+            stmt.setString(5, synopsis);
+            stmt.setString(6, devStudio);
+            stmt.setString(7,  platform);
             
             stmt.executeUpdate();
             
             System.out.println("Entry added");
+            resultText= "Video game successfully added";
+                    
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -75,7 +83,10 @@ public class VideoGameDatabase extends Database<VideoGame> {
 
 	@Override
 	public ObservableList<VideoGame> Search (String title) {
-        String sql = "SELECT VGID,Title,Release,Genre,Rating,Synopsis,DevStudio,Platform FROM VideoGames WHERE "
+        
+		resultText = null;
+        
+		String sql = "SELECT VGID,Title,Release,Genre,Rating,Synopsis,DevStudio,Platform FROM VideoGames WHERE "
                 + "Title LIKE '%" + title + "%'";
         
         ObservableList<VideoGame> result = FXCollections.observableArrayList();
@@ -98,6 +109,7 @@ public class VideoGameDatabase extends Database<VideoGame> {
             	}
             }
             
+            resultText = "Results found";
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
