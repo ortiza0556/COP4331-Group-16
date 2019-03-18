@@ -192,22 +192,22 @@ public class GetYourShitTogether extends Application {
     }
 	
 	@SuppressWarnings("unchecked")
-	private TableView<MovieBacklogItem> loadAnimeTable() {
+	private TableView<AnimeBacklogItem> loadAnimeTable() {
     	
-    	TableView<MovieBacklogItem> table = new TableView<MovieBacklogItem>();
-    	ObservableList<MovieBacklogItem> data = movieBacklog.fetchAll();
+    	TableView<AnimeBacklogItem> table = new TableView<AnimeBacklogItem>();
+    	ObservableList<AnimeBacklogItem> data = animeBacklog.fetchAll();
     	table.setItems(data);
  
-        TableColumn<MovieBacklogItem,String> titleCol = new TableColumn<MovieBacklogItem,String>("Title");
-        titleCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("title"));
-        TableColumn<MovieBacklogItem,String> authorCol = new TableColumn<MovieBacklogItem,String>("Genre");
-        authorCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("genre"));
-        TableColumn<MovieBacklogItem,String> statusCol = new TableColumn<MovieBacklogItem,String>("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("status"));
-        TableColumn<MovieBacklogItem,String> ratingCol = new TableColumn<MovieBacklogItem,String>("Rating");
-        ratingCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("rating"));
-        TableColumn<MovieBacklogItem,Integer> priorityCol = new TableColumn<MovieBacklogItem,Integer>("Priority");
-        priorityCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,Integer>("priority"));
+        TableColumn<AnimeBacklogItem,String> titleCol = new TableColumn<AnimeBacklogItem,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<AnimeBacklogItem,String>("title"));
+        TableColumn<AnimeBacklogItem,String> authorCol = new TableColumn<AnimeBacklogItem,String>("Genre");
+        authorCol.setCellValueFactory(new PropertyValueFactory<AnimeBacklogItem,String>("genre"));
+        TableColumn<AnimeBacklogItem,String> statusCol = new TableColumn<AnimeBacklogItem,String>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<AnimeBacklogItem,String>("status"));
+        TableColumn<AnimeBacklogItem,String> ratingCol = new TableColumn<AnimeBacklogItem,String>("Rating");
+        ratingCol.setCellValueFactory(new PropertyValueFactory<AnimeBacklogItem,String>("rating"));
+        TableColumn<AnimeBacklogItem,Integer> priorityCol = new TableColumn<AnimeBacklogItem,Integer>("Priority");
+        priorityCol.setCellValueFactory(new PropertyValueFactory<AnimeBacklogItem,Integer>("priority"));
  
         table.getColumns().setAll(titleCol, authorCol, statusCol, ratingCol, priorityCol);
         table.setPrefWidth(1430);
