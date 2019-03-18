@@ -1,7 +1,6 @@
 
 public class Anime extends Media{
 	
-	
 	public Anime(String title, String genre, String rating, int releaseDate, String plot, String studio){
 		this.title = title;
 		this.genre = genre;

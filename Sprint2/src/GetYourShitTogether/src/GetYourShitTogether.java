@@ -20,6 +20,9 @@ public class GetYourShitTogether extends Application {
 	
 	private AnimeBacklog animeBacklog = new AnimeBacklog();
 	private TVShowBacklog tvBacklog = new TVShowBacklog();
+	private VideoGameBacklog vgBacklog = new VideoGameBacklog();
+	private MovieBacklog movieBacklog = new MovieBacklog();
+	private VBox vbox;
 	
 
     @Override
@@ -27,7 +30,7 @@ public class GetYourShitTogether extends Application {
         primaryStage.setTitle("Get Thine Shite Together, Cur");
 
         // Create the registration form grid pane
-        VBox vbox = new VBox();
+        this.vbox = new VBox();
         
         vbox.setSpacing(10);
         
@@ -47,8 +50,8 @@ public class GetYourShitTogether extends Application {
     	
         this.InitializeButtonPane(vbox);
         
-    	TableView<TVShow> tvTable = loadTVTable();
-        vbox.getChildren().set(0, tvTable);
+    	TableView<TVShowBacklogItem> tvTable = loadTVTable();
+        vbox.getChildren().add(tvTable);
           
         
         this.InitializeButtomButtons(vbox);
@@ -101,12 +104,32 @@ public class GetYourShitTogether extends Application {
         HBox categories = new HBox();
         // Add Name Label
         Button tvButton = new Button("TV Shows");
+        tvButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+               vbox.getChildren().set(1, loadTVTable());
+            }
+        });
         
-        Button movieButton = new Button("Movies");
+        Button movieButton = new Button("Movies"); 
+        movieButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+               vbox.getChildren().set(1, loadMovieTable());
+            }
+        });
         
         Button animeButton = new Button("Anime");
+        animeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+               vbox.getChildren().set(1, loadAnimeTable());
+            }
+        });
         
         Button vidyaButton = new Button("Videogames");
+        vidyaButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+               vbox.getChildren().set(1, loadVideogameTable());
+            }
+        });
         
         
         categories.getChildren().addAll(tvButton,movieButton,animeButton,vidyaButton);
@@ -115,22 +138,102 @@ public class GetYourShitTogether extends Application {
     	
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	private TableView<TVShow> loadTVTable() {
+   
+	@SuppressWarnings("unchecked")
+	private TableView<TVShowBacklogItem> loadTVTable() {
     	
-    	TableView table = new TableView();
-
+    	TableView<TVShowBacklogItem> table = new TableView<TVShowBacklogItem>();
+    	ObservableList<TVShowBacklogItem> data = tvBacklog.fetchAll();
+    	table.setItems(data);
  
-        TableColumn titleCol = new TableColumn("Title");
-        titleCol.setCellValueFactory(new PropertyValueFactory("Title"));
-        TableColumn authorCol = new TableColumn("Genre");
-        authorCol.setCellValueFactory(new PropertyValueFactory("Genre"));
-        TableColumn statusCol = new TableColumn("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory("Status"));
-        TableColumn ratingCol = new TableColumn("Rating");
-        ratingCol.setCellValueFactory(new PropertyValueFactory("Rating"));
-        TableColumn priorityCol = new TableColumn("Priority");
-        priorityCol.setCellValueFactory(new PropertyValueFactory("Priority"));
+        TableColumn<TVShowBacklogItem,String> titleCol = new TableColumn<TVShowBacklogItem,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<TVShowBacklogItem,String>("title"));
+        TableColumn<TVShowBacklogItem,String> authorCol = new TableColumn<TVShowBacklogItem,String>("Genre");
+        authorCol.setCellValueFactory(new PropertyValueFactory<TVShowBacklogItem,String>("genre"));
+        TableColumn<TVShowBacklogItem,String> statusCol = new TableColumn<TVShowBacklogItem,String>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<TVShowBacklogItem,String>("status"));
+        TableColumn<TVShowBacklogItem,String> ratingCol = new TableColumn<TVShowBacklogItem,String>("Rating");
+        ratingCol.setCellValueFactory(new PropertyValueFactory<TVShowBacklogItem,String>("rating"));
+        TableColumn<TVShowBacklogItem,Integer> priorityCol = new TableColumn<TVShowBacklogItem,Integer>("Priority");
+        priorityCol.setCellValueFactory(new PropertyValueFactory<TVShowBacklogItem,Integer>("priority"));
+ 
+        table.getColumns().setAll(titleCol, authorCol, statusCol, ratingCol, priorityCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+ 
+    	return table;
+    }
+    
+	@SuppressWarnings("unchecked")
+	private TableView<MovieBacklogItem> loadMovieTable() {
+    	
+    	TableView<MovieBacklogItem> table = new TableView<MovieBacklogItem>();
+    	ObservableList<MovieBacklogItem> data = movieBacklog.fetchAll();
+    	table.setItems(data);
+ 
+        TableColumn<MovieBacklogItem,String> titleCol = new TableColumn<MovieBacklogItem,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("title"));
+        TableColumn<MovieBacklogItem,String> authorCol = new TableColumn<MovieBacklogItem,String>("Genre");
+        authorCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("genre"));
+        TableColumn<MovieBacklogItem,String> statusCol = new TableColumn<MovieBacklogItem,String>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("status"));
+        TableColumn<MovieBacklogItem,String> ratingCol = new TableColumn<MovieBacklogItem,String>("Rating");
+        ratingCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("rating"));
+        TableColumn<MovieBacklogItem,Integer> priorityCol = new TableColumn<MovieBacklogItem,Integer>("Priority");
+        priorityCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,Integer>("priority"));
+ 
+        table.getColumns().setAll(titleCol, authorCol, statusCol, ratingCol, priorityCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+ 
+    	return table;
+    }
+	
+	@SuppressWarnings("unchecked")
+	private TableView<MovieBacklogItem> loadAnimeTable() {
+    	
+    	TableView<MovieBacklogItem> table = new TableView<MovieBacklogItem>();
+    	ObservableList<MovieBacklogItem> data = movieBacklog.fetchAll();
+    	table.setItems(data);
+ 
+        TableColumn<MovieBacklogItem,String> titleCol = new TableColumn<MovieBacklogItem,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("title"));
+        TableColumn<MovieBacklogItem,String> authorCol = new TableColumn<MovieBacklogItem,String>("Genre");
+        authorCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("genre"));
+        TableColumn<MovieBacklogItem,String> statusCol = new TableColumn<MovieBacklogItem,String>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("status"));
+        TableColumn<MovieBacklogItem,String> ratingCol = new TableColumn<MovieBacklogItem,String>("Rating");
+        ratingCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("rating"));
+        TableColumn<MovieBacklogItem,Integer> priorityCol = new TableColumn<MovieBacklogItem,Integer>("Priority");
+        priorityCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,Integer>("priority"));
+ 
+        table.getColumns().setAll(titleCol, authorCol, statusCol, ratingCol, priorityCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+ 
+    	return table;
+    }
+	
+	@SuppressWarnings("unchecked")
+	private TableView<VideogameBacklogItem> loadVideogameTable() {
+    	
+    	TableView<VideogameBacklogItem> table = new TableView<VideogameBacklogItem>();
+    	ObservableList<VideogameBacklogItem> data = vgBacklog.fetchAll();
+    	table.setItems(data);
+ 
+        TableColumn<VideogameBacklogItem,String> titleCol = new TableColumn<VideogameBacklogItem,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("title"));
+        TableColumn<VideogameBacklogItem,String> authorCol = new TableColumn<VideogameBacklogItem,String>("Genre");
+        authorCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("genre"));
+        TableColumn<VideogameBacklogItem,String> statusCol = new TableColumn<VideogameBacklogItem,String>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("status"));
+        TableColumn<VideogameBacklogItem,String> ratingCol = new TableColumn<VideogameBacklogItem,String>("Rating");
+        ratingCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("rating"));
+        TableColumn<VideogameBacklogItem,Integer> priorityCol = new TableColumn<VideogameBacklogItem,Integer>("Priority");
+        priorityCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,Integer>("priority"));
  
         table.getColumns().setAll(titleCol, authorCol, statusCol, ratingCol, priorityCol);
         table.setPrefWidth(1430);
