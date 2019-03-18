@@ -18,8 +18,8 @@ import javafx.stage.Window;
 
 public class GetYourShitTogether extends Application {
 	
-	private AnimeBacklog animeBacklog = new AnimeBacklog<Anime>();
-	private TVShowBacklog tvBacklog = new TVShowBacklog<TVShow>();
+	private AnimeBacklog animeBacklog = new AnimeBacklog();
+	private TVShowBacklog tvBacklog = new TVShowBacklog();
 	
 
     @Override
