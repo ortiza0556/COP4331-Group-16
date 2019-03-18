@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,8 @@ import javafx.collections.ObservableList;
 public class MovieDatabase extends Database<Movie> {
 		
 	private Connection conn;
-
+	public String resultText = null;
+	
 	public MovieDatabase () {
 		
 		super.filePath = filePath;
@@ -46,15 +48,18 @@ public class MovieDatabase extends Database<Movie> {
 	
 	@Override
 	protected void Insert(Movie m) {
+		resultText = null;
+		
 		String title = m.getTitle();
 		int release = m.getReleaseDate();
 		String genre = m.getGenre();
 		String rating = m.getRating();
 		String plot = m.getPlot();
 		String prodStudio = m.getStudio();
+		String director = Arrays.toString(m.getDirectors());
 		
-		String sql = "INSERT INTO Movies (Title,Release,Genre,Rating,Plot,ProductionStudio) "
-                + "VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO Movies (Title,Release,Genre,Rating,Plot,ProductionStudio,Director) "
+                + "VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1,title);
@@ -63,10 +68,13 @@ public class MovieDatabase extends Database<Movie> {
             stmt.setString(4, rating);
             stmt.setString(5, plot);
             stmt.setString(6, prodStudio);
+            stmt.setString(7, director);
             
             stmt.executeUpdate();
             
             System.out.println("Entry added");
+            resultText = "Movie successfully added";
+            		
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -76,7 +84,10 @@ public class MovieDatabase extends Database<Movie> {
 
 	@Override
 	public ObservableList<Movie> Search (String title) {
-        String sql = "SELECT MovieID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM Movies WHERE "
+        
+		resultText = null;
+		
+		String sql = "SELECT MovieID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM Movies WHERE "
                 + "Title LIKE '%" + title + "%'";
         
         ObservableList<Movie> result = FXCollections.observableArrayList();
@@ -99,6 +110,7 @@ public class MovieDatabase extends Database<Movie> {
             	}
             }
             
+            resultText = "Results found";
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
