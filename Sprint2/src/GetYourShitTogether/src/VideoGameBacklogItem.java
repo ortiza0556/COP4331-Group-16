@@ -1,7 +1,7 @@
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class VideogameBacklogItem {
+public class VideoGameBacklogItem {
 	
 	private SimpleStringProperty title;
     private SimpleStringProperty genre;
@@ -9,7 +9,7 @@ public class VideogameBacklogItem {
     private SimpleStringProperty rating;
     private SimpleIntegerProperty priority;
  
-    public VideogameBacklogItem (String title, String genre, String status, String rating, int priority) {
+    public VideoGameBacklogItem (String title, String genre, String status, String rating, int priority) {
  
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);

@@ -218,22 +218,22 @@ public class GetYourShitTogether extends Application {
     }
 	
 	@SuppressWarnings("unchecked")
-	private TableView<VideogameBacklogItem> loadVideogameTable() {
+	private TableView<VideoGameBacklogItem> loadVideogameTable() {
     	
-    	TableView<VideogameBacklogItem> table = new TableView<VideogameBacklogItem>();
-    	ObservableList<VideogameBacklogItem> data = vgBacklog.fetchAll();
+    	TableView<VideoGameBacklogItem> table = new TableView<VideoGameBacklogItem>();
+    	ObservableList<VideoGameBacklogItem> data = vgBacklog.fetchAll();
     	table.setItems(data);
  
-        TableColumn<VideogameBacklogItem,String> titleCol = new TableColumn<VideogameBacklogItem,String>("Title");
-        titleCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("title"));
-        TableColumn<VideogameBacklogItem,String> authorCol = new TableColumn<VideogameBacklogItem,String>("Genre");
-        authorCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("genre"));
-        TableColumn<VideogameBacklogItem,String> statusCol = new TableColumn<VideogameBacklogItem,String>("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("status"));
-        TableColumn<VideogameBacklogItem,String> ratingCol = new TableColumn<VideogameBacklogItem,String>("Rating");
-        ratingCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,String>("rating"));
-        TableColumn<VideogameBacklogItem,Integer> priorityCol = new TableColumn<VideogameBacklogItem,Integer>("Priority");
-        priorityCol.setCellValueFactory(new PropertyValueFactory<VideogameBacklogItem,Integer>("priority"));
+        TableColumn<VideoGameBacklogItem,String> titleCol = new TableColumn<VideoGameBacklogItem,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<VideoGameBacklogItem,String>("title"));
+        TableColumn<VideoGameBacklogItem,String> authorCol = new TableColumn<VideoGameBacklogItem,String>("Genre");
+        authorCol.setCellValueFactory(new PropertyValueFactory<VideoGameBacklogItem,String>("genre"));
+        TableColumn<VideoGameBacklogItem,String> statusCol = new TableColumn<VideoGameBacklogItem,String>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<VideoGameBacklogItem,String>("status"));
+        TableColumn<VideoGameBacklogItem,String> ratingCol = new TableColumn<VideoGameBacklogItem,String>("Rating");
+        ratingCol.setCellValueFactory(new PropertyValueFactory<VideoGameBacklogItem,String>("rating"));
+        TableColumn<VideoGameBacklogItem,Integer> priorityCol = new TableColumn<VideoGameBacklogItem,Integer>("Priority");
+        priorityCol.setCellValueFactory(new PropertyValueFactory<VideoGameBacklogItem,Integer>("priority"));
  
         table.getColumns().setAll(titleCol, authorCol, statusCol, ratingCol, priorityCol);
         table.setPrefWidth(1430);
