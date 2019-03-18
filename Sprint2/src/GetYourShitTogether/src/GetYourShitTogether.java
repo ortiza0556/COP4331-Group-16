@@ -79,15 +79,36 @@ public class GetYourShitTogether extends Application {
         gridPane.getColumnConstraints().addAll(column1Constraints,column2Constraints,column3Constraints,column4Constrains,column5Constraints);
 
     	HBox buttons = new HBox();
-        // Add Name Label
+
+    	// initialize badge button
         Button badgeButton = new Button("Badge");
         
+        badgeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("badge button pressed");
+            }
+        });
+        
+        // initialize recommend button
         Button recommendButton = new Button("Recommendations");
         
+        recommendButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("recommendations button pressed");
+            }
+        });
+        
+        // initialize backlog button
         Button backlogButton = new Button("Backlogs");
+        
+        backlogButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("backlogs button pressed");
+            }
+        });
 
         buttons.getChildren().addAll(badgeButton,recommendButton,backlogButton);
-        gridPane.add(buttons,0,0);
+        gridPane.add(buttons, 0, 0);
         
         Label bufferLabel1 = new Label();
         gridPane.add(bufferLabel1, 1, 0);
@@ -246,22 +267,40 @@ public class GetYourShitTogether extends Application {
     private void InitializeButtomButtons(VBox vbox) {
     	HBox bottomRow = new HBox();
     	
+    	// initialize delete button
     	Button deleteButton = new Button("Delete");
-        
-    		deleteButton.setPrefWidth(100);
-    		deleteButton.setPrefHeight(50);
     	
+    	deleteButton.setPrefWidth(100);
+    	deleteButton.setPrefHeight(50);
+        deleteButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("delete button pressed");
+            }
+        });
+    	
+        // initialize add button
         Button addButton = new Button("Add");
         
-        	addButton.setPrefWidth(100);
-        	addButton.setPrefHeight(50);
-	        
+        addButton.setPrefWidth(100);
+        addButton.setPrefHeight(50);
+        addButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("add button pressed");
+            }
+        });
+        
+        //initialize edit button
         Button editButton = new Button("Edit");
-        	
-        	editButton.setPrefWidth(100);
-        	editButton.setPrefHeight(50);
         
+        editButton.setPrefWidth(100);
+        editButton.setPrefHeight(50);
+        editButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	System.out.println("edit button pressed");
+            }
+        });
         
+        // set alignment & spacing
         bottomRow.setAlignment(Pos.CENTER);
         bottomRow.setSpacing(20);
         
