@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 class VideoGameTest {
 	
 	VideoGame game = new VideoGame("Devil May Cry 5", "Action", "9.7", 2019, "The ultimate Devil Hunter is back in style, in the game action fans have been waiting for.",
-									"Capcom", "PS4");
+									"Capcom", "PS4, Xbox One, PC");
+	String platforms = "PS4, Xbox One, PC";
 
 	@Test
 	void testVideoGame() {
 		VideoGame game2 = new VideoGame("Resident Evil 2", "Horror", "9.2", 2019, "A deadly virus engulfs the residents of Raccoon City in September of 1998, plunging the "
 	    + "city into chaos as flesh eating zombies roam the streets for survivors. An unparalleled adrenaline rush, gripping storyline, and unimaginable horrors await you. "
-	    + "Witness the return of Resident Evil 2.", "Capcom", "PS4");
+	    + "Witness the return of Resident Evil 2.", "Capcom", "PS4, Xbox One, PC");
 		
 		assertEquals(game2.getTitle(), "Resident Evil 2");
 		assertEquals(game2.getGenre(), "Horror");
@@ -21,12 +22,12 @@ class VideoGameTest {
 	    + "city into chaos as flesh eating zombies roam the streets for survivors. An unparalleled adrenaline rush, gripping storyline, and unimaginable horrors await you. "
 	    + "Witness the return of Resident Evil 2.");
 		assertEquals(game2.getStudio(), "Capcom");
-		assertEquals(game2.getPlatform(), "PS4");
+		assertArrayEquals(game2.getPlatform(), platforms.split(","));
 	}
 
 	@Test
 	void testGetPlatform() {
-		assertEquals(game.getPlatform(), "PS4");
+		assertArrayEquals(game.getPlatform(), platforms.split(","));
 	}
 
 	@Test

@@ -92,7 +92,7 @@ public class VideoGameDatabase extends Database<VideoGame> {
             	added = result.add(currVG);
             	
             	if(!added){
-            		System.out.println("Error, movie not added properly");
+            		System.out.println("Error, video game not added properly");
             	}else {
             		added = false;
             	}
