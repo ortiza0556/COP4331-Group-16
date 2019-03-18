@@ -57,6 +57,7 @@ public class MovieDatabase extends Database<Movie> {
 		String plot = m.getPlot();
 		String prodStudio = m.getStudio();
 		String director = Arrays.toString(m.getDirectors());
+		director = director.substring(1, director.length()-1);
 		
 		String sql = "INSERT INTO Movies (Title,Release,Genre,Rating,Plot,ProductionStudio,Director) "
                 + "VALUES(?,?,?,?,?,?,?)";

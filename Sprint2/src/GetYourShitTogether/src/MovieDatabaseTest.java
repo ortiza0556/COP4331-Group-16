@@ -22,7 +22,7 @@ class MovieDatabaseTest {
 		Movie Movie2 = new Movie("Avengers: Endgame", "Action", "9.5", 2019, "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble "
 				+ "once more in order to undo Thanos' actions and restore order to the universe.", "Marvel Studios", "Anthony Russo, Joe Russo");
 		db.Insert(Movie2);
-		assertEquals(db.resultText, "Movie successfully added.");
+		assertEquals(db.resultText, "Movie successfully added");
 		ObservableList<Movie> resultList = db.Search("Avengers: Endgame");
 		assertEquals(db.resultText, "Results found");
 		Movie resultingMovie = resultList.get(0);		
