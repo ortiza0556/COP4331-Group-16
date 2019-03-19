@@ -37,4 +37,4 @@ This sprint mainly was concerned with setting up the framework for the project a
 -  [System Architecture and Design Specification](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArchitecture.md)
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint2/src)
 -  [Test Cases](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint2/TestCases)
--  [Product Demonstration]
+-  [Product Demonstration](https://youtu.be/6Jso3hgJYzY)
