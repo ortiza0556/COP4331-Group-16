@@ -41,7 +41,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList<M> Search(String title)
     
-* **BacklogItem Class extends Media Class**
+* **MovieDatabase Class extends Database<Movie>**
     
     Data Fields: int databaseID
     
