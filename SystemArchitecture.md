@@ -37,7 +37,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: TVShow(title, genre, rating, releaseDate, plot, studio, String creators), TVShow(title, genre, rating, releaseDate, plot, id, studio, String creators), String[] getCreators(), and all the get methods inherited from Media
     
-    Description: TVShow class extends the Media class, but adds a data field for directors. This will be used to create TVShow objects to add to the database, when we pull from the rest APIs.
+    Description: TVShow class extends the Media class, but adds a data field for creators. This will be used to create TVShow objects to add to the database, when we pull from the rest APIs.
     
 * **Anime Class extends Media Class**
     
@@ -45,13 +45,15 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: Anime(title, genre, rating, releaseDate, plot, studio), Anime(title, genre, rating, releaseDate, plot, id, studio), and all the get methods inherited from Media
     
-    Description: Anime class extends the Media class, but adds a data field for directors. This will be used to create Anime objects to add to the database, when we pull from the rest APIs.
+    Description: Anime class extends the Media class. This will be used to create Anime objects to add to the database, when we pull from the rest APIs.
     
 * **VideoGame Class extends Media Class**
     
     Data Fields: platforms (String[])
     
     Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatform(), and all the get methods inherited from Media
+    
+    Description: VideoGame class extends the Media class, but adds a data field for platforms. This will be used to create VideoGame objects to add to the database, when we pull from the rest APIs.
    
 
 * **Database Class < M extends Media > (ABC)**
@@ -60,11 +62,15 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList< M > Search(String title)
     
+    Description: An abstract base class with filepath data fields, and 4 methods for each of the database classes to implement/override.
+    
 * **MovieDatabase Class extends Database< Movie >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
     Methods: MovieDatabase(), connect, close, Insert(Movie m), ObservableList< Movie > Search (String title) 
+    
+    Description: MovieDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add Movie objects to the SQLite database from the the IMDB rest api.
         
 * **TVShowDatabase Class extends Database< TVShow >**
     
@@ -72,17 +78,23 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: TVShowDatabase(), connect, close, Insert(TVShow t), ObservableList< TVShow > Search (String title)
     
+    Description: TVShowDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add TVShow objects to the SQLite database from the the IMDB rest api.
+    
 * **AnimeDatabase Class extends Database< Anime >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
     Methods: AnimeDatabase(), connect, close, Insert(Anime t), ObservableList< Anime > Search (String title)
     
+    Description: AnimeDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add Anime objects to the SQLite database from the the MyAnimeList rest api.
+    
 * **VideoGameDatabase Class extends Database< Video Game >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
     Methods: VideoGameDatabase(), connect, close, Insert(VideoGame t), ObservableList< VideoGame > Search (String title)
+    
+    Description: VideoGameDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add VideoGame objects to the SQLite database from the the IGDB rest api.
  
 * **MovieBacklogItem Class**
     
