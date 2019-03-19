@@ -7,7 +7,7 @@ Populate each section with information as it applies to your project. If a secti
 
 * **Media Class (ABC)**
     
-    Data Fields: genre (String), title (String), rating (float), releaseDate (int), plot (String), id (int), studio (String)
+    Data Fields: genre (String), title (String), rating (String), releaseDate (int), plot (String), id (int), studio (String)
     
     Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), String getPlot(), int getID(), String      getStudio()
    
