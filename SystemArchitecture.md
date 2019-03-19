@@ -2,6 +2,7 @@
 
 Populate each section with information as it applies to your project. If a section does not apply, explain why. Include diagrams (or links to diagrams) in each section, as appropriate. For example, sketches of the user interfaces along with an explanation of how the interface components will work; ERD diagrams of the database; rough class diagrams; context diagrams showing the system boundary; etc.
 # Architecture Diagram
+* Diagram
     ![mainpage](https://i.imgur.com/sjq0oRE.jpg)
 # Major Classes
 
