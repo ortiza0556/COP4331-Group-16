@@ -43,9 +43,27 @@ Populate each section with information as it applies to your project. If a secti
     
 * **MovieDatabase Class extends Database< Movie >**
     
-    Data Fields: Connection conn, String resultText
+    Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
-    Methods: MovieDatabase(), connect, close, Insert(Movie m), Search(Stri 
+    Methods: MovieDatabase(), connect, close, Insert(Movie m), ObservableList<Movie> Search (String title) 
+        
+* **TVShowDatabase Class extends Database< TVShow >**
+    
+    Data Fields: Connection conn, String resultText, also filepath from the Database Class
+    
+    Methods: TVShowDatabase(), connect, close, Insert(TVShow t), ObservableList< TVShow > Search (String title)
+    
+* **AnimeDatabase Class extends Database< Anime >**
+    
+    Data Fields: Connection conn, String resultText, also filepath from the Database Class
+    
+    Methods: AnimeDatabase(), connect, close, Insert(Anime t), ObservableList< Anime > Search (String title)
+    
+* **VideoGameDatabase Class extends Database< Video Game >**
+    
+    Data Fields: Connection conn, String resultText, also filepath from the Database Class
+    
+    Methods: VideoGameDatabase(), connect, close, Insert(VideoGame t), ObservableList< VideoGame > Search (String title)
     
 * **Backlog Class**
     
