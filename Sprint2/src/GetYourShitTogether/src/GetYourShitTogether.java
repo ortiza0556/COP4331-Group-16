@@ -18,6 +18,7 @@ import javafx.stage.Window;
 
 public class GetYourShitTogether extends Application {
 	
+	private String mediaTypeDisplayed;
 	private AnimeBacklog animeBacklog = new AnimeBacklog();
 	private TVShowBacklog tvBacklog = new TVShowBacklog();
 	private VideoGameBacklog vgBacklog = new VideoGameBacklog();
@@ -28,7 +29,7 @@ public class GetYourShitTogether extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Get Thine Shite Together, Cur");
-
+        
         // Create the registration form grid pane
         this.vbox = new VBox();
         
@@ -49,12 +50,12 @@ public class GetYourShitTogether extends Application {
     private void addUIControls(VBox vbox, String mediaType) {
     	
         this.InitializeButtonPane(vbox);
-        
+        mediaTypeDisplayed = mediaType;
     	TableView<TVShowBacklogItem> tvTable = loadTVTable();
         vbox.getChildren().add(tvTable);
           
         
-        this.InitializeBottomButtons(vbox);
+        this.InitializeButtomButtons(vbox);
         
     }
     
@@ -125,7 +126,8 @@ public class GetYourShitTogether extends Application {
         Button tvButton = new Button("TV Shows");
         tvButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               vbox.getChildren().set(1, loadTVTable());
+            	mediaTypeDisplayed = "TVShows";
+            	vbox.getChildren().set(1, loadTVTable());
             }
         });
 
@@ -133,7 +135,8 @@ public class GetYourShitTogether extends Application {
         Button movieButton = new Button("Movies"); 
         movieButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               vbox.getChildren().set(1, loadMovieTable());
+            	mediaTypeDisplayed = "Movies";
+            	vbox.getChildren().set(1, loadMovieTable());
             }
         });
 
@@ -141,7 +144,8 @@ public class GetYourShitTogether extends Application {
         Button animeButton = new Button("Anime");
         animeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               vbox.getChildren().set(1, loadAnimeTable());
+            	mediaTypeDisplayed = "Anime";
+            	vbox.getChildren().set(1, loadAnimeTable());
             }
         });
 
@@ -149,7 +153,8 @@ public class GetYourShitTogether extends Application {
         Button vidyaButton = new Button("Videogames");
         vidyaButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               vbox.getChildren().set(1, loadVideoGameTable());
+            	mediaTypeDisplayed = "VideoGames";
+            	vbox.getChildren().set(1, loadVideoGameTable());
             }
         });
         
@@ -265,7 +270,8 @@ public class GetYourShitTogether extends Application {
     	return table;
     }
 
-    private void InitializeBottomButtons(VBox vbox) {
+	@SuppressWarnings("unchecked")
+    private void InitializeButtomButtons(VBox vbox) {
     	HBox bottomRow = new HBox();
     	
     	// initialize delete button
@@ -275,7 +281,35 @@ public class GetYourShitTogether extends Application {
     	deleteButton.setPrefHeight(50);
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	System.out.println("delete button pressed");
+            	switch (mediaTypeDisplayed) {
+            	
+            		case "TVShows":
+            			TableView<TVShowBacklogItem> tvTable = (TableView<TVShowBacklogItem>) vbox.getChildren().get(1);
+            			TVShowBacklogItem selectedShowForDeletion = tvTable.getSelectionModel().getSelectedItem();
+            			tvBacklog.Delete(selectedShowForDeletion);
+            			vbox.getChildren().set(1, loadTVTable());
+            			break;
+            		case "Movies":
+            			TableView<MovieBacklogItem> movieTable = (TableView<MovieBacklogItem>) vbox.getChildren().get(1);
+            			MovieBacklogItem selectedMovieForDeletion = movieTable.getSelectionModel().getSelectedItem();
+            			movieBacklog.Delete(selectedMovieForDeletion);
+            			vbox.getChildren().set(1, loadMovieTable());
+            			break;
+            		case "Anime":
+            			TableView<AnimeBacklogItem> animeTable = (TableView<AnimeBacklogItem>) vbox.getChildren().get(1);
+            			AnimeBacklogItem selectedAnimeForDeletion = animeTable.getSelectionModel().getSelectedItem();
+            			animeBacklog.Delete(selectedAnimeForDeletion);
+            			vbox.getChildren().set(1, loadAnimeTable());
+            			break;
+            		case "VideoGames":
+            			TableView<VideoGameBacklogItem> vgTable = (TableView<VideoGameBacklogItem>) vbox.getChildren().get(1);
+            			VideoGameBacklogItem selectedVGForDeletion = vgTable.getSelectionModel().getSelectedItem();
+            			vgBacklog.Delete(selectedVGForDeletion);
+            			vbox.getChildren().set(1, loadAnimeTable());
+            			break;
+            		default:
+            			System.out.println("Danger there be dragons in the Gap");
+            	}
             }
         });
     	

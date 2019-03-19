@@ -44,7 +44,7 @@ public class TVShowBacklog {
 		}
 	}
 	
-	public void Insert(TVShow t, WatchableMediaStatus s, String userRating, int priority) {
+	public void Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority) {
 		
 		int id = t.getID();
 		
@@ -82,11 +82,12 @@ public class TVShowBacklog {
 		
 	}
 	
-	public void Delete(TVShow t) {
+	public void Delete(TVShowBacklogItem t) {
 		
 		int id = t.getID();
+		System.out.println(id);
 		
-		if(CheckIfExists(id) == 0) {
+		if(CheckIfExists(id) != -1) {
 			
 			String sql = "DELETE FROM TVShows_Backlog WHERE TVID = ?";
 			
@@ -106,7 +107,7 @@ public class TVShowBacklog {
 		
 	}
 
-	public void Update(TVShow t, String status, String userRating, int priority) {
+	public void Update(TVShowBacklogItem t, String status, String userRating, int priority) {
 		int id = t.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -134,22 +135,22 @@ public class TVShowBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM TVShows_Backlog WHERE TVID = ? LIMIT 1)";
+        String sql = "SELECT TVID FROM TVShows_Backlog WHERE TVID = ?";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setInt(1,id);
             
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
             
-            int result= rs.getInt(0);
+            int result= rs.getInt(1);
 
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         
-        return 1;
+        return -1;
         
     }
 	

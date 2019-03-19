@@ -44,7 +44,7 @@ public class MovieBacklog {
 		}
 	}
 	
-	public void Insert(Movie m, WatchableMediaStatus s, String userRating, int priority) {
+	public void Insert(MovieBacklogItem m, WatchableMediaStatus s, String userRating, int priority) {
 		
 		int id = m.getID();
 		
@@ -82,11 +82,11 @@ public class MovieBacklog {
 		
 	}
 	
-	public void Delete(Movie m) {
+	public void Delete(MovieBacklogItem m) {
 		
 		int id = m.getID();
 		
-		if(CheckIfExists(id) == 0) {
+		if(CheckIfExists(id) != -1) {
 			
 			String sql = "DELETE FROM Movies_Backlog WHERE MovieID = ?";
 			
@@ -107,7 +107,7 @@ public class MovieBacklog {
 		
 	}
 
-	public void Update(Movie m, String status, String userRating, int priority) {
+	public void Update(MovieBacklogItem m, String status, String userRating, int priority) {
 		int id = m.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -135,13 +135,13 @@ public class MovieBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM Movies_Backlog WHERE MovieID = ? LIMIT 1)";
+        String sql = "SELECT MovieID FROM Movies_Backlog WHERE MovieID = ?";
         
         try {
         	PreparedStatement stmt = this.conn.prepareStatement(sql);
         	stmt.setInt(1,id);
         	
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
             
             int result= rs.getInt(0);
 

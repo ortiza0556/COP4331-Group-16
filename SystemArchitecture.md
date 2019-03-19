@@ -4,23 +4,23 @@ Populate each section with information as it applies to your project. If a secti
 
 # Major Classes
 
-* **Media Class (ABC)**
+* **Media Class**
     
-    Data Fields: genre (String), title (String), rating (float), releaseDate (int), plot (String), id (int), studio (String)
+    Data Fields: genre (String), title (String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String)
     
-    Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), String getPlot(), int getID(), String      getStudio()
+    Methods: Media(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(), String       getSynopsis(), int getID(), String getStudio()
    
 * **Movie Class extends Media Class**
     
-    Data Fields: All inherited from Media, directors(String[])
+    Data Fields: genre (String), title (String), rating (float), releaseDate(int), synopsis (String), id (int), studio (String),             director (String)
     
-    Methods: Movie(title, genre, rating, releaseDate, plot, studio, String directors), Movie(title, genre, rating, releaseDate, plot, studio, String directors), getDirectors(), and all the get methods inherited from Media
+    Methods: Movie(DatabaseInterface database), getTitle(), getGenre(), getRating(), getReleaseDate(), getSynopsis(), getID(),               getStudio(),  getStudio(), getDirector()
     
 * **TVShow Class extends Media Class**
     
-    Data Fields: creators(String[])
+    Data Fields: genre (String), title (String), rating (float), releaseDate(int), synopsis (String), id (int), studio (String),             directors (array of Strings)
     
-    Methods: TVShow(DatabaseInterface database), getCreators()
+    Methods: TVShow(DatabaseInterface database), getTitle(), getGenre(), getRating(), getReleaseDate(), getSynopsis(), getID(),             getStudio(), String getStudio(), String[] getDirectors()
     
 * **Anime Class extends Media Class**
     
@@ -35,7 +35,7 @@ Populate each section with information as it applies to your project. If a secti
     Methods: VideoGame(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(),           String getSynopsis(), int getID(), String getStudio(), String getPlatform()
    
 
-* **Database Class (ABC)**
+* **DatabaseInterface Class**
     
     Data Fields: String dbPath
     

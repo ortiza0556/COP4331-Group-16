@@ -82,7 +82,7 @@ public class VideoGameBacklog {
 		
 	}
 	
-	public void Delete(VideoGame v) {
+	public void Delete(VideoGameBacklogItem v) {
 		
 		int id = v.getID();
 		
@@ -109,7 +109,7 @@ public class VideoGameBacklog {
 	public void Update(VideoGame v, String status, String userRating, int priority) {
 		int id = v.getID();
 		
-		if(CheckIfExists(id) == 0) {
+		if(CheckIfExists(id) != -1) {
 			
 			String sql = "UPDATE VideoGames_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE VGID = ?";
 			
@@ -134,13 +134,13 @@ public class VideoGameBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM VideoGames_Backlog WHERE VGID = ? LIMIT 1)";
+        String sql = "SELECT VGID FROM VideoGames_Backlog WHERE VGID = ?";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setInt(1,id);
             
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
             
             int result= rs.getInt(0);
 
