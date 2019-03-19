@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 class VideoGameBacklogItemTest {
 
 	VideoGameBacklogItem game2 = new VideoGameBacklogItem("Warhammer 2: Vermintide", "Action", "ON HOLD", "9", 1);
+	
 	@Test
 	public void testVideoGameBacklogItem(){
 		VideoGameBacklogItem game2 = new VideoGameBacklogItem("Devil May Cry 5", "Action", "PLAYING", "10", 1);
