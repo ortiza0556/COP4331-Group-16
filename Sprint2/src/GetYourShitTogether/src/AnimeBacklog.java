@@ -86,7 +86,7 @@ public class AnimeBacklog {
 		
 		int id = a.getID();
 		
-		if(CheckIfExists(id) == 0) {
+		if(CheckIfExists(id) != -1) {
 			
 			String sql = "DELETE FROM Anime_Backlog WHERE AnimeID = ?";
 			
@@ -135,13 +135,13 @@ public class AnimeBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT EXISTS(SELECT 1 FROM Movies_Backlog WHERE MovieID = ? LIMIT 1)";
+        String sql = "SELECT AnimeID FROM Anime_Backlog WHERE AnimeID = ?";
         
         try {
         	PreparedStatement stmt = this.conn.prepareStatement(sql);
         	stmt.setInt(1,id);
         	
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery();
             
             int result= rs.getInt(0);
 

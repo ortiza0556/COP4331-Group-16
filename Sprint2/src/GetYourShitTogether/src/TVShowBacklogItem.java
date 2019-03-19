@@ -12,6 +12,7 @@ public class TVShowBacklogItem {
 	 
 	    public TVShowBacklogItem (int id, String title, String genre, String status, String rating, int priority) {
 	 
+	    	this.id = id;
 	        this.title = new SimpleStringProperty(title);
 	        this.genre = new SimpleStringProperty(genre);
 	        this.status = new SimpleStringProperty(status);
