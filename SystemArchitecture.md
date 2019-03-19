@@ -112,7 +112,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, WatchableMediaStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
+    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
     
 * **GetYourShitTogether Class**
     
