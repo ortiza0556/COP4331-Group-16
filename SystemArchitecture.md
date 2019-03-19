@@ -6,6 +6,13 @@ Populate each section with information as it applies to your project. If a secti
 
 **Description**
     Get your Shit Together pulls data from three major data centers using thier rest apis. Movie and TV Show data is fetched from IMDB, Videgame data from IGDB, and Anime data from MyAnimeList. This information is stored in a SQLite databse. Users will construct backlogs of shows to watch using the UI, which will be stored in a relational table within the database. Using the JDBC library, java code will be able to insert, delete, update, and fetch these relational backlog items so that the user can easily view media they have watched or wish to watch in the future. GYST will also use data gathered through the rest API to create recommendations for the user based on media they have watched/played in the past.
+    
+** User Stories **
+	The ability for a user to quickly update and view backlogs through the UI is related to user stories 6,7,8,9,15,16,17,18,19,30, and 31
+	Recommendations are made using the data that we gather through the rest API from various data centers. This relates to user stories 11,12,13, and 14
+	SQLite was chosen as the databse since the program only has to support one user at a time. SQLite is generally faster at performing queries since it is all file transactions rather than socket transactions. This relates to user story 36
+	Using JDBC driver for Java allows the user to easily interact with the database, which allows for things like recommendations to be found for the user. This relates to user stories 20,21, and 22
+
 # Major Classes
 
 * **Media Class (ABC)**
