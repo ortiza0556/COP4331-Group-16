@@ -13,6 +13,8 @@ Populate each section with information as it applies to your project. If a secti
     Data Fields: genre (String), title (String), rating (String), releaseDate (int), plot (String), id (int), studio (String)
     
     Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), String getPlot(), int getID(), String      getStudio()
+    
+    Description: Media class is an abstract base class with data fields shared by the 4 media types for this project, and has all of the associated get functions for each field.
    
 * **Movie Class extends Media Class**
     
@@ -20,11 +22,15 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: Movie(title, genre, rating, releaseDate, plot, studio, String directors), Movie(title, genre, rating, releaseDate, plot, id, studio, String directors), String[] getDirectors(), and all the get methods inherited from Media
     
+    Description: Movie class extends the Media class, but adds a data field for directors. This will be used to create Movie objects to add to the database, when we pull from the rest APIs.
+    
 * **TVShow Class extends Media Class**
     
     Data Fields: creators(String[]), all data fields inherited from Media
     
     Methods: TVShow(title, genre, rating, releaseDate, plot, studio, String creators), TVShow(title, genre, rating, releaseDate, plot, id, studio, String creators), String[] getCreators(), and all the get methods inherited from Media
+    
+    Description: TVShow class extends the Media class, but adds a data field for directors. This will be used to create TVShow objects to add to the database, when we pull from the rest APIs.
     
 * **Anime Class extends Media Class**
     
