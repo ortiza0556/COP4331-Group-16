@@ -127,6 +127,9 @@ Populate each section with information as it applies to your project. If a secti
 # Database Classes Diagram
 ![mainpage](https://i.imgur.com/W97Ipjf.png)
 
+# Backlog Classes Diagram
+![mainpage](https://i.imgur.com/m0b5k4B.png)
+
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
 
