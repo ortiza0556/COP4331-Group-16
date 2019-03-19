@@ -101,42 +101,56 @@ Populate each section with information as it applies to your project. If a secti
     Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
     
     Methods: MovieBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID() 
+    
+    Description: Used to store information from the Movies_Backlog table in the database so they can be easily displayed on the GUI.
 
 * **TVShowBacklogItem Class**
     
     Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
     
     Methods: TVShowBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID()
+    
+    Description: Used to store information from the TVShows_Backlog table in the database so they can be easily displayed on the GUI.
 
 * **AnimeBacklogItem Class**
     
     Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
     
     Methods: AnimeBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID()
+    
+    Description: Used to store information from the Anime_Backlog table in the database so they can be easily displayed on the GUI.
 
 * **VideoGameBacklogItem Class**
     
     Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
     
     Methods: VideoGameBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID()
+    
+    Description: Used to store information from the VideoGames_Backlog table in the database so they can be easily displayed on the GUI.
 
 * **MovieBacklog Class**
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
     Methods: MovieBacklog(), connect(), close(), Insert(MovieBacklogItem m, WatchableMediaStatus s, String userRating, int priority), Delete(MovieBacklogItem a), Update(Movie m, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< MovieBacklogItem > fetchAll()
+    
+    Description: Used to interact with the Movies_Backlog table in the database (insertion, deletion, updates, fetching).
 
 * **TVShowBacklog Class**
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
     Methods: TVShowBacklog(), connect(), close(), Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority), Delete(TVShowBacklogItem t), Update(TVShow t, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< TVShowBacklogItem > fetchAll()
+    
+    Description: Used to interact with the TVShows_Backlog table in the database (insertion, deletion, updates, fetching).
 
 * **AnimeBacklog Class**
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
     Methods: AnimeBacklog(), connect(), close(), Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority), Delete(AnimeBacklogItem a), Update(Anime a, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< AnimeBacklogItem > fetchAll()
+    
+    Description: Used to interact with the Anime_Backlog table in the database (insertion, deletion, updates, fetching).
 
 * **VideoGameBacklog Class**
     
@@ -144,11 +158,15 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGameBacklogItem v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
     
+    Description: Used to interact with the VideoGames_Backlog table in the database (insertion, deletion, updates, fetching).
+    
 * **GetYourShitTogether Class**
     
     Data Fields: String mediaTypeDisplayed, AnimeBacklog animeBacklog, TVShowBacklog tvBacklog, VideoGameBacklog vgBacklog, MovieBacklog movieBacklog, VBox vbox
     
     Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), InitializeBottomButtons(VBox vbox)
+    
+    Description: The main class of the program, defines the GUI and uses the other classes to interact with the database and display relevant information.
 
 # Media Classes Diagram
 ![mainpage](https://i.imgur.com/kOUbMKO.png)
