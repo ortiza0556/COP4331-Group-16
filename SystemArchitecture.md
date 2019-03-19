@@ -40,13 +40,13 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Filepath fp, String filePath = fp.getFilePath()
     
-    Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList<M> Search(String title)
+    Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList< M > Search(String title)
     
 * **MovieDatabase Class extends Database< Movie >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
-    Methods: MovieDatabase(), connect, close, Insert(Movie m), ObservableList<Movie> Search (String title) 
+    Methods: MovieDatabase(), connect, close, Insert(Movie m), ObservableList< Movie > Search (String title) 
         
 * **TVShowDatabase Class extends Database< TVShow >**
     
@@ -65,14 +65,54 @@ Populate each section with information as it applies to your project. If a secti
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
     Methods: VideoGameDatabase(), connect, close, Insert(VideoGame t), ObservableList< VideoGame > Search (String title)
+ 
+* **MovieBacklogItem Class**
     
-* **Backlog Class**
+    Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
     
-    Data Fields: BacklogItem[] backlog, int size
-    
-    Methods: Backlog(), editEntry(BacklogItem), void store(BacklogItem), BacklogItem 
-    retrieve(), void display()
+    Methods: MovieBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID() 
 
+* **TVShowBacklogItem Class**
+    
+    Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
+    
+    Methods: TVShowBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID()
+
+* **AnimeBacklogItem Class**
+    
+    Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
+    
+    Methods: AnimeBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID()
+
+* **VideoGameBacklogItem Class**
+    
+    Data Fields: int id, SimpleStringProperty title, SimpleStringProperty genre, SimpleStringProperty status, SimpleStringProperty rating, SimpleStringProperty priority 
+    
+    Methods: VideoGameBacklogItem(int id, String title, String genre, String status, String rating, int priority), String getTitle, String getGenre(), String getStatus(), String getRating(), int getPriority(), int getID()
+
+* **MovieBacklog Class**
+    
+    Data Fields: Connection conn, Filepath fp, String filepath
+    
+    Methods: MovieBacklog(), connect(), close(), Insert(Movie m, WatchableMediaStatus s, String userRating, int priority), Delete(MovieBacklogItem a), Update(Movie m, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< MovieBacklogItem > fetchAll()
+
+* **TVShowBacklog Class**
+    
+    Data Fields: Connection conn, Filepath fp, String filepath
+    
+    Methods: TVShowBacklog(), connect(), close(), Insert(TVShow t, WatchableMediaStatus s, String userRating, int priority), Delete(TVShowBacklogItem t), Update(TVShow t, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< TVShowBacklogItem > fetchAll()
+
+* **AnimeBacklog Class**
+    
+    Data Fields: Connection conn, Filepath fp, String filepath
+    
+    Methods: AnimeBacklog(), connect(), close(), Insert(Anime a, WatchableMediaStatus s, String userRating, int priority), Delete(AnimeBacklogItem a), Update(Anime a, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< AnimeBacklogItem > fetchAll()
+
+* **VideoGameBacklog Class**
+    
+    Data Fields: Connection conn, Filepath fp, String filepath
+    
+    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, WatchableMediaStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
 
 ![mainpage](https://i.imgur.com/0UnzRLR.png)
 
