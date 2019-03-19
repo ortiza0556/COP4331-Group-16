@@ -4,44 +4,44 @@ Populate each section with information as it applies to your project. If a secti
 
 # Major Classes
 
-* **Media Class**
+* **Media Class (ABC)**
     
-    Data Fields: genre (String), title (String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String)
+    Data Fields: genre (String), title (String), rating (float), releaseDate (int), plot (String), id (int), studio (String)
     
-    Methods: Media(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(), String       getSynopsis(), int getID(), String getStudio()
+    Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), String getPlot(), int getID(), String      getStudio()
    
 * **Movie Class extends Media Class**
     
-    Data Fields: genre (String), title (String), rating (float), releaseDate(int), synopsis (String), id (int), studio (String),             director (String)
+    Data Fields: directors(String[]), all data fields inherited from Media
     
-    Methods: Movie(DatabaseInterface database), getTitle(), getGenre(), getRating(), getReleaseDate(), getSynopsis(), getID(),               getStudio(),  getStudio(), getDirector()
+    Methods: Movie(title, genre, rating, releaseDate, plot, studio, String directors), Movie(title, genre, rating, releaseDate, plot, id, studio, String directors), String[] getDirectors(), and all the get methods inherited from Media
     
 * **TVShow Class extends Media Class**
     
-    Data Fields: genre (String), title (String), rating (float), releaseDate(int), synopsis (String), id (int), studio (String),             directors (array of Strings)
+    Data Fields: creators(String[]), all data fields inherited from Media
     
-    Methods: TVShow(DatabaseInterface database), getTitle(), getGenre(), getRating(), getReleaseDate(), getSynopsis(), getID(),             getStudio(), String getStudio(), String[] getDirectors()
+    Methods: TVShow(title, genre, rating, releaseDate, plot, studio, String creators), TVShow(title, genre, rating, releaseDate, plot, id, studio, String creators), String[] getCreators(), and all the get methods inherited from Media
     
 * **Anime Class extends Media Class**
     
-    Data Fields:  genre (String), title(String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String)
+    Data Fields: all data fields inherited from Media
     
-    Methods: Anime (DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(), String       getSynopsis(), int getID(), String getStudio()
+    Methods: Anime(title, genre, rating, releaseDate, plot, studio), Anime(title, genre, rating, releaseDate, plot, id, studio), and all the get methods inherited from Media
     
 * **VideoGame Class extends Media Class**
     
-    Data Fields: genre (String), title(String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String),             platform (String)
+    Data Fields: platforms (String[])
     
-    Methods: VideoGame(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(),           String getSynopsis(), int getID(), String getStudio(), String getPlatform()
+    Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatform(), and all the get methods inherited from Media
    
 
-* **DatabaseInterface Class**
+* **Database Class <M extends Media> (ABC)**
     
-    Data Fields: String dbPath
+    Data Fields: Filepath fp, String filePath = fp.getFilePath()
     
-    Methods: DatabaseInterface(String dbPath)
+    Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList<M> Search(String title)
     
-* **BacklogItem Class extends Media Class**
+* **MovieDatabase Class extends Database<Movie>**
     
     Data Fields: int databaseID
     
