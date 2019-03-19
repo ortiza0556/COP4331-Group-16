@@ -7,7 +7,7 @@ Populate each section with information as it applies to your project. If a secti
 
 * **Media Class (ABC)**
     
-    Data Fields: genre (String), title (String), rating (float), releaseDate (int), plot (String), id (int), studio (String)
+    Data Fields: genre (String), title (String), rating (String), releaseDate (int), plot (String), id (int), studio (String)
     
     Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), String getPlot(), int getID(), String      getStudio()
    
@@ -112,9 +112,25 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, WatchableMediaStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
+    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
+    
+* **GetYourShitTogether Class**
+    
+    Data Fields: String mediaTypeDisplayed, AnimeBacklog animeBacklog, TVShowBacklog tvBacklog, VideoGameBacklog vgBacklog, MovieBacklog movieBacklog, VBox vbox
+    
+    Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), InitializeBottomButtons(VBox vbox)
 
-![mainpage](https://i.imgur.com/0UnzRLR.png)
+# Media Classes Diagram
+![mainpage](https://i.imgur.com/kOUbMKO.png)
+
+# Database Classes Diagram
+![mainpage](https://i.imgur.com/W97Ipjf.png)
+
+# Backlog Classes Diagram
+![mainpage](https://i.imgur.com/m0b5k4B.png)
+
+# Backlog Item Classes Diagram
+![mainpage](https://i.imgur.com/3Wux1BE.png)
 
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
