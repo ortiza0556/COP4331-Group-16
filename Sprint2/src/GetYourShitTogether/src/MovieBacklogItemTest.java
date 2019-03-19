@@ -4,17 +4,18 @@ import org.junit.jupiter.api.Test;
 
 class MovieBacklogItemTest {
 	
-	MovieBacklogItem movie = new MovieBacklogItem("Snatch", "Comedy", "ON HOLD", "9", 1);
+	MovieBacklogItem movie = new MovieBacklogItem(0, "Snatch", "Comedy", "ON HOLD", "9", 1);
 
 	@Test
 	void testMovieBacklogItem() {
-		MovieBacklogItem movie2 = new MovieBacklogItem("Hot Fuzz", "Comedy", "WATCHING", "10", 1);
+		MovieBacklogItem movie2 = new MovieBacklogItem(1, "Hot Fuzz", "Comedy", "WATCHING", "10", 1);
 
 		assertEquals(movie2.getTitle(), "Hot Fuzz");
 		assertEquals(movie2.getGenre(), "Comedy");
 		assertEquals(movie2.getStatus(), "WATCHING");
 		assertEquals(movie2.getRating(), "10");
 		assertEquals(movie2.getPriority(), 1);
+		assertEquals(movie2.getID(), 1);
 	}
 
 	@Test
@@ -42,4 +43,8 @@ class MovieBacklogItemTest {
 		assertEquals(movie.getPriority(), 1);
 	}
 
+	@Test
+	void testGetID() {
+		assertEquals(movie.getID(), 0);
+	}
 }
