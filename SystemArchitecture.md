@@ -38,6 +38,8 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: Anime(title, genre, rating, releaseDate, plot, studio), Anime(title, genre, rating, releaseDate, plot, id, studio), and all the get methods inherited from Media
     
+    Description: Anime class extends the Media class, but adds a data field for directors. This will be used to create Anime objects to add to the database, when we pull from the rest APIs.
+    
 * **VideoGame Class extends Media Class**
     
     Data Fields: platforms (String[])
