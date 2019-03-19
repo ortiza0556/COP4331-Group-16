@@ -165,6 +165,15 @@ Covered in "Requirements" document.
 
 ![mainpage](https://i.imgur.com/WL3nzk9.png)
 
+#Description of User Interface
+    The very top of the application will have the title displayed to the left (“Get Your Shit Together”) and a minimize, full screen, and exit button to the right. 
+    The top far-left tabs have buttons for Badges, Recommendations, and Backlogs. Clicking on the Badges button will show the interface containing badges. Clicking on the Recommendations button will show a table of recommendations (with Title, Genre, Release, and Rating column headers) for the currently selected media type. Clicking on the Backlogs button will show a table of backlog entries (with Title, Genre, Status, Rating, and Priority column headers) for the currently selected media type. 
+    The search media bar has a search label next to a text field. Pressing enter with the search media text field active will filter media results in the current table to those matching the text.
+    The top far-right series of tabs for Anime, Movies, TV Shows, and video games. Clicking on any of the tabs will change the currently selected media type to that type.
+    In the center is a table of media entries that when clicked on will become selected (to edit or drop). Clicking on any of the column headers will sort entries in the table by that type.
+    When Backlog view is selected, the bottom tabs will have buttons for Add Media, Drop Media, and Edit Media. Clicking Add Media will allow the user to add media to the backlog. Clicking Delete Media will delete the entry for the currently selected media in the backlog. Clicking Edit Media will allow the user to edit the currently selected media in the backlog.
+
+
    The user stories formed the basis of the UI design process. The use of a card based view to switch between the categories satisfies the need to access the individual data bases with the press of a button(030). The ability to sort the data by any of a number of different criteria is also accounted for(025). The Recommend page provides the framework for user stories(11,12,13,14). The backlog page was designed to show the list of items that have been finished, and those that need to be watched, depending on the active card(15,16,17,18). 
 # Resource Management
 
