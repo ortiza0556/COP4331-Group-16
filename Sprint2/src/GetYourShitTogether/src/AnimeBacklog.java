@@ -97,6 +97,8 @@ public class AnimeBacklog {
 	            
 	            stmt.executeUpdate();
 	            
+	            this.conn.close();
+	            
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -143,7 +145,8 @@ public class AnimeBacklog {
         	
             ResultSet rs = stmt.executeQuery();
             
-            int result= rs.getInt(0);
+            int result= rs.getInt(1);
+            
 
             return result;
         } catch (SQLException e) {

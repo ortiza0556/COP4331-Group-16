@@ -97,6 +97,8 @@ public class TVShowBacklog {
 	            
 	            stmt.executeUpdate();
 	            
+	            this.conn.close();
+	            
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());

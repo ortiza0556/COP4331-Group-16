@@ -72,6 +72,8 @@ public class MovieBacklog {
 	            
 	            stmt.executeUpdate();
 	            
+	            this.conn.close();
+	            
 	            System.out.println("Entry added.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -96,6 +98,8 @@ public class MovieBacklog {
 	            stmt.setInt(1,id);
 	            
 	            stmt.executeUpdate();
+	            
+	            this.conn.close();
 	            
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
@@ -124,6 +128,7 @@ public class MovieBacklog {
 	            stmt.setInt(4,id);
 	            stmt.executeUpdate();
 	            
+	            this.conn.close();
 	            System.out.println("Entry updated.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -143,7 +148,7 @@ public class MovieBacklog {
         	
             ResultSet rs = stmt.executeQuery();
             
-            int result= rs.getInt(0);
+            int result= rs.getInt(1);
 
             return result;
         } catch (SQLException e) {
