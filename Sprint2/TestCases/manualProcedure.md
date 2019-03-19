@@ -3,11 +3,17 @@
 
 | ID | Procedure | expected result|
 | ---- | ----------- | ---------------- |
-|1|The user will click on the app shortcut |The GUI should appear|
-|2|The user will click on the X(exit) on the top right corner of screen |The program should close and no background process should be running |
-|3|The user will click on the search bar write absolutely nothing in it and hit enter |The program shouldn't crash or close or return any type of media|
-|4|The user will type a thousand character string in the search bar  |The GUI shouldn't crash|
-|5|The user will type an delete SQL instruction in the search bar |No object on the GUI should be deleted|
-|6|The user will click on the badges button on the top left corner of the GUI |The user should be directed to the badges window|
-|7|The user will click on the recommendations  |The user should be directed to the recommendations panel|
-|8|The user will click on the app shortcut |The GUI should appear|
+|1|Click Backlog Button in top left |Table should load with Backlog data|
+|2|Click TVShows Button in top right | Table should load with TV Show data |
+|3|Click Anime Button in top right | Table should load with Anime data |
+|4|Click Movies Button in top right | Table should load with Movie data |
+|5|Click VideoGames Button in top right | Table should load with VideoGames data |
+|6|Highlight row on table view then click delete button while table displays TV Show Data | Highlighted row should be deleted |
+|7|Highlight row on table view then click delete button while table displays Anime Data | Highlighted row should be deleted |
+|8|Highlight row on table view then click delete button while table displays Movie Data | Highlighted row should be deleted |
+|9|Highlight row on table view then click delete button while table displays VideoGame Data | Highlighted row should be deleted |
+|10|Click Title column on table view | Rows should sort alphabetically by Title |
+|11|Click Genre column on table view | Rows should sort alphabetically by Genre |
+|12|Click Status column on table view | Rows should sort alphabetically by Status |
+|13|Click Rating column on table view | Rows should sort numerically by Rating |
+|14|Click Priority column on table view | Rows should sort numerically by Priority |
