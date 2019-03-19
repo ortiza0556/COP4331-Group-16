@@ -44,7 +44,7 @@ public class AnimeBacklog {
 		}
 	}
 	
-	public void Insert(Anime a, WatchableMediaStatus s, String userRating, int priority) {
+	public void Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority) {
 		
 		int id = a.getID();
 		
@@ -109,7 +109,7 @@ public class AnimeBacklog {
 		
 	}
 
-	public void Update(Anime a, String status, String userRating, int priority) {
+	public void Update(AnimeBacklogItem a, String status, String userRating, int priority) {
 		int id = a.getID();
 		
 		if(CheckIfExists(id) == 0) {
