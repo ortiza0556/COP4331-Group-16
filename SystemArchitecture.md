@@ -35,17 +35,17 @@ Populate each section with information as it applies to your project. If a secti
     Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatform(), and all the get methods inherited from Media
    
 
-* **Database Class <M extends Media> (ABC)**
+* **Database Class < M extends Media > (ABC)**
     
     Data Fields: Filepath fp, String filePath = fp.getFilePath()
     
     Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList<M> Search(String title)
     
-* **MovieDatabase Class extends Database<Movie>**
+* **MovieDatabase Class extends Database< Movie >**
     
-    Data Fields: int databaseID
+    Data Fields: Connection conn, String resultText
     
-    Methods: BacklogItem(Media mediaItem)
+    Methods: MovieDatabase(), connect, close, Insert(Movie m), Search(Stri 
     
 * **Backlog Class**
     
