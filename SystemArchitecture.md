@@ -172,7 +172,7 @@ Covered in "Requirements" document.
 
 ![mainpage](https://i.imgur.com/WL3nzk9.png)
 
-#Description of User Interface
+# Description of User Interface
     The very top of the application will have the title displayed to the left (“Get Your Shit Together”) and a minimize, full screen, and exit button to the right. 
     The top far-left tabs have buttons for Badges, Recommendations, and Backlogs. Clicking on the Badges button will show the interface containing badges. Clicking on the Recommendations button will show a table of recommendations (with Title, Genre, Release, and Rating column headers) for the currently selected media type. Clicking on the Backlogs button will show a table of backlog entries (with Title, Genre, Status, Rating, and Priority column headers) for the currently selected media type. 
     The search media bar has a search label next to a text field. Pressing enter with the search media text field active will filter media results in the current table to those matching the text.
