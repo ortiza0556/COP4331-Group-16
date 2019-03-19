@@ -120,7 +120,9 @@ Populate each section with information as it applies to your project. If a secti
     
     Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), InitializeBottomButtons(VBox vbox)
 
-![mainpage](https://i.imgur.com/0UnzRLR.png)
+
+# Media Classes Diagram
+![mainpage](https://i.imgur.com/kOUbMKO.png)
 
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
