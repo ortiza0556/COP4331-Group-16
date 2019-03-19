@@ -124,6 +124,9 @@ Populate each section with information as it applies to your project. If a secti
 # Media Classes Diagram
 ![mainpage](https://i.imgur.com/kOUbMKO.png)
 
+# Database Classes Diagram
+![mainpage](https://i.imgur.com/W97Ipjf.png)
+
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
 
