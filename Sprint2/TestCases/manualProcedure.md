@@ -1,5 +1,5 @@
 
-# Manual Procedure (2019) 
+# Manual Procedure (Sprint 2) 
 
 | ID | Procedure | expected result|
 | ---- | ----------- | ---------------- |
