@@ -154,7 +154,7 @@ Covered in "Requirements" document.
 
 ![mainpage](https://i.imgur.com/WL3nzk9.png)
 
-    The user stories formed the basis of the UI design process. The use of a card based view to switch between the categories satisfies the need to access the individual data bases with the press of a button(030). The ability to sort the data by any of a number of different criteria is also accounted for(025). The Recommend page provides the framework for user stories(11,12,13,14). The backlog page was designed to show the list of items that have been finished, and those that need to be watched, depending on the active card(15,16,17,18). 
+   The user stories formed the basis of the UI design process. The use of a card based view to switch between the categories satisfies the need to access the individual data bases with the press of a button(030). The ability to sort the data by any of a number of different criteria is also accounted for(025). The Recommend page provides the framework for user stories(11,12,13,14). The backlog page was designed to show the list of items that have been finished, and those that need to be watched, depending on the active card(15,16,17,18). 
 # Resource Management
 
 **Time**
