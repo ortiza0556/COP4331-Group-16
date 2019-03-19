@@ -83,7 +83,6 @@ public class GetYourShitTogether extends Application {
 
     	// initialize badge button
         Button badgeButton = new Button("Badge");
-        
         badgeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	System.out.println("badge button pressed");
@@ -92,7 +91,6 @@ public class GetYourShitTogether extends Application {
         
         // initialize recommend button
         Button recommendButton = new Button("Recommendations");
-        
         recommendButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	System.out.println("recommendations button pressed");
@@ -101,7 +99,6 @@ public class GetYourShitTogether extends Application {
         
         // initialize backlog button
         Button backlogButton = new Button("Backlogs");
-        
         backlogButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	System.out.println("backlogs button pressed");
@@ -114,17 +111,18 @@ public class GetYourShitTogether extends Application {
         Label bufferLabel1 = new Label();
         gridPane.add(bufferLabel1, 1, 0);
         
+        // initialize search label & text field
         Label searchLabel = new Label("Search: ");
         gridPane.add(searchLabel, 2, 0);
         
-        // Add Name Text Field
         TextField searchField = new TextField();
         searchField.setPrefHeight(40);
         searchField.setPrefWidth(550);
         gridPane.add(searchField, 3,0);
 
         HBox categories = new HBox();
-        // Add Name Label
+        
+        // initialize TV Shows button
         Button tvButton = new Button("TV Shows");
         tvButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -132,7 +130,8 @@ public class GetYourShitTogether extends Application {
             	vbox.getChildren().set(1, loadTVTable());
             }
         });
-        
+
+        // initialize Movies button
         Button movieButton = new Button("Movies"); 
         movieButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -140,7 +139,8 @@ public class GetYourShitTogether extends Application {
             	vbox.getChildren().set(1, loadMovieTable());
             }
         });
-        
+
+        // initialize Anime button
         Button animeButton = new Button("Anime");
         animeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -148,7 +148,8 @@ public class GetYourShitTogether extends Application {
             	vbox.getChildren().set(1, loadAnimeTable());
             }
         });
-        
+
+        // initialize Videogames button
         Button vidyaButton = new Button("Videogames");
         vidyaButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {

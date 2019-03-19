@@ -82,7 +82,7 @@ public class AnimeBacklog {
 		
 	}
 	
-	public void Delete(Anime a) {
+	public void Delete(AnimeBacklogItem a) {
 		
 		int id = a.getID();
 		
