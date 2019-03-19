@@ -13,6 +13,7 @@ public class AnimeBacklog {
 	private Connection conn;
 	protected FilePath fp = new FilePath();
 	protected String filePath = fp.getFilePath();
+	public String resultText = null;
 	
 	public AnimeBacklog () {
 		connect();
@@ -46,6 +47,7 @@ public class AnimeBacklog {
 	
 	public void Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority) {
 		
+		resultText = null;
 		int id = a.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -73,6 +75,7 @@ public class AnimeBacklog {
 	            stmt.executeUpdate();
 	            
 	            System.out.println("Entry added.");
+	            resultText = "Anime successfully added to the backlog.";
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
@@ -83,7 +86,7 @@ public class AnimeBacklog {
 	}
 	
 	public void Delete(AnimeBacklogItem a) {
-		
+		resultText = null;
 		int id = a.getID();
 		
 		if(CheckIfExists(id) != -1) {
@@ -99,6 +102,7 @@ public class AnimeBacklog {
 	            
 	            this.conn.close();
 	            
+	            resultText = "Anime successfully deleted from the backlog";
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -110,6 +114,8 @@ public class AnimeBacklog {
 	}
 
 	public void Update(AnimeBacklogItem a, String status, String userRating, int priority) {
+		
+		resultText = null;
 		int id = a.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -127,6 +133,7 @@ public class AnimeBacklog {
 	            stmt.executeUpdate();
 	            
 	            System.out.println("Entry updated.");
+	            resultText = "Anime updated successfully";
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
