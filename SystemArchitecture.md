@@ -3,6 +3,9 @@
 Populate each section with information as it applies to your project. If a section does not apply, explain why. Include diagrams (or links to diagrams) in each section, as appropriate. For example, sketches of the user interfaces along with an explanation of how the interface components will work; ERD diagrams of the database; rough class diagrams; context diagrams showing the system boundary; etc.
 # Architecture Diagram
 ![mainpage](https://i.imgur.com/sjq0oRE.jpg)
+
+**Description**
+    Get your Shit Together pulls data from three major data centers using thier rest apis. Movie and TV Show data is fetched from IMDB, Videgame data from IGDB, and Anime data from MyAnimeList. This information is stored in a SQLite databse. Users will construct backlogs of shows to watch using the UI, which will be stored in a relational table within the database. Using the JDBC library, java code will be able to insert, delete, update, and fetch these relational backlog items so that the user can easily view media they have watched or wish to watch in the future. GYST will also use data gathered through the rest API to create recommendations for the user based on media they have watched/played in the past.
 # Major Classes
 
 * **Media Class (ABC)**
@@ -94,25 +97,25 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: MovieBacklog(), connect(), close(), Insert(Movie m, WatchableMediaStatus s, String userRating, int priority), Delete(MovieBacklogItem a), Update(Movie m, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< MovieBacklogItem > fetchAll()
+    Methods: MovieBacklog(), connect(), close(), Insert(MovieBacklogItem m, WatchableMediaStatus s, String userRating, int priority), Delete(MovieBacklogItem a), Update(Movie m, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< MovieBacklogItem > fetchAll()
 
 * **TVShowBacklog Class**
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: TVShowBacklog(), connect(), close(), Insert(TVShow t, WatchableMediaStatus s, String userRating, int priority), Delete(TVShowBacklogItem t), Update(TVShow t, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< TVShowBacklogItem > fetchAll()
+    Methods: TVShowBacklog(), connect(), close(), Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority), Delete(TVShowBacklogItem t), Update(TVShow t, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< TVShowBacklogItem > fetchAll()
 
 * **AnimeBacklog Class**
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: AnimeBacklog(), connect(), close(), Insert(Anime a, WatchableMediaStatus s, String userRating, int priority), Delete(AnimeBacklogItem a), Update(Anime a, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< AnimeBacklogItem > fetchAll()
+    Methods: AnimeBacklog(), connect(), close(), Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority), Delete(AnimeBacklogItem a), Update(Anime a, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< AnimeBacklogItem > fetchAll()
 
 * **VideoGameBacklog Class**
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
+    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGameBacklogItem v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
     
 * **GetYourShitTogether Class**
     
@@ -131,6 +134,9 @@ Populate each section with information as it applies to your project. If a secti
 
 # Backlog Item Classes Diagram
 ![mainpage](https://i.imgur.com/3Wux1BE.png)
+
+# Class Diagram
+![mainpage](https://i.imgur.com/okLCWHh.png)
 
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
@@ -151,7 +157,7 @@ Covered in "Requirements" document.
 
 ![mainpage](https://i.imgur.com/WL3nzk9.png)
 
-
+   The user stories formed the basis of the UI design process. The use of a card based view to switch between the categories satisfies the need to access the individual data bases with the press of a button(030). The ability to sort the data by any of a number of different criteria is also accounted for(025). The Recommend page provides the framework for user stories(11,12,13,14). The backlog page was designed to show the list of items that have been finished, and those that need to be watched, depending on the active card(15,16,17,18). 
 # Resource Management
 
 **Time**
