@@ -1,3 +1,5 @@
+| ID | User Story | Est. Hours | Priority | Validation Criteria | Owner | Status | 
+|----|------------|--------|----------|---------------------|-------|--------|
 |006|As a media consumer, I would like to be able to add to a backlog of movies, so I can conveniently track what movies I want to watch.|2|1|When I add movies to the backlog, the added entry will appear in the movie backlog tab.| Austin Edwards| IN PROGRESS |
 |007|As a media consumer, I would like to be able to add to a backlog of TV shows, so I can conveniently track what TV shows I want to watch.|2|1|When I add TV shows to the backlog, the added entry will appear in the TV shows backlog tab.| Austin Edwards| IN PROGRESS |
 |008|As a media consumer, I would like to be able to add to a backlog of anime, so I can conveniently track what anime I want to watch.|2|1|When I add anime to the backlog, the added entry will appear in the anime backlog tab.| Austin Edwards| IN PROGRESS |
