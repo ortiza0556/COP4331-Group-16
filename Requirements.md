@@ -43,6 +43,6 @@
 |            056 |           025 | “Get Your Shit Together” shall have an option for displaying each backlog by the priority number.| Verified |
 |            057 |           026 | Get Your Shit Together shall have an incentive system that awards users badges for completing media in their various backlogs.| Verified |
 |            059 |            030|Get Your Shit Together shall provide an interface that allows for switching between any database at all times.| Verified |
-|            060 |            031|Get Your Shit Together shall support removal of information from it's databases| Verified |
+|            060 |            031|Get Your Shit Together shall allow users to delete personal backlog entries from the database through the UI| Verified |
 |            061 |            032,033,34,35|Get Your Shit Together shall have verifiable test cases for all classes, whether automated or manual. | Verified |
 |            062 |            036|Get Your Shit Together will be limited to 1 second from the execution of an action, until the action is performed within the UI on the testing machines| Verified |
