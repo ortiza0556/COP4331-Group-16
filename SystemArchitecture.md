@@ -12,27 +12,27 @@ Populate each section with information as it applies to your project. If a secti
    
 * **Movie Class extends Media Class**
     
-    Data Fields: All inherited from Media, directors(String[])
+    Data Fields: directors(String[]), all data fields inherited from Media
     
-    Methods: Movie(title, genre, rating, releaseDate, plot, studio, String directors), Movie(title, genre, rating, releaseDate, plot, studio, String directors), getDirectors(), and all the get methods inherited from Media
+    Methods: Movie(title, genre, rating, releaseDate, plot, studio, String directors), Movie(title, genre, rating, releaseDate, plot, id, studio, String directors), String[] getDirectors(), and all the get methods inherited from Media
     
 * **TVShow Class extends Media Class**
     
-    Data Fields: creators(String[])
+    Data Fields: creators(String[]), all data fields inherited from Media
     
-    Methods: TVShow(DatabaseInterface database), getCreators()
+    Methods: TVShow(title, genre, rating, releaseDate, plot, studio, String creators), TVShow(title, genre, rating, releaseDate, plot, id, studio, String creators), String[] getCreators(), and all the get methods inherited from Media
     
 * **Anime Class extends Media Class**
     
-    Data Fields:  genre (String), title(String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String)
+    Data Fields: all data fields inherited from Media
     
-    Methods: Anime (DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(), String       getSynopsis(), int getID(), String getStudio()
+    Methods: Anime(title, genre, rating, releaseDate, plot, studio), Anime(title, genre, rating, releaseDate, plot, id, studio), and all the get methods inherited from Media
     
 * **VideoGame Class extends Media Class**
     
-    Data Fields: genre (String), title(String), rating (float), releaseDate (int), synopsis (String), id (int), studio (String),             platform (String)
+    Data Fields: platforms (String[])
     
-    Methods: VideoGame(DatabaseInterface database), String getTitle(), String getGenre(), float getRating(), int getReleaseDate(),           String getSynopsis(), int getID(), String getStudio(), String getPlatform()
+    Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatform(), and all the get methods inherited from Media
    
 
 * **Database Class (ABC)**
