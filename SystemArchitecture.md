@@ -4,7 +4,7 @@ Populate each section with information as it applies to your project. If a secti
 
 # Major Classes
 
-* **Media Class (ABC) **
+* **Media Class (ABC)**
     
     Data Fields: genre (String), title (String), rating (float), releaseDate (int), plot (String), id (int), studio (String)
     
