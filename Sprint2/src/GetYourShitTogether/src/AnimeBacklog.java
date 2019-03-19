@@ -156,7 +156,7 @@ public class AnimeBacklog {
 	
 	 public ObservableList<AnimeBacklogItem> fetchAll() {
 			
-		 String sql = "SELECT Title,Genre,Status,UserRating,Priority FROM Anime JOIN Anime_backlog ON Anime.AnimeID IS Anime_backlog.AnimeID";
+		 String sql = "SELECT Anime.AnimeID,Title,Genre,Status,UserRating,Priority FROM Anime JOIN Anime_backlog ON Anime.AnimeID IS Anime_backlog.AnimeID";
 	        
 	        ObservableList<AnimeBacklogItem> result = FXCollections.observableArrayList();
 	        boolean added = false;
@@ -167,7 +167,7 @@ public class AnimeBacklog {
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
-	            	AnimeBacklogItem currAnime = new AnimeBacklogItem(rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
+	            	AnimeBacklogItem currAnime = new AnimeBacklogItem(rs.getInt("AnimeID"),rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
 	            	
 	            	added = result.add(currAnime);
 	            	

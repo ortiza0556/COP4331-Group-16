@@ -149,7 +149,7 @@ public class GetYourShitTogether extends Application {
         Button vidyaButton = new Button("Videogames");
         vidyaButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               vbox.getChildren().set(1, loadVideogameTable());
+               vbox.getChildren().set(1, loadVideoGameTable());
             }
         });
         
@@ -240,7 +240,7 @@ public class GetYourShitTogether extends Application {
     }
 	
 	@SuppressWarnings("unchecked")
-	private TableView<VideoGameBacklogItem> loadVideogameTable() {
+	private TableView<VideoGameBacklogItem> loadVideoGameTable() {
     	
     	TableView<VideoGameBacklogItem> table = new TableView<VideoGameBacklogItem>();
     	ObservableList<VideoGameBacklogItem> data = vgBacklog.fetchAll();

@@ -3,14 +3,16 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class VideoGameBacklogItem {
 	
+	private int id;
 	private SimpleStringProperty title;
     private SimpleStringProperty genre;
     private SimpleStringProperty status;
     private SimpleStringProperty rating;
     private SimpleIntegerProperty priority;
  
-    public VideoGameBacklogItem (String title, String genre, String status, String rating, int priority) {
+    public VideoGameBacklogItem (int id,String title, String genre, String status, String rating, int priority) {
  
+    	this.id = id;
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);
         this.status = new SimpleStringProperty(status);
@@ -41,5 +43,10 @@ public class VideoGameBacklogItem {
     public int getPriority() {
     	
     	return priority.get();
+    }
+    
+    public int getID() {
+    	
+    	return this.id;
     }
 }

@@ -155,7 +155,7 @@ public class VideoGameBacklog {
 	
 	public ObservableList<VideoGameBacklogItem> fetchAll() {
 		
-		 String sql = "SELECT Title,Genre,Status,UserRating,Priority FROM VideoGames JOIN VideoGames_backlog ON VideoGames.VGID IS VideoGames_backlog.VGID";
+		 String sql = "SELECT VideoGames.VGID,Title,Genre,Status,UserRating,Priority FROM VideoGames JOIN VideoGames_backlog ON VideoGames.VGID IS VideoGames_backlog.VGID";
 	        
 	        ObservableList<VideoGameBacklogItem> result = FXCollections.observableArrayList();
 	        boolean added = false;
@@ -166,7 +166,7 @@ public class VideoGameBacklog {
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
-	            	VideoGameBacklogItem currVG = new VideoGameBacklogItem(rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
+	            	VideoGameBacklogItem currVG = new VideoGameBacklogItem(rs.getInt("VGID"),rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
 	            	
 	            	added = result.add(currVG);
 	            	

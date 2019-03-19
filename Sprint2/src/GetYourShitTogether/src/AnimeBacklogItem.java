@@ -4,14 +4,16 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class AnimeBacklogItem {
 	
+	private int id;
 	private SimpleStringProperty title;
     private SimpleStringProperty genre;
     private SimpleStringProperty status;
     private SimpleStringProperty rating;
     private SimpleIntegerProperty priority;
  
-    public AnimeBacklogItem (String title, String genre, String status, String rating, int priority) {
+    public AnimeBacklogItem (int id,String title, String genre, String status, String rating, int priority) {
  
+    	this.id = id;
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);
         this.status = new SimpleStringProperty(status);
@@ -44,5 +46,9 @@ public class AnimeBacklogItem {
     	return priority.get();
     }
     
+    public int getID() {
+    	
+    	return id;
+    }
    
 }

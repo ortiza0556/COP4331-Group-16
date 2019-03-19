@@ -2,15 +2,17 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class MovieBacklogItem {
-		
+	
+	private int id;	
 	private SimpleStringProperty title;
     private SimpleStringProperty genre;
     private SimpleStringProperty status;
     private SimpleStringProperty rating;
     private SimpleIntegerProperty priority;
  
-    public MovieBacklogItem (String title, String genre, String status, String rating, int priority) {
+    public MovieBacklogItem (int id,String title, String genre, String status, String rating, int priority) {
  
+    	this.id = id;
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);
         this.status = new SimpleStringProperty(status);
@@ -41,6 +43,11 @@ public class MovieBacklogItem {
     public int getPriority() {
     	
     	return priority.get();
+    }
+    
+    public int getID() {
+    	
+    	return id;
     }
     
 }

@@ -156,7 +156,7 @@ public class MovieBacklog {
 	
 	public ObservableList<MovieBacklogItem> fetchAll() {
 		
-		 String sql = "SELECT Title,Genre,Status,UserRating,Priority FROM Movies JOIN Movies_backlog ON Movies.MovieID IS Movies_backlog.MovieID";
+		 String sql = "SELECT Movies.MovieID,Title,Genre,Status,UserRating,Priority FROM Movies JOIN Movies_backlog ON Movies.MovieID IS Movies_backlog.MovieID";
 	        
 	        ObservableList<MovieBacklogItem> result = FXCollections.observableArrayList();
 	        boolean added = false;
@@ -167,7 +167,7 @@ public class MovieBacklog {
 	            ResultSet rs = stmt.executeQuery(sql);
 	            
 	            while(rs.next()) {
-	            	MovieBacklogItem currMovie = new MovieBacklogItem(rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
+	            	MovieBacklogItem currMovie = new MovieBacklogItem(rs.getInt("MovieID"),rs.getString("Title"),rs.getString("Genre"),rs.getString("Status"),rs.getString("UserRating"),rs.getInt("Priority"));
 	            	
 	            	added = result.add(currMovie);
 	            	
