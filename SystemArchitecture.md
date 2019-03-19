@@ -113,6 +113,12 @@ Populate each section with information as it applies to your project. If a secti
     Data Fields: Connection conn, Filepath fp, String filepath
     
     Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGame v, WatchableMediaStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
+    
+* **GetYourShitTogether Class**
+    
+    Data Fields: String mediaTypeDisplayed, AnimeBacklog animeBacklog, TVShowBacklog tvBacklog, VideoGameBacklog vgBacklog, MovieBacklog movieBacklog, VBox vbox
+    
+    Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), InitializeBottomButtons(VBox vbox)
 
 ![mainpage](https://i.imgur.com/0UnzRLR.png)
 
