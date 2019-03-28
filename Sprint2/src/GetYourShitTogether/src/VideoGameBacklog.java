@@ -44,7 +44,7 @@ public class VideoGameBacklog {
 		}
 	}
 	
-	public void Insert(VideoGame v, VideoGameStatus s, String userRating, int priority) {
+	public void Insert(VideoGameBacklogItem v, VideoGameStatus s, String userRating, int priority) {
 		
 		int id = v.getID();
 		

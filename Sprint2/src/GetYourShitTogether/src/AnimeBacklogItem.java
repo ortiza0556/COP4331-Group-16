@@ -11,7 +11,7 @@ public class AnimeBacklogItem {
     private SimpleStringProperty rating;
     private SimpleIntegerProperty priority;
  
-    public AnimeBacklogItem (int id,String title, String genre, String status, String rating, int priority) {
+    public AnimeBacklogItem (int id, String title, String genre, String status, String rating, int priority) {
  
     	this.id = id;
         this.title = new SimpleStringProperty(title);
