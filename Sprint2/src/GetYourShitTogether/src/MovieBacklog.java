@@ -86,6 +86,8 @@ public class MovieBacklog {
 	
 	public void Delete(MovieBacklogItem m) {
 		
+		this.connect();
+		
 		int id = m.getID();
 		
 		if(CheckIfExists(id) != -1) {
@@ -161,6 +163,7 @@ public class MovieBacklog {
 	
 	public ObservableList<MovieBacklogItem> fetchAll() {
 		
+		this.connect();
 		 String sql = "SELECT Movies.MovieID,Title,Genre,Status,UserRating,Priority FROM Movies JOIN Movies_backlog ON Movies.MovieID IS Movies_backlog.MovieID";
 	        
 	        ObservableList<MovieBacklogItem> result = FXCollections.observableArrayList();
@@ -183,6 +186,7 @@ public class MovieBacklog {
 	            	}
 	            }
 	            
+	            this.close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());

@@ -83,6 +83,7 @@ public class TVShowBacklog {
 	}
 	
 	public void Delete(TVShowBacklogItem t) {
+		this.connect();
 		
 		int id = t.getID();
 		System.out.println(id);
@@ -158,6 +159,8 @@ public class TVShowBacklog {
 	
 	public ObservableList<TVShowBacklogItem> fetchAll() {
 		
+		this.connect();
+		
 		 String sql = "SELECT TVShows.TVID,Title,Genre,Status,UserRating,Priority FROM TVShows JOIN TVShows_backlog ON TVShows.TVID IS TVShows_backlog.TVID";
 	        
 	        ObservableList<TVShowBacklogItem> result = FXCollections.observableArrayList();
@@ -180,6 +183,7 @@ public class TVShowBacklog {
 	            	}
 	            }
 	            
+	            this.close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());

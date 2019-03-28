@@ -84,9 +84,11 @@ public class VideoGameBacklog {
 	
 	public void Delete(VideoGameBacklogItem v) {
 		
+		this.connect();
+
 		int id = v.getID();
 		
-		if(CheckIfExists(id) == 0) {
+		if(CheckIfExists(id) != -1) {
 			
 			String sql = "DELETE FROM VideoGames_Backlog WHERE VGID = ?";
 			
@@ -108,7 +110,7 @@ public class VideoGameBacklog {
 		
 	}
 
-	public void Update(VideoGame v, String status, String userRating, int priority) {
+	public void Update(VideoGameBacklogItem v, String status, String userRating, int priority) {
 		int id = v.getID();
 		
 		if(CheckIfExists(id) != -1) {
@@ -136,7 +138,7 @@ public class VideoGameBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT VGID FROM VideoGames_Backlog WHERE VGID = ?";
+        String sql = "SELECT VGID FROM VideoGames_backlog WHERE VGID = ?";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -151,11 +153,13 @@ public class VideoGameBacklog {
             System.out.println(e.getMessage());
         }
         
-        return 1;
+        return -1;
         
     }
 	
 	public ObservableList<VideoGameBacklogItem> fetchAll() {
+		
+		this.connect();
 		
 		 String sql = "SELECT VideoGames.VGID,Title,Genre,Status,UserRating,Priority FROM VideoGames JOIN VideoGames_backlog ON VideoGames.VGID IS VideoGames_backlog.VGID";
 	        
@@ -179,6 +183,7 @@ public class VideoGameBacklog {
 	            	}
 	            }
 	            
+	            this.close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());

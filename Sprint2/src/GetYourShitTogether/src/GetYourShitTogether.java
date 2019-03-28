@@ -305,7 +305,7 @@ public class GetYourShitTogether extends Application {
             			TableView<VideoGameBacklogItem> vgTable = (TableView<VideoGameBacklogItem>) vbox.getChildren().get(1);
             			VideoGameBacklogItem selectedVGForDeletion = vgTable.getSelectionModel().getSelectedItem();
             			vgBacklog.Delete(selectedVGForDeletion);
-            			vbox.getChildren().set(1, loadAnimeTable());
+            			vbox.getChildren().set(1, loadVideoGameTable());
             			break;
             		default:
             			System.out.println("Danger there be dragons in the Gap");
