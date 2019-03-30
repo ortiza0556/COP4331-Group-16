@@ -5,9 +5,7 @@ abstract class Media {
 	protected String genre;
 	protected String rating;
 	protected int releaseDate;
-	protected String plot;
 	protected int id;
-	protected String studio;
 	
 	public String getTitle(){
 		return this.title;
@@ -25,16 +23,8 @@ abstract class Media {
 		return this.releaseDate;
 	}
 	
-	public String getPlot(){
-		return this.plot;
-	}
-	
 	public int getID(){
 		return this.id;
-	}
-	
-	public String getStudio(){
-		return this.studio;
 	}
 	
 	

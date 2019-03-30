@@ -1,24 +1,18 @@
 
 public class Anime extends Media{
 	
-	public Anime(String title, String genre, String rating, int releaseDate, String plot, String studio){
+	public Anime(String title, String genre, String rating){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
 		this.id = -1;
 		
 	}
 	
-	public Anime(String title, String genre, String rating, int releaseDate, String plot, int id, String studio){
+	public Anime(String title, String genre, String rating, int id){
 		this.title = title;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
 		this.id = id;
 		
 	}
