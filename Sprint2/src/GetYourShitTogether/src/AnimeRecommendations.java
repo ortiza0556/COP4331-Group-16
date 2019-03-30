@@ -30,11 +30,9 @@ public class AnimeRecommendations {
 		}
 	}
 	
-	/*
 	public ObservableList<Anime> getRecommendations() {
 		
 	}
-	*/
 	
 	protected void connect() {
 		

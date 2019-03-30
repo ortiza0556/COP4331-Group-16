@@ -12,11 +12,11 @@
 	while {[gets $InFile line] != -1} {
 	
 		set line [split $line ,]
-		set name [lindex $line 1]
-		set genre [join [split [lindex $line 2] |] ,]
+		set name [join [split [lindex $line 1] |] ,]
+		set genre [join [split [join [split [lindex $line 2] |] ,] \"]]
 		set rating [lindex $line 5]
 		
-		puts $OutFile "[incr counter]\t$name\t\t$genre\t$rating\t\t"
+		puts $OutFile "[incr counter]\t$name\t$genre\t$rating"
 	
 	}
 
