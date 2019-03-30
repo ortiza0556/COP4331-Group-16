@@ -54,22 +54,18 @@ public class MovieDatabase extends Database<Movie> {
 		int release = m.getReleaseDate();
 		String genre = m.getGenre();
 		String rating = m.getRating();
-		String plot = m.getPlot();
-		String prodStudio = m.getStudio();
-		String director = Arrays.toString(m.getDirectors());
+		String director = m.getDirectors();
 		director = director.substring(1, director.length()-1);
 		
-		String sql = "INSERT INTO Movies (Title,Release,Genre,Rating,Plot,ProductionStudio,Director) "
-                + "VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Movies (Title,Release,Genre,Rating,Director) "
+                + "VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1,title);
             stmt.setInt(2, release);
             stmt.setString(3, genre);
             stmt.setString(4, rating);
-            stmt.setString(5, plot);
-            stmt.setString(6, prodStudio);
-            stmt.setString(7, director);
+            stmt.setString(5, director);
             
             stmt.executeUpdate();
             
@@ -101,7 +97,7 @@ public class MovieDatabase extends Database<Movie> {
             
             while(rs.next()) {
                 Movie currMovie = new Movie(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
-            			rs.getInt("Release"), rs.getString("Plot"), rs.getInt("MovieID"), rs.getString("ProductionStudio"), rs.getString("Director"));
+            			rs.getInt("Release"), rs.getInt("MovieID"), rs.getString("Director"));
             	added = result.add(currMovie);
             	
             	if(!added){

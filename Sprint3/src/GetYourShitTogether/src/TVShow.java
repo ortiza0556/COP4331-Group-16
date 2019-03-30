@@ -1,35 +1,33 @@
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class TVShow extends Media{
 	
-	private String[] creators;
+	private SimpleStringProperty directors;
 	
-	public TVShow(String title, String genre, String rating, int releaseDate, String plot, String studio, String creators){
-		this.title = title;
-		this.genre = genre;
-		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
+	public TVShow(String title, String genre, String rating, int releaseDate, String directors){
+		this.title = new SimpleStringProperty(title);;
+		this.genre = new SimpleStringProperty(genre);
+		this.rating = new SimpleStringProperty(rating);
+		this.releaseDate = new SimpleIntegerProperty(releaseDate);
+		this.directors = new SimpleStringProperty(directors);
 		this.id = -1;
-		this.creators = creators.split(",");
 		
 		
 		
 	}
 	
-	public TVShow(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String creators){
-		this.title = title;
-		this.genre = genre;
-		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
+	public TVShow(String title, String genre, String rating, int releaseDate, int id, String directors){
+		this.title = new SimpleStringProperty(title);;
+		this.genre = new SimpleStringProperty(genre);
+		this.rating = new SimpleStringProperty(rating);
+		this.releaseDate = new SimpleIntegerProperty(releaseDate);
+		this.directors = new SimpleStringProperty(directors);
 		this.id = id;
-		this.creators = creators.split(",");
 		
 	}
 	
-	public String[] getCreators(){
-		return this.creators;
+	public String getCreators(){
+		return this.directors.get();
 	}
 }

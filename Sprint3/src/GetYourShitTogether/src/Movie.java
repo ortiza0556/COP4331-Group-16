@@ -1,34 +1,32 @@
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Movie extends Media {
 	
-	private String[] directors;
+	private SimpleStringProperty directors;
 	
-	public Movie(String title, String genre, String rating, int releaseDate, String plot, String studio, String directors){
-		this.title = title;
-		this.genre = genre;
-		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
-		this.directors = directors.split(",");
+	public Movie(String title, String genre, String rating, int releaseDate, String directors){
+		this.title = new SimpleStringProperty(title);;
+		this.genre = new SimpleStringProperty(genre);
+		this.rating = new SimpleStringProperty(rating);
+		this.releaseDate = new SimpleIntegerProperty(releaseDate);
+		this.directors = new SimpleStringProperty(directors);
 		this.id = -1;
 		
 	}
 	
-	public Movie(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String directors){
-		this.title = title;
-		this.genre = genre;
-		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
+	public Movie(String title, String genre, String rating, int releaseDate, int id, String directors){
+		this.title = new SimpleStringProperty(title);;
+		this.genre = new SimpleStringProperty(genre);
+		this.rating = new SimpleStringProperty(rating);
+		this.releaseDate = new SimpleIntegerProperty(releaseDate);
+		this.directors = new SimpleStringProperty(directors);
 		this.id = id;
-		this.directors = directors.split(",");
 	}
 	
-	public String[] getDirectors()
+	public String getDirectors()
 	{
-		return this.directors;
+		return this.directors.get();
 	}
 	
 }

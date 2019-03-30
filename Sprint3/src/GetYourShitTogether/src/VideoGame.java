@@ -1,33 +1,31 @@
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class VideoGame extends Media{
 
-	private String[] platforms;
+	private SimpleStringProperty platforms;
 	
-	public VideoGame(String title, String genre, String rating, int releaseDate, String plot, String studio, String platforms){
-		this.title = title;
-		this.genre = genre;
-		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
-		this.platforms = platforms.split(",");
+	public VideoGame(String title, String genre, String rating, int releaseDate, String platforms){
+		this.title = new SimpleStringProperty(title);;
+		this.genre = new SimpleStringProperty(genre);
+		this.rating = new SimpleStringProperty(rating);
+		this.releaseDate = new SimpleIntegerProperty(releaseDate);
+		this.platforms = new SimpleStringProperty(platforms);
 		this.id = -1;
 		
 	}
 	
-	public VideoGame(String title, String genre, String rating, int releaseDate, String plot, int id, String studio, String platforms){
-		this.title = title;
-		this.genre = genre;
-		this.rating = rating;
-		this.releaseDate = releaseDate;
-		this.plot = plot;
-		this.studio = studio;
+	public VideoGame(String title, String genre, String rating, int releaseDate, int id, String platforms){
+		this.title = new SimpleStringProperty(title);;
+		this.genre = new SimpleStringProperty(genre);
+		this.rating = new SimpleStringProperty(rating);
+		this.releaseDate = new SimpleIntegerProperty(releaseDate);
+		this.platforms = new SimpleStringProperty(platforms);
 		this.id = id;
-		this.platforms = platforms.split(",");
 		
 	}
 	
-	public String[] getPlatform() {
-		return this.platforms;
+	public String getPlatform() {
+		return this.platforms.get();
 	}
 }

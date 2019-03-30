@@ -9,9 +9,7 @@ class VideoGameDatabaseTest {
 	@Test
 	void testInsertVideoGame() {
 		VideoGameDatabase db = new VideoGameDatabase();
-		VideoGame VideoGame1 = new VideoGame("Resident Evil 2", "Horror", "9.2", 2019, "A deadly virus engulfs the residents of Raccoon City in September of 1998, plunging the "
-			    + "city into chaos as flesh eating zombies roam the streets for survivors. An unparalleled adrenaline rush, gripping storyline, and unimaginable horrors await you. "
-			    + "Witness the return of Resident Evil 2.", "Capcom", "PS4, Xbox One, PC");
+		VideoGame VideoGame1 = new VideoGame("Resident Evil 2", "Horror", "9.2", 2019, "PS4, Xbox One, PC");
 		db.Insert(VideoGame1);
 		assertEquals(db.resultText, "Video game successfully added");		
 	}
@@ -20,8 +18,7 @@ class VideoGameDatabaseTest {
 	void testSearch() {
 		
 		VideoGameDatabase db = new VideoGameDatabase();
-		VideoGame VideoGame2 = new VideoGame("Devil May Cry 5", "Action", "9.7", 2019, "The ultimate Devil Hunter is back in style, in the game action fans have been waiting for.",
-				"Capcom", "PS4, Xbox One, PC");
+		VideoGame VideoGame2 = new VideoGame("Devil May Cry 5", "Action", "9.7", 2019, "PS4, Xbox One, PC");
 		db.Insert(VideoGame2);
 		assertEquals(db.resultText, "Video game successfully added");
 		ObservableList<VideoGame> resultList = db.Search("Devil May Cry 5");

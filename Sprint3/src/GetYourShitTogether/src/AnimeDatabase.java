@@ -50,22 +50,16 @@ public class AnimeDatabase extends Database<Anime> {
 	protected void Insert(Anime a) {
 		resultText = null;
 		String title = a.getTitle();
-		int release = a.getReleaseDate();
 		String genre = a.getGenre();
 		String rating = a.getRating();
-		String plot = a.getPlot();
-		String prodStudio = a.getStudio();
 		
-		String sql = "INSERT INTO Anime (Title,Release,Genre,Rating,Plot,ProductionStudio) "
-                + "VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO Anime (Title,Genre,Rating) "
+                + "VALUES(?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1,title);
-            stmt.setInt(2, release);
-            stmt.setString(3, genre);
-            stmt.setString(4, rating);
-            stmt.setString(5, plot);
-            stmt.setString(6, prodStudio);
+            stmt.setString(2, genre);
+            stmt.setString(3, rating);
             
             stmt.executeUpdate();
             
@@ -92,8 +86,7 @@ public class AnimeDatabase extends Database<Anime> {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-            	Anime currAnime = new Anime(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
-            			rs.getInt("Release"), rs.getString("Plot"), rs.getInt("AnimeID"), rs.getString("ProductionStudio"));
+            	Anime currAnime = new Anime(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("AnimeID"));
             	
             	added = result.add(currAnime);
             	

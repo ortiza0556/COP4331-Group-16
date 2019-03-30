@@ -52,22 +52,18 @@ public class VideoGameDatabase extends Database<VideoGame> {
 		int release = v.getReleaseDate();
 		String genre = v.getGenre();
 		String rating = v.getRating();
-		String synopsis = v.getPlot();
-		String devStudio = v.getStudio();
-		String platform = Arrays.toString(v.getPlatform());
+		String platform = v.getPlatform();
 		platform = platform.substring(1, platform.length()-1);
 		
-		String sql = "INSERT INTO VideoGames (Title,Release,Genre,Rating,Synopsis,DevStudio,Platform) "
-                + "VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO VideoGames (Title,Release,Genre,Rating,Platform) "
+                + "VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1,title);
             stmt.setInt(2, release);
             stmt.setString(3, genre);
             stmt.setString(4, rating);
-            stmt.setString(5, synopsis);
-            stmt.setString(6, devStudio);
-            stmt.setString(7,  platform);
+            stmt.setString(5,  platform);
             
             stmt.executeUpdate();
             
@@ -98,8 +94,8 @@ public class VideoGameDatabase extends Database<VideoGame> {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()) {
-                VideoGame currVG = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getString("Synopsis"), 
-                		rs.getInt("VGID"), rs.getString("DevStudio"), rs.getString("Platform"));
+                VideoGame currVG = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), 
+                		rs.getInt("VGID"), rs.getString("Platform"));
             	added = result.add(currVG);
             	
             	if(!added){
