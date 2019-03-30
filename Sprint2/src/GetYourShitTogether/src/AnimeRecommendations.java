@@ -20,7 +20,7 @@ public class AnimeRecommendations {
 		connect();
 		
 		//get size of the anime backlog
-		String sql = "SELECT count(Title) FROM Anime_Backlog";
+		String sql = "SELECT count(Title) FROM Anime";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -29,11 +29,19 @@ public class AnimeRecommendations {
           System.out.println(e.getMessage());
 		}
 	}
-	
+	/*
 	public ObservableList<Anime> getRecommendations() {
 		
-	}
+		//Empty backlog
+		if(animeBacklogSize == 0) {
+			//grab entries from anime table rated 8 or higher
+			String sql = "SELECT * FROM Anime WHERE Rating > 8.0 ORDER BY RANDOM() LIMIT 10";
+			
+		}
 	
+		
+	}
+	*/	
 	protected void connect() {
 		
 		try {
