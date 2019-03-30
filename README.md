@@ -38,3 +38,15 @@ This sprint mainly was concerned with setting up the framework for the project a
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint2/src)
 -  [Test Cases](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint2/TestCases)
 -  [Product Demonstration](https://youtu.be/6Jso3hgJYzY)
+
+# Sprint 3
+
+-  [Product Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/BackLog.md)
+-  [Sprint Backlog](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint3/BackLog.md)
+-  [Burndown Chart](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Sprint3/BurndownChart.png)
+-  [Requirements](https://github.com/ortiza0556/COP4331-Group-16/blob/master/Requirements.md)
+-  [System Architecture and Design Specification](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArchitecture.md)
+-  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint3/src)
+-  [Test Cases](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint3/TestCases)
+-  [Product Demonstration](https://google.com)
+
