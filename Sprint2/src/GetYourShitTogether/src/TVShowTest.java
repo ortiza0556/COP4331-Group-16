@@ -1,6 +1,4 @@
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class TVShowTest {
@@ -17,14 +15,14 @@ class TVShowTest {
 		assertEquals(show2.getGenre(), "Fantasy");
 		assertEquals(show2.getRating(), "10");
 		assertEquals(show2.getReleaseDate(), 2011);
-		assertArrayEquals(show2.getCreators(), creators2.split(","));
+		assertEquals(show2.getCreators(), creators2);
 		assertEquals(show2.getID(), -1);
 		
 	}
 
 	@Test
 	void testGetCreators() {
-		assertArrayEquals(show.getCreators(),creators.split(","));
+		assertEquals(show.getCreators(),creators);
 	}
 
 	@Test

@@ -1,7 +1,4 @@
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 class MovieTest {
@@ -19,12 +16,12 @@ class MovieTest {
 		assertEquals(testFilm2.getRating(), "9.5");
 		assertEquals(testFilm2.getReleaseDate(), 2019);
 		assertEquals(testFilm2.getID(), -1);
-		assertArrayEquals(testFilm2.getDirectors(), directors2.split(","));
+		assertEquals(testFilm2.getDirectors(), directors2);
 	}
 
 	@Test
 	void testGetDirector() {
-		assertArrayEquals(testFilm.getDirectors(), directors.split(","));
+		assertEquals(testFilm.getDirectors(), directors);
 	}
 
 	@Test
