@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -281,7 +282,9 @@ public class GetYourShitTogether extends Application {
     	deleteButton.setPrefHeight(50);
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	switch (mediaTypeDisplayed) {
+            	try {
+            		switch (mediaTypeDisplayed) {
+            	
             	
             		case "TVShows":
             			TableView<TVShowBacklogItem> tvTable = (TableView<TVShowBacklogItem>) vbox.getChildren().get(1);
@@ -309,6 +312,9 @@ public class GetYourShitTogether extends Application {
             			break;
             		default:
             			System.out.println("Danger there be dragons in the Gap");
+            		}
+            	} catch (Exception exception) {
+            		
             	}
             }
         });
@@ -320,7 +326,8 @@ public class GetYourShitTogether extends Application {
         addButton.setPrefHeight(50);
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	System.out.println("add button pressed");
+            	Stage addStage = new Stage();
+            	createAddForm(addStage);
             }
         });
         
@@ -344,6 +351,119 @@ public class GetYourShitTogether extends Application {
         vbox.getChildren().addAll(bottomRow);
     	
     }
+	
+	private void createAddForm(Stage addStage) {
+		 addStage.setTitle("Add Media");
+		 HBox addButtons = new HBox();
+		 addButtons.setPadding(new Insets(20,20,20,20));
+		 GridPane addPane = new GridPane();
+		 addPane.setAlignment(Pos.CENTER);
+		 addPane.setHgap(15);
+		 addPane.setVgap(15);
+		 addPane.setPadding(new Insets(0,40,40,40));
+	
+	    ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
+	    columnOneConstraints.setHalignment(HPos.RIGHT);
+	    ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
+	    columnTwoConstrains.setHgrow(Priority.ALWAYS);
+	    addPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
+
+		 BorderPane addBox = new BorderPane();
+		 
+		 Scene addScene = new Scene(addBox,700,500);
+	     
+		 HBox labelBox = new HBox();
+		 Label pageTitle = new Label("Add New Media");
+		 pageTitle.setFont(new Font("Arial",30));
+		 addBox.setTop(labelBox);
+		 labelBox.getChildren().add(pageTitle);
+		 labelBox.setPadding(new Insets(20,20,20,0));
+		 labelBox.setAlignment(Pos.CENTER);
+		 
+		 
+		Label titleLabel = new Label("Title: ");
+		TextField titleInput = new TextField();
+		
+		Label releaseLabel = new Label("Release Year: ");
+		TextField releaseInput = new TextField();
+		
+		Label genreLabel = new Label("Genre: ");
+		TextField genreInput = new TextField();
+		
+		Label statusLabel = new Label("Status: ");
+		ObservableList<String> statuses = 
+			    FXCollections.observableArrayList(
+			        "TO_WATCH",
+			        "WATCHING",
+			        "ON_HOLD",
+			        "DROPPED"
+			    );
+		ComboBox<String> statusBox = new ComboBox<String>(statuses);
+		
+		Label ratingLabel = new Label("Rating(1-10): ");
+		TextField ratingInput = new TextField();
+		
+		Label priorityLabel = new Label("Priority(Numeric): ");
+		TextField priorityInput = new TextField();
+		 switch (this.mediaTypeDisplayed) {
+		 	
+		 	case "Anime":
+		 
+		 		addPane.add(titleLabel,0,0);
+		 		addPane.add(titleInput, 1, 0);
+		 		addPane.add(genreLabel,0,1);
+		 		addPane.add(genreInput, 1, 1);
+		 		addPane.add(statusLabel, 0, 2);
+		 		addPane.add(statusBox, 1, 2);
+		 		addPane.add(ratingLabel, 0, 3);
+		 		addPane.add(ratingInput, 1, 3);
+		 		addPane.add(priorityLabel, 0, 4);
+		 		addPane.add(priorityInput, 1, 4);
+		 		
+		 		
+		 	break;
+		 	default:
+		 		System.out.println("Thanos did nothing wrong");
+		 }
+		 
+		 
+		addBox.setCenter(addPane);
+		 
+		 Button cancelButton = new Button("Cancel");
+		 cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent e) {
+	            	addStage.close();
+	            }
+	        });
+		 cancelButton.setPrefWidth(100);
+		 cancelButton.setPrefHeight(50);
+		 Button addtoBacklogButton = new Button("Add");
+		 addtoBacklogButton.setPrefWidth(100);
+		 addtoBacklogButton.setPrefHeight(50);
+		 addtoBacklogButton.setOnAction(e -> 
+		 	{
+		 		String title = titleInput.getText();
+		 		String release = releaseInput.getText();
+		 		String genre = genreInput.getText();
+		 		String status = statusBox.getValue();
+		 		String rating = ratingLabel.getText();
+		 		String priority = priorityInput.getText();
+		 		
+		 		
+			 
+		    }
+		 );
+		 
+		 addButtons.setAlignment(Pos.CENTER);
+		 addButtons.setSpacing(20);
+		 
+		 addButtons.getChildren().addAll(addtoBacklogButton,cancelButton);
+		 addBox.setBottom(addButtons);
+		 
+		 addStage.setScene(addScene);	
+		 addStage.show();
+		
+	}
     
     public static void main(String[] args) {
         launch(args);
