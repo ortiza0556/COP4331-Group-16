@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -391,13 +392,24 @@ public class GetYourShitTogether extends Application {
 		TextField genreInput = new TextField();
 		
 		Label statusLabel = new Label("Status: ");
-		ObservableList<String> statuses = 
-			    FXCollections.observableArrayList(
-			        "TO_WATCH",
-			        "WATCHING",
-			        "ON_HOLD",
-			        "DROPPED"
-			    );
+		ObservableList<String> statuses;
+		if (mediaTypeDisplayed.contentEquals("VideoGames")) {
+			statuses = FXCollections.observableArrayList(
+						"TO_PLAY",
+				        "PLAYING",
+				        "ON_HOLD",
+				        "DROPPED"    
+					
+				    );
+			
+		} else {
+			statuses = FXCollections.observableArrayList(
+						"TO_WATCH",
+				        "WATCHING",
+				        "ON_HOLD",
+				        "DROPPED"
+				    );
+		}
 		ComboBox<String> statusBox = new ComboBox<String>(statuses);
 		
 		Label ratingLabel = new Label("Rating(1-10): ");
@@ -423,7 +435,20 @@ public class GetYourShitTogether extends Application {
 		 		
 		 	break;
 		 	default:
-		 		System.out.println("Thanos did nothing wrong");
+		 		
+		 		addPane.add(titleLabel,0,0);
+		 		addPane.add(titleInput, 1, 0);
+		 		addPane.add(releaseLabel, 0, 1);
+		 		addPane.add(releaseInput, 1, 1);
+		 		addPane.add(genreLabel,0,2);
+		 		addPane.add(genreInput, 1, 2);
+		 		addPane.add(statusLabel, 0, 3);
+		 		addPane.add(statusBox, 1, 3);
+		 		addPane.add(ratingLabel, 0, 4);
+		 		addPane.add(ratingInput, 1, 4);
+		 		addPane.add(priorityLabel, 0, 5);
+		 		addPane.add(priorityInput, 1, 5);
+		 		
 		 }
 		 
 		 
@@ -446,10 +471,111 @@ public class GetYourShitTogether extends Application {
 		 		String release = releaseInput.getText();
 		 		String genre = genreInput.getText();
 		 		String status = statusBox.getValue();
-		 		String rating = ratingLabel.getText();
+		 		String rating = ratingInput.getText();
 		 		String priority = priorityInput.getText();
+		 		VideoGameStatus vidEnum = null;
+		 		WatchableMediaStatus watchEnum = null;
+		 		try {
+			 		if (mediaTypeDisplayed.equals("VideoGames")) {
+			 			
+			 			
+			 			switch (status) {
+				 		
+				 		case "TO_PLAY":
+				 			vidEnum = VideoGameStatus.TO_PLAY;
+				 			break;
+				 		case "PLAYING":
+				 			vidEnum = VideoGameStatus.PLAYING;
+				 			break;
+				 		case "ON_HOLD":
+				 			vidEnum = VideoGameStatus.ON_HOLD;
+				 			break;
+				 		case "DROPPED":
+				 			vidEnum = VideoGameStatus.DROPPED;
+				 			break;
+				 		default :
+				 			vidEnum = VideoGameStatus.COMPLETED;
+				 		}
+			 			
+			 		} else {
+			 			
+				 		switch (status) {
+				 		
+				 		case "TO_WATCH":
+				 			watchEnum = WatchableMediaStatus.TO_WATCH;
+				 			break;
+				 		case "WATCHING":
+				 			watchEnum = WatchableMediaStatus.WATCHING;
+				 			break;
+				 		case "ON_HOLD":
+				 			watchEnum = WatchableMediaStatus.ON_HOLD;
+				 			break;
+				 		case "DROPPED":
+				 			watchEnum = WatchableMediaStatus.DROPPED;
+				 			break;
+				 		default :
+				 			watchEnum = WatchableMediaStatus.COMPLETED;
+				 		}
+			 		}
+		 	} catch (Exception exception) {
+		 		Alert alert = new Alert(AlertType.INFORMATION, "Select a Status");
+	 			alert.showAndWait();
+	 			
+	 			return;
+		 	}
+		 		if (!release.matches("\\d{4}") && !(release.equals(""))) {
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid year for the relase");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 			
+		 		} else if (!(rating.equals("")) && !(rating.equals("10.0")) && !rating.matches("[0-9][.][0-9]{0,2}")) {
+
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid rating (0-10). 2 decimal places");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 		} else if (!priority.matches("-?[0-9]*")) {
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid integer for priority");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 			
+		 		}
+		 	
+		 		int releaseInt;
+		 		if (release.equals("")) {
+		 			releaseInt = -1;
+		 		} else {
+		 			releaseInt = Integer.parseInt(release);
+		 		}
 		 		
+		 		switch (mediaTypeDisplayed) {
+		 		case "TVShows":
+		 			TVShowDatabase tvdb = new TVShowDatabase();
+		 			TVShowBacklog tvbdb = new TVShowBacklog();
+		 			int id = tvdb.getMaxID() + 1;
+		 			TVShow TVtoAdd = new TVShow(title,genre,rating,releaseInt,id," ");
+		 			TVShowBacklogItem TVBackToAdd = new TVShowBacklogItem(id,title,genre,"",rating,Integer.parseInt(priority));
+		 			tvdb.Insert(TVtoAdd);
+		 			tvbdb.Insert(TVBackToAdd, watchEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadTVTable());
+		 			
+        			break;
+        		case "Movies":
+        		
+        			break;
+        		case "Anime":
+        		
+        			break;
+        		case "VideoGames":
+        		
+        			break;
+        		default:
+        			System.out.println("Danger there be dragons in the Gap");
 		 		
+		 		}
+		 			
 			 
 		    }
 		 );
