@@ -16,7 +16,6 @@ public class TVShowDatabase extends Database<TVShow> {
 	public TVShowDatabase () {
 		
 		super.filePath = filePath;
-		connect();
 		
 	}
 	
@@ -47,7 +46,7 @@ public class TVShowDatabase extends Database<TVShow> {
 	
 	@Override
 	protected void Insert(TVShow t) {
-		
+		connect();
 		resultText = null;
 		
 		String title = t.getTitle();
@@ -67,7 +66,7 @@ public class TVShowDatabase extends Database<TVShow> {
             stmt.setString(5, director);
             
             stmt.executeUpdate();
-            
+            close();
             resultText = "TV show successfully added";
             System.out.println("Entry added");
         } catch (SQLException e) {
@@ -79,7 +78,7 @@ public class TVShowDatabase extends Database<TVShow> {
 
 	@Override
 	public ObservableList<TVShow> Search (String title) {
-        
+        connect();
 		resultText = null;
 		
 		String sql = "SELECT TVID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM TVShows WHERE "
@@ -107,17 +106,18 @@ public class TVShowDatabase extends Database<TVShow> {
             }
             
             resultText = "Results found";
+            close();
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        close();
         return null;
         
     }
 	
 	public int getMaxID() {
-		
+		connect();
 		int max = -1;
 		
 		String sql = "SELECT MAX(TVID) FROM TVShows";
@@ -131,7 +131,7 @@ public class TVShowDatabase extends Database<TVShow> {
 			
 			
 		}
-		
+		close();
 		return max;
 	}
 }
