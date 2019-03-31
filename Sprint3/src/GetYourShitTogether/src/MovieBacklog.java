@@ -47,11 +47,9 @@ public class MovieBacklog {
 		connect();
 		int id = m.getID();
 		
-		if(CheckIfExists(id) == 0) {
-			
-			String sql = "INSERT INTO Movies_Backlog (MovieID,Status,UserRating,Priority) "
+		String sql = "INSERT INTO Movies_Backlog (MovieID,Status,UserRating,Priority) "
                 + "VALUES(?,?,?,?)";			
-	        try {
+		 try {
 	            PreparedStatement stmt = this.conn.prepareStatement(sql);
 	            stmt.setInt(1,id);
 	            
@@ -78,10 +76,7 @@ public class MovieBacklog {
 	            System.out.println("Entry added.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry already exists.");
-		}
+	        }   
 		
 	}
 	
@@ -91,26 +86,21 @@ public class MovieBacklog {
 		
 		int id = m.getID();
 		
-		if(CheckIfExists(id) != -1) {
-			
-			String sql = "DELETE FROM Movies_Backlog WHERE MovieID = ?";
-			
-			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-	            stmt.setInt(1,id);
-	            
-	            stmt.executeUpdate();
-	            
-	            close();
-	            
-	            System.out.println("Entry deleted.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry does not exist.");
-		}
+		String sql = "DELETE FROM Movies_Backlog WHERE MovieID = ?";
+		
+		
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1,id);
+            
+            stmt.executeUpdate();
+            
+            close();
+            
+            System.out.println("Entry deleted.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 	}
 
 	public void Update(MovieBacklogItem m, String status, String userRating, int priority) {
@@ -119,54 +109,25 @@ public class MovieBacklog {
 		
 		int id = m.getID();
 		
-		if(CheckIfExists(id) == 0) {
-			
-			String sql = "UPDATE Movies_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE MovieID = ?";
-			
-			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-
-	            stmt.setString(1,status);
-	            stmt.setString(2,userRating);
-	            stmt.setInt(3,priority);
-	            stmt.setInt(4,id);
-	            stmt.executeUpdate();
-	            
-	            close();
-	            System.out.println("Entry updated.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry does not exist.");
-		}
-		
-	}
-	
-	private int CheckIfExists (int id) {
-		
-		connect();
-		
-		String sql = "SELECT MovieID FROM Movies_Backlog WHERE MovieID = ?";
-        
+		String sql = "UPDATE Movies_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE MovieID = ?";
+				
         try {
-        	PreparedStatement stmt = this.conn.prepareStatement(sql);
-        	stmt.setInt(1,id);
-        	
-            ResultSet rs = stmt.executeQuery();
-            
-            int result= rs.getInt(1);
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+
+            stmt.setString(1,status);
+            stmt.setString(2,userRating);
+            stmt.setInt(3,priority);
+            stmt.setInt(4,id);
+            stmt.executeUpdate();
             
             close();
-            return result;
+            System.out.println("Entry updated.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            close();
         }
-        close();
-        return 1;
-        
-    }
+		
+	}
 	
 	public ObservableList<MovieBacklogItem> fetchAll() {
 		
@@ -197,8 +158,8 @@ public class MovieBacklog {
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
+	            close();
 	        }
-	        close();
 	        return null;
 		
 	}

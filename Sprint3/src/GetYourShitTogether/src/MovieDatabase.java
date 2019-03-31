@@ -48,6 +48,8 @@ public class MovieDatabase extends Database<Movie> {
 	
 	@Override
 	protected void Insert(Movie m) {
+		
+		connect();
 		resultText = null;
 		
 		String title = m.getTitle();
@@ -70,9 +72,10 @@ public class MovieDatabase extends Database<Movie> {
             
             System.out.println("Entry added");
             resultText = "Movie successfully added";
-            		
+            close();		
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            close();
         }
         
 		
@@ -80,7 +83,7 @@ public class MovieDatabase extends Database<Movie> {
 
 	@Override
 	public ObservableList<Movie> Search (String title) {
-        
+        connect();
 		resultText = null;
 		
 		String sql = "SELECT MovieID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM Movies WHERE "
@@ -107,9 +110,11 @@ public class MovieDatabase extends Database<Movie> {
             }
             
             resultText = "Results found";
+            close();
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            close();
         }
         
         return null;

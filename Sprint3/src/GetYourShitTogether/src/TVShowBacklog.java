@@ -112,52 +112,25 @@ public class TVShowBacklog {
 		
 		int id = t.getID();
 		
-		if(CheckIfExists(id) == 0) {
-			
-			String sql = "UPDATE TVShows_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE TVID = ?";
-			
-			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-
-	            stmt.setString(1,status);
-	            stmt.setString(2,userRating);
-	            stmt.setInt(3,priority);
-	            stmt.setInt(4,id);
-	            stmt.executeUpdate();
-	            
-	            close();
-	            System.out.println("Entry updated.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry does not exist.");
-		}
+		String sql = "UPDATE TVShows_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE TVID = ?";		
 		
-	}
-	
-	private int CheckIfExists (int id) {
-		connect();
-		
-		String sql = "SELECT TVID FROM TVShows_Backlog WHERE TVID = ?";
-        
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setInt(1,id);
+
+            stmt.setString(1,status);
+            stmt.setString(2,userRating);
+            stmt.setInt(3,priority);
+            stmt.setInt(4,id);
+            stmt.executeUpdate();
             
-            ResultSet rs = stmt.executeQuery();
-            
-            int result= rs.getInt(1);
             close();
-            return result;
+            System.out.println("Entry updated.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            close();
         }
-        close();
-        return -1;
-        
-    }
+		
+	}
 	
 	public ObservableList<TVShowBacklogItem> fetchAll() {
 		
@@ -189,8 +162,9 @@ public class TVShowBacklog {
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
+	            close();
 	        }
-	        close();
+	        
 	        return null;
 		
 	}

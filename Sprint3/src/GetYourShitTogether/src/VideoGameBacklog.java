@@ -47,39 +47,35 @@ public class VideoGameBacklog {
 		connect();
 		int id = v.getID();
 		
-		if(CheckIfExists(id) == 0) {
-			
-			String sql = "INSERT INTO VideoGames_Backlog (VGID,Status,UserRating,Priority) "
+		String sql = "INSERT INTO VideoGames_Backlog (VGID,Status,UserRating,Priority) "
                 + "VALUES(?,?,?,?)";			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-	            stmt.setInt(1,id);
-	            
-	            switch(s) {
-	            	case TO_PLAY: stmt.setString(2, "To Watch"); 
-	            	break;
-	            	case PLAYING: stmt.setString(2, "Watching"); 
-	            	break;
-	            	case ON_HOLD: stmt.setString(2, "On Hold"); 
-	            	break;
-	            	case DROPPED: stmt.setString(2, "Dropped"); 
-	            	break;
-	            	case COMPLETED: stmt.setString(2, "Completed");
-	            	break;
-	            };
-	            
-	            stmt.setString(3, userRating);
-	            stmt.setInt(4, priority);
-	            
-	            stmt.executeUpdate();
-	            close();
-	            System.out.println("Entry added.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry already exists.");
-		}
+		try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1,id);
+            
+            switch(s) {
+            	case TO_PLAY: stmt.setString(2, "To Watch"); 
+            	break;
+            	case PLAYING: stmt.setString(2, "Watching"); 
+            	break;
+            	case ON_HOLD: stmt.setString(2, "On Hold"); 
+            	break;
+            	case DROPPED: stmt.setString(2, "Dropped"); 
+            	break;
+            	case COMPLETED: stmt.setString(2, "Completed");
+            	break;
+            };
+            
+            stmt.setString(3, userRating);
+            stmt.setInt(4, priority);
+            
+            stmt.executeUpdate();
+            close();
+            System.out.println("Entry added.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            close();
+        }   
 
 	}
 	
@@ -89,26 +85,20 @@ public class VideoGameBacklog {
 
 		int id = v.getID();
 		
-		if(CheckIfExists(id) != -1) {
-			
-			String sql = "DELETE FROM VideoGames_Backlog WHERE VGID = ?";
-			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-	            stmt.setInt(1,id);
-	            
-	            stmt.executeUpdate();
-	            
-	            close();
-	            
-	            System.out.println("Entry deleted.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry does not exist.");
-		}
+		String sql = "DELETE FROM VideoGames_Backlog WHERE VGID = ?";
 		
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1,id);
+            
+            stmt.executeUpdate();
+            
+            close();            
+            System.out.println("Entry deleted.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            close();
+        }
 	}
 
 	public void Update(VideoGameBacklogItem v, String status, String userRating, int priority) {
@@ -116,52 +106,26 @@ public class VideoGameBacklog {
 		connect();
 		int id = v.getID();
 		
-		if(CheckIfExists(id) != -1) {
-			
-			String sql = "UPDATE VideoGames_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE VGID = ?";
-			
-			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-
-	            stmt.setString(1,status);
-	            stmt.setString(2,userRating);
-	            stmt.setInt(3,priority);
-	            stmt.setInt(4,id);
-	            stmt.executeUpdate();
-	            
-	            close();
-	            System.out.println("Entry updated.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry does not exist.");
-		}
+		String sql = "UPDATE VideoGames_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE VGID = ?";
 		
-	}
-	
-	private int CheckIfExists (int id) {
-		connect();
-		String sql = "SELECT VGID FROM VideoGames_backlog WHERE VGID = ?";
-        
+		
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setInt(1,id);
-            
-            ResultSet rs = stmt.executeQuery();
-            
-            int result= rs.getInt(1);
+
+            stmt.setString(1,status);
+            stmt.setString(2,userRating);
+            stmt.setInt(3,priority);
+            stmt.setInt(4,id);
+            stmt.executeUpdate();
             
             close();
-            return result;
+            System.out.println("Entry updated.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            close();
         }
-        close();
-        return -1;
-        
-    }
+		
+	}	
 	
 	public ObservableList<VideoGameBacklogItem> fetchAll() {
 		
@@ -193,8 +157,8 @@ public class VideoGameBacklog {
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
+	            close();
 	        }
-	        close();
 	        return null;
 		
 	}
