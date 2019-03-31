@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 public class AnimeRecommendations {
 
 	public int animeBacklogSize;
+	public int numCompleted;
 	private Connection conn;
 	protected FilePath fp = new FilePath();
 	protected String filePath = fp.getFilePath();
@@ -20,11 +21,21 @@ public class AnimeRecommendations {
 		connect();
 		
 		//get size of the anime backlog
-		String sql = "SELECT count(Title) FROM Anime";
+		String sql = "SELECT count(Title) FROM Anime_Backlog";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			this.animeBacklogSize = rs.getInt(1);
+		} catch (SQLException e) {
+          System.out.println(e.getMessage());
+		}
+		
+		//get the number of completed anime
+		sql = "SELECT count(Status) WHERE Status = 'Completed' FROM Anime_Backlog";
+		try {
+			Statement stmt = this.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			this.numCompleted = rs.getInt(1);
 		} catch (SQLException e) {
           System.out.println(e.getMessage());
 		}
@@ -63,7 +74,25 @@ public class AnimeRecommendations {
 			} catch(SQLException e) {
 				System.out.println(e.getMessage());
 			}
-		}
+		} else if(numCompleted == 0) {
+			
+			if(animeBacklogSize < 5) {
+				String sql = "SELECT * FROM Anime_Backlog ORDER BY RANDOM() LIMIT " + Integer.toString(animeBacklogSize);
+			} else {
+				String sql = "SELECT * FROM Anime_Backlog ORDER BY RANDOM() LIMIT 5";
+			}
+			
+			
+		} else if(numCompleted > 0) {
+			
+			if(numCompleted < 5) {
+				String sql = "SELECT * FROM Anime_Backlog WHERE Status = 'Completed' ORDER BY RANDOM() LIMIT " + Integer.toString(numCompleted);
+			} else {
+				String sql = "SELECT * FROM Anime_Backlog WHERE Status = 'Completed' ORDER BY RANDOM() LIMIT 5";
+			}
+		} 
+		
+		
 		close();
 		return results;
 	}
