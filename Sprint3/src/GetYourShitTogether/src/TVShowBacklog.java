@@ -15,7 +15,6 @@ public class TVShowBacklog {
 	protected String filePath = fp.getFilePath();
 	
 	public TVShowBacklog () {
-		connect();
 		
 	}
 	
@@ -45,7 +44,7 @@ public class TVShowBacklog {
 	}
 	
 	public void Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority) {
-		
+		connect();
 		int id = t.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -72,6 +71,7 @@ public class TVShowBacklog {
 	            
 	            stmt.executeUpdate();
 	            
+	            close();
 	            System.out.println("Entry added.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -83,7 +83,8 @@ public class TVShowBacklog {
 	}
 	
 	public void Delete(TVShowBacklogItem t) {
-		this.connect();
+		
+		connect();
 		
 		int id = t.getID();
 		System.out.println(id);
@@ -98,7 +99,7 @@ public class TVShowBacklog {
 	            
 	            stmt.executeUpdate();
 	            
-	            this.conn.close();
+	            close();
 	            
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
@@ -111,6 +112,9 @@ public class TVShowBacklog {
 	}
 
 	public void Update(TVShowBacklogItem t, String status, String userRating, int priority) {
+		
+		connect();
+		
 		int id = t.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -127,6 +131,7 @@ public class TVShowBacklog {
 	            stmt.setInt(4,id);
 	            stmt.executeUpdate();
 	            
+	            close();
 	            System.out.println("Entry updated.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -138,7 +143,9 @@ public class TVShowBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT TVID FROM TVShows_Backlog WHERE TVID = ?";
+		connect();
+		
+		String sql = "SELECT TVID FROM TVShows_Backlog WHERE TVID = ?";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -147,19 +154,19 @@ public class TVShowBacklog {
             ResultSet rs = stmt.executeQuery();
             
             int result= rs.getInt(1);
-
+            close();
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        close();
         return -1;
         
     }
 	
 	public ObservableList<TVShowBacklogItem> fetchAll() {
 		
-		this.connect();
+		connect();
 		
 		 String sql = "SELECT TVShows.TVID,Title,Genre,Status,UserRating,Priority FROM TVShows JOIN TVShows_backlog ON TVShows.TVID IS TVShows_backlog.TVID";
 	        
@@ -183,12 +190,12 @@ public class TVShowBacklog {
 	            	}
 	            }
 	            
-	            this.close();
+	            close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
-	        
+	        close();
 	        return null;
 		
 	}

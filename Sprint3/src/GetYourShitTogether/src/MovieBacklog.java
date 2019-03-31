@@ -15,7 +15,6 @@ public class MovieBacklog {
 	protected String filePath = fp.getFilePath();
 	
 	public MovieBacklog () {
-		connect();
 		
 	}
 	
@@ -45,7 +44,7 @@ public class MovieBacklog {
 	}
 	
 	public void Insert(MovieBacklogItem m, WatchableMediaStatus s, String userRating, int priority) {
-		
+		connect();
 		int id = m.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -72,7 +71,7 @@ public class MovieBacklog {
 	            
 	            stmt.executeUpdate();
 	            
-	            this.conn.close();
+	            close();
 	            
 	            System.out.println("Entry added.");
 	        } catch (SQLException e) {
@@ -86,7 +85,7 @@ public class MovieBacklog {
 	
 	public void Delete(MovieBacklogItem m) {
 		
-		this.connect();
+		connect();
 		
 		int id = m.getID();
 		
@@ -101,7 +100,7 @@ public class MovieBacklog {
 	            
 	            stmt.executeUpdate();
 	            
-	            this.conn.close();
+	            close();
 	            
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
@@ -110,10 +109,12 @@ public class MovieBacklog {
 		}else {
 			System.out.println("Entry does not exist.");
 		}
-		
 	}
 
 	public void Update(MovieBacklogItem m, String status, String userRating, int priority) {
+		
+		connect();
+		
 		int id = m.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -130,7 +131,7 @@ public class MovieBacklog {
 	            stmt.setInt(4,id);
 	            stmt.executeUpdate();
 	            
-	            this.conn.close();
+	            close();
 	            System.out.println("Entry updated.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -142,7 +143,10 @@ public class MovieBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT MovieID FROM Movies_Backlog WHERE MovieID = ?";
+		
+		connect();
+		
+		String sql = "SELECT MovieID FROM Movies_Backlog WHERE MovieID = ?";
         
         try {
         	PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -151,19 +155,20 @@ public class MovieBacklog {
             ResultSet rs = stmt.executeQuery();
             
             int result= rs.getInt(1);
-
+            
+            close();
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        close();
         return 1;
         
     }
 	
 	public ObservableList<MovieBacklogItem> fetchAll() {
 		
-		this.connect();
+		connect();
 		 String sql = "SELECT Movies.MovieID,Title,Genre,Status,UserRating,Priority FROM Movies JOIN Movies_backlog ON Movies.MovieID IS Movies_backlog.MovieID";
 	        
 	        ObservableList<MovieBacklogItem> result = FXCollections.observableArrayList();
@@ -186,12 +191,12 @@ public class MovieBacklog {
 	            	}
 	            }
 	            
-	            this.close();
+	            close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
-	        
+	        close();
 	        return null;
 		
 	}

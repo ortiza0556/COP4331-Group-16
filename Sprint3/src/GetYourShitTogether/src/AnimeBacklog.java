@@ -16,7 +16,6 @@ public class AnimeBacklog {
 	public String resultText = null;
 	
 	public AnimeBacklog () {
-		connect();
 		
 	}
 	
@@ -46,7 +45,7 @@ public class AnimeBacklog {
 	}
 	
 	public void Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority) {
-		
+		connect();
 		resultText = null;
 		int id = a.getID();
 		
@@ -82,14 +81,14 @@ public class AnimeBacklog {
 		}else {
 			System.out.println("Entry already exists.");
 		}
-		
+		close();
 	}
 	
 	public void Delete(AnimeBacklogItem a) {
 		resultText = null;
 		int id = a.getID();
 		
-		this.connect();
+		connect();
 		
 		if(CheckIfExists(id) != -1) {
 			
@@ -102,7 +101,7 @@ public class AnimeBacklog {
 	            
 	            stmt.executeUpdate();
 	            
-	            this.conn.close();
+	            close();
 	            
 	            resultText = "Anime successfully deleted from the backlog";
 	            System.out.println("Entry deleted.");
@@ -113,10 +112,11 @@ public class AnimeBacklog {
 			System.out.println("Entry does not exist.");
 		}
 		
+		
 	}
 
 	public void Update(AnimeBacklogItem a, String status, String userRating, int priority) {
-		
+		connect();
 		resultText = null;
 		int id = a.getID();
 		
@@ -134,6 +134,7 @@ public class AnimeBacklog {
 	            stmt.setInt(4,id);
 	            stmt.executeUpdate();
 	            
+	            close();
 	            System.out.println("Entry updated.");
 	            resultText = "Anime updated successfully";
 	        } catch (SQLException e) {
@@ -142,11 +143,11 @@ public class AnimeBacklog {
 		}else {
 			System.out.println("Entry does not exist.");
 		}
-		
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT AnimeID FROM Anime_Backlog WHERE AnimeID = ?";
+        connect();
+		String sql = "SELECT AnimeID FROM Anime_Backlog WHERE AnimeID = ?";
         
         try {
         	PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -156,19 +157,19 @@ public class AnimeBacklog {
             
             int result= rs.getInt(1);
             
-
+            close();
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        close();
         return 1;
         
     }
 	
 	 public ObservableList<AnimeBacklogItem> fetchAll() {
 			
-		 this.connect();
+		 connect();
 		 String sql = "SELECT Anime.AnimeID,Title,Genre,Status,UserRating,Priority FROM Anime JOIN Anime_backlog ON Anime.AnimeID IS Anime_backlog.AnimeID";
 	        
 	        ObservableList<AnimeBacklogItem> result = FXCollections.observableArrayList();
@@ -191,12 +192,12 @@ public class AnimeBacklog {
 	            	}
 	            }
 	            
-	            this.close();
+	            close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
-	        
+	        close();
 	        return null;
 		
 	}

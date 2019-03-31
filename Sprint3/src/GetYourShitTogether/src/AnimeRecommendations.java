@@ -28,20 +28,46 @@ public class AnimeRecommendations {
 		} catch (SQLException e) {
           System.out.println(e.getMessage());
 		}
+		
+		close();
 	}
-	/*
+	
 	public ObservableList<Anime> getRecommendations() {
+		
+		connect();
+		ObservableList<Anime> results = FXCollections.observableArrayList();
+		boolean added = false;
 		
 		//Empty backlog
 		if(animeBacklogSize == 0) {
 			//grab entries from anime table rated 8 or higher
-			String sql = "SELECT * FROM Anime WHERE Rating > 8.0 ORDER BY RANDOM() LIMIT 10";
+			String sql = "SELECT * FROM Anime WHERE Rating > 8.0 AND Rating is not NULL AND Genre NOT LIKE \"%Hentai%\" ORDER BY RANDOM() LIMIT 25";
 			
+			try {
+				Statement stmt = this.conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				while(rs.next()) {
+					Anime currAnime = new Anime(rs.getString("title"), rs.getString("genre"), rs.getString("rating"), rs.getInt("id"));
+					
+					added = results.add(currAnime);
+					
+					if(!added) {
+						System.out.println("Error, anime not added properly");
+					} else {
+						added = false;
+					}
+									
+				}
+				
+			} catch(SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
-	
-		
+		close();
+		return results;
 	}
-	*/	
+	
 	protected void connect() {
 		
 		try {

@@ -15,7 +15,6 @@ public class VideoGameBacklog {
 	protected String filePath = fp.getFilePath();
 	
 	public VideoGameBacklog () {
-		connect();
 		
 	}
 	
@@ -45,7 +44,7 @@ public class VideoGameBacklog {
 	}
 	
 	public void Insert(VideoGameBacklogItem v, VideoGameStatus s, String userRating, int priority) {
-		
+		connect();
 		int id = v.getID();
 		
 		if(CheckIfExists(id) == 0) {
@@ -71,7 +70,7 @@ public class VideoGameBacklog {
 	            stmt.setInt(4, priority);
 	            
 	            stmt.executeUpdate();
-	            
+	            close();
 	            System.out.println("Entry added.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -79,7 +78,7 @@ public class VideoGameBacklog {
 		}else {
 			System.out.println("Entry already exists.");
 		}
-		
+
 	}
 	
 	public void Delete(VideoGameBacklogItem v) {
@@ -98,7 +97,7 @@ public class VideoGameBacklog {
 	            
 	            stmt.executeUpdate();
 	            
-	            this.conn.close();
+	            close();
 	            
 	            System.out.println("Entry deleted.");
 	        } catch (SQLException e) {
@@ -111,6 +110,8 @@ public class VideoGameBacklog {
 	}
 
 	public void Update(VideoGameBacklogItem v, String status, String userRating, int priority) {
+		
+		connect();
 		int id = v.getID();
 		
 		if(CheckIfExists(id) != -1) {
@@ -127,6 +128,7 @@ public class VideoGameBacklog {
 	            stmt.setInt(4,id);
 	            stmt.executeUpdate();
 	            
+	            close();
 	            System.out.println("Entry updated.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
@@ -138,7 +140,8 @@ public class VideoGameBacklog {
 	}
 	
 	private int CheckIfExists (int id) {
-        String sql = "SELECT VGID FROM VideoGames_backlog WHERE VGID = ?";
+		connect();
+		String sql = "SELECT VGID FROM VideoGames_backlog WHERE VGID = ?";
         
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
@@ -147,19 +150,20 @@ public class VideoGameBacklog {
             ResultSet rs = stmt.executeQuery();
             
             int result= rs.getInt(1);
-
+            
+            close();
             return result;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        close();
         return -1;
         
     }
 	
 	public ObservableList<VideoGameBacklogItem> fetchAll() {
 		
-		this.connect();
+		connect();
 		
 		 String sql = "SELECT VideoGames.VGID,Title,Genre,Status,UserRating,Priority FROM VideoGames JOIN VideoGames_backlog ON VideoGames.VGID IS VideoGames_backlog.VGID";
 	        
@@ -183,12 +187,12 @@ public class VideoGameBacklog {
 	            	}
 	            }
 	            
-	            this.close();
+	            close();
 	            return result;
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
-	        
+	        close();
 	        return null;
 		
 	}
