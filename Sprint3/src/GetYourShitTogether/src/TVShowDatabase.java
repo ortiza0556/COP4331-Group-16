@@ -55,7 +55,6 @@ public class TVShowDatabase extends Database<TVShow> {
 		String genre = t.getGenre();
 		String rating = t.getRating();
 		String director = t.getCreators();
-		director = director.substring(1, director.length()-1);
 		
 		String sql = "INSERT INTO TVShows (Title,Release,Genre,Rating,Director) "
                 + "VALUES(?,?,?,?,?)";
@@ -116,4 +115,23 @@ public class TVShowDatabase extends Database<TVShow> {
         return null;
         
     }
+	
+	public int getMaxID() {
+		
+		int max = -1;
+		
+		String sql = "SELECT MAX(TVID) FROM TVShows";
+		
+		try {
+			Statement stmt = this.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			max = rs.getInt(1);
+		} catch (SQLException e) {
+			
+			
+		}
+		
+		return max;
+	}
 }

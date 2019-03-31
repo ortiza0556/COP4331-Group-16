@@ -81,7 +81,7 @@ public class TVShowBacklog {
 		}else {
 			System.out.println("Entry already exists.");
 		}
-		
+		close();
 	}
 	
 	public void Delete(TVShowBacklogItem t) {

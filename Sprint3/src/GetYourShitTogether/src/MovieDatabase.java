@@ -55,7 +55,6 @@ public class MovieDatabase extends Database<Movie> {
 		String genre = m.getGenre();
 		String rating = m.getRating();
 		String director = m.getDirectors();
-		director = director.substring(1, director.length()-1);
 		
 		String sql = "INSERT INTO Movies (Title,Release,Genre,Rating,Director) "
                 + "VALUES(?,?,?,?,?)";
