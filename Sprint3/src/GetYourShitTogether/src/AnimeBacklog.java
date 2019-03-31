@@ -66,6 +66,8 @@ public class AnimeBacklog {
 	            	break;
 	            	case DROPPED: stmt.setString(2, "Dropped"); 
 	            	break;
+	            	case COMPLETED: stmt.setString(2, "Completed");
+	            	break;
 	            };
 	            
 	            stmt.setString(3, userRating);
