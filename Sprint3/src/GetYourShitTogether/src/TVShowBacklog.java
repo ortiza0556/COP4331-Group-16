@@ -44,44 +44,41 @@ public class TVShowBacklog {
 	}
 	
 	public void Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority) {
-		connect();
+		connect();			
 		int id = t.getID();
 		
-		if(CheckIfExists(id) == 0) {
-			
-			String sql = "INSERT INTO TVShows_Backlog (TVID,Status,UserRating,Priority) "
+		String sql = "INSERT INTO TVShows_Backlog (TVID,Status,UserRating,Priority) "
                 + "VALUES(?,?,?,?)";			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-	            stmt.setInt(1,id);
+	    try {
+	         PreparedStatement stmt = this.conn.prepareStatement(sql);
+	         stmt.setInt(1,id);
 	            
-	            switch(s) {
-	            	case TO_WATCH: stmt.setString(2, "To Watch"); 
-	            	break;
-	            	case WATCHING: stmt.setString(2, "Watching"); 
-	            	break;
-	            	case ON_HOLD: stmt.setString(2, "On Hold"); 
-	            	break;
-	            	case DROPPED: stmt.setString(2, "Dropped"); 
-	            	break;
-	            	case COMPLETED: stmt.setString(2, "Completed");
-	            	break;
-	            };
+	         switch(s) {
+	           case TO_WATCH: stmt.setString(2, "To Watch"); 
+	           break;
+	           case WATCHING: stmt.setString(2, "Watching"); 
+	           break;
+	           case ON_HOLD: stmt.setString(2, "On Hold"); 
+	           break;
+	           case DROPPED: stmt.setString(2, "Dropped"); 
+	           break;
+	           case COMPLETED: stmt.setString(2, "Completed");
+	           break;
+	         };
 	            
-	            stmt.setString(3, userRating);
-	            stmt.setInt(4, priority);
+	        stmt.setString(3, userRating);
+	        stmt.setInt(4, priority);
 	            
-	            stmt.executeUpdate();
+	        stmt.executeUpdate();
 	            
-	            close();
-	            System.out.println("Entry added.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry already exists.");
-		}
-		close();
+	        close();
+	        System.out.println("Entry added.");
+	    } catch (SQLException e) {
+	         System.out.println(e.getMessage());
+	         close();
+	    }
+	    
+	    
 	}
 	
 	public void Delete(TVShowBacklogItem t) {
@@ -91,25 +88,21 @@ public class TVShowBacklog {
 		int id = t.getID();
 		System.out.println(id);
 		
-		if(CheckIfExists(id) != -1) {
-			
-			String sql = "DELETE FROM TVShows_Backlog WHERE TVID = ?";
-			
-	        try {
-	            PreparedStatement stmt = this.conn.prepareStatement(sql);
-	            stmt.setInt(1,id);
-	            
-	            stmt.executeUpdate();
-	            
-	            close();
-	            
-	            System.out.println("Entry deleted.");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-		}else {
-			System.out.println("Entry does not exist.");
-		}
+		String sql = "DELETE FROM TVShows_Backlog WHERE TVID = ?";
+		
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1,id);
+            
+            stmt.executeUpdate();
+            
+            close();
+            
+            System.out.println("Entry deleted.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            close();
+        }
 		
 	}
 
