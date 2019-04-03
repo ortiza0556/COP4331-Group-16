@@ -24,7 +24,7 @@ public class CardList extends JPanel{
         //hide scrollbar
         pane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
 
-        ImageIcon leftIcon=GetYourShitTogether.createImageIcon("/images/left.png");
+        ImageIcon leftIcon=GystUI.createImageIcon("/images/left.png");
         JButton left = new JButton(leftIcon);
         left.setPreferredSize(new Dimension(50,350));
         left.addActionListener(new ActionListener() {
@@ -35,7 +35,7 @@ public class CardList extends JPanel{
         });
 
 
-        ImageIcon rightIcon=GetYourShitTogether.createImageIcon("/images/right.png");
+        ImageIcon rightIcon=GystUI.createImageIcon("/images/right.png");
         JButton right= new JButton(rightIcon);
         right.setPreferredSize(new Dimension(50,350));
         right.addActionListener(new ActionListener() {

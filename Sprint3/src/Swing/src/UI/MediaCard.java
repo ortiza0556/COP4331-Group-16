@@ -52,13 +52,13 @@ public class MediaCard extends JPanel {
         JPanel buttons=new JPanel();
         buttons.setLayout(new GridLayout(1,3));
 
-        ImageIcon trash=GetYourShitTogether.createImageIcon("/images/trash.png");
+        ImageIcon trash=GystUI.createImageIcon("/images/trash.png");
         JButton delete=new JButton(trash);
         delete.setPreferredSize(new Dimension(60,20));
 
         buttons.add(delete);
 
-        ImageIcon infI=GetYourShitTogether.createImageIcon("/images/info.png");
+        ImageIcon infI=GystUI.createImageIcon("/images/info.png");
         JButton more=new JButton(infI);
 
         more.setPreferredSize(new Dimension(60,20));
@@ -71,7 +71,7 @@ public class MediaCard extends JPanel {
         });
 
         buttons.add(more);
-        ImageIcon check=GetYourShitTogether.createImageIcon("/images/check.png");
+        ImageIcon check=GystUI.createImageIcon("/images/check.png");
         JButton done=new JButton(check);
 
 

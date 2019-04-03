@@ -2,8 +2,6 @@ package core;
 
 import com.google.gson.JsonArray;
 
-import java.net.URL;
-
 public class MediaProfile {
 
 
