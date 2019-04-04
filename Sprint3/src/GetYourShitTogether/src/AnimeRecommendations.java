@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,6 +83,8 @@ public class AnimeRecommendations {
 				try {
 					Statement stmt = this.conn.createStatement();
 					ResultSet rs = stmt.executeQuery(sql);
+					
+					Set<String> genres = new HashSet<>();
 					
 					//get the genres from the selected anime
 					while(rs.next()) {
