@@ -11,30 +11,29 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class AnimeRecommendations {
-
-	public int animeBacklogSize;
+public class MovieRecommendations {
+	
+	public int movieBacklogSize;
 	public int numCompletedWithHighRating;
 	private Connection conn;
 	protected FilePath fp = new FilePath();
 	protected String filePath = fp.getFilePath();
 	
-	
-	public AnimeRecommendations(){
+	public MovieRecommendations(){
 		connect();
 		
-		//get size of the anime backlog
-		String sql = "SELECT count(AnimeID) FROM Anime_Backlog";
+		//get size of the movie backlog
+		String sql = "SELECT count(MovieID) FROM Movie_Backlog";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			this.animeBacklogSize = rs.getInt(1);
+			this.movieBacklogSize = rs.getInt(1);
 		} catch (SQLException e) {
           System.out.println(e.getMessage());
 		}
 		
-		//get the number of completed anime with ratings above 7
-		sql = "SELECT count(Status) FROM Anime_Backlog WHERE Status = 'Completed' AND UserRating > 7 AND UserRating IS NOT NULL";
+		//get the number of completed movies with ratings above 7
+		sql = "SELECT count(Status) FROM Movie_Backlog WHERE Status = 'Completed' AND UserRating > 7 AND UserRating IS NOT NULL";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -46,32 +45,31 @@ public class AnimeRecommendations {
 		close();
 	}
 	
-	public ObservableList<Anime> getRecommendations() {
+	public ObservableList<Movie> getRecommendations() {
 		
 		connect();
-		ObservableList<Anime> results = FXCollections.observableArrayList();
+		ObservableList<Movie> results = FXCollections.observableArrayList();
 		boolean added = false;
 		
 		//Empty backlog
-		if(animeBacklogSize == 0) {
-			//grab entries from anime table rated 8 or higher
-			String sql = "SELECT * FROM Anime WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Hentai%\" ORDER BY RANDOM() LIMIT 25";
+		if(movieBacklogSize == 0) {
+			//grab entries from movie table rated 8 or higher
+			String sql = "SELECT * FROM Movies WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Adult%\" ORDER BY RANDOM() LIMIT 25";
 			
 			try {
 				Statement stmt = this.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				
 				while(rs.next()) {
-					Anime currAnime = new Anime(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("AnimeID"));
+					Movie currMovie = new Movie(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("MovieID"), rs.getString("Director"));
 					
-					added = results.add(currAnime);
+					added = results.add(currMovie);
 					
 					if(!added) {
-						System.out.println("Error, anime not added properly");
+						System.out.println("Error, Movie not added properly");
 					} else {
 						added = false;
-					}
-									
+					}									
 				}
 				close();
 				
@@ -82,18 +80,17 @@ public class AnimeRecommendations {
 		} else if(numCompletedWithHighRating == 0) {
 			
 			int numToGet = 5;
-			if(animeBacklogSize < 5)
-				numToGet = animeBacklogSize;
+			if(movieBacklogSize < 5)
+				numToGet = movieBacklogSize;
 			
-			String sql = "SELECT Genre FROM Anime_Backlog JOIN Anime ON Anime_Backlog.AnimeID IS Anime.AnimeID ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
+			String sql = "SELECT Genre FROM Movies_Backlog JOIN Movies ON Movies_Backlog.MovieID IS Movies.MovieID ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
 			try {
 				Statement stmt = this.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				
 				Set<String> genres = new HashSet<>();
 				
-				//get the genres from the selected anime
-				int resultSetInd = 0;
+				//get the genres from the selected Movie
 				while(rs.next()) {
 					
 					List<String> currGenres = Arrays.asList(rs.getString("Genre").split(","));
@@ -106,7 +103,7 @@ public class AnimeRecommendations {
 				}
 				
 				//start new sql query to get recommendations based on the genres
-				sql = "SELECT * FROM Anime WHERE Rating > 7 AND Rating IS NOT NULL AND (";
+				sql = "SELECT * FROM Movies WHERE Rating > 7 AND Rating IS NOT NULL AND (";
 				
 				int j = 0;
 				//convert genres set to an array
@@ -119,23 +116,22 @@ public class AnimeRecommendations {
 				}
 				
 				
-				sql = sql + ") AND AnimeID NOT IN (SELECT AnimeID FROM Anime_Backlog) ORDER BY RANDOM() LIMIT 25";
+				sql = sql + ") AND MovieID NOT IN (SELECT MovieID FROM Movies_Backlog) ORDER BY RANDOM() LIMIT 25";
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
 				
 				//Add the recommendations to the observable list
 				while(rs.next()) {
-					Anime currAnime = new Anime(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("AnimeID"));
+					Movie currMovie = new Movie(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("MovieID"), rs.getString("Director"));
 					
-					added = results.add(currAnime);
+					added = results.add(currMovie);
 					
 					if(!added) {
-						System.out.println("Error, anime not added properly");
+						System.out.println("Error, Movie not added properly");
 					} else {
 						added = false;
-					}
-									
+					}									
 				}
 				close();
 
@@ -149,7 +145,7 @@ public class AnimeRecommendations {
 			int numToGet = 5;
 			if(numCompletedWithHighRating < 5)
 				numToGet = numCompletedWithHighRating;
-			String sql = "SELECT Genre FROM Anime_Backlog JOIN Anime ON Anime_Backlog.AnimeID IS Anime.AnimeID WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
+			String sql = "SELECT Genre FROM Movies_Backlog JOIN Movies ON Movies_Backlog.MovieID IS Movies.MovieID WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
 			
 			try {
 				Statement stmt = this.conn.createStatement();
@@ -157,7 +153,7 @@ public class AnimeRecommendations {
 				
 				Set<String> genres = new HashSet<>();
 				
-				//get the genres from the selected anime
+				//get the genres from the selected Movie
 				while(rs.next()) {
 					
 					List<String> currGenres = Arrays.asList(rs.getString("Genre").split(","));
@@ -170,7 +166,7 @@ public class AnimeRecommendations {
 				}
 				
 				//start new sql query to get recommendations based on the genres
-				sql = "SELECT * FROM Anime WHERE Rating > 7 AND Rating IS NOT NULL AND (";
+				sql = "SELECT * FROM Movies WHERE Rating > 7 AND Rating IS NOT NULL AND (";
 				
 				int j = 0;
 				//convert genres set to an array
@@ -183,22 +179,21 @@ public class AnimeRecommendations {
 				}
 				
 				
-				sql = sql + ") AND AnimeID NOT IN (SELECT AnimeID FROM Anime_Backlog) ORDER BY RANDOM() LIMIT 25";
+				sql = sql + ") AND MovieID NOT IN (SELECT MovieID FROM Movies_Backlog) ORDER BY RANDOM() LIMIT 25";
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
 				
 				//Add the recommendations to the observable list
 				while(rs.next()) {
-					Anime currAnime = new Anime(rs.getString("title"), rs.getString("genre"), rs.getString("rating"), rs.getInt("AnimeID"));
-					added = results.add(currAnime);
+					Movie currMovie = new Movie(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("MovieID"), rs.getString("Director"));
+					added = results.add(currMovie);
 					
 					if(!added) {
-						System.out.println("Error, anime not added properly");
+						System.out.println("Error, Movie not added properly");
 					} else {
 						added = false;
-					}
-									
+					}								
 				}
 				
 				close();
@@ -237,5 +232,4 @@ public class AnimeRecommendations {
 			System.out.println(e.getMessage());
 		}
 	}
-	
 }
