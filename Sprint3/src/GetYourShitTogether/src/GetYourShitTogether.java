@@ -585,9 +585,9 @@ public class GetYourShitTogether extends Application {
         		case "VideoGames":
         			VideoGameDatabase vgdb = new VideoGameDatabase();
 		 			VideoGameBacklog vgbdb = new VideoGameBacklog();
-		 			int id = vgdb.getMaxID() + 1;
-		 			VideoGame VGtoAdd = new VideoGame(title,genre,rating,releaseInt,id," ");
-		 			VideoGameBacklogItem VGBackToAdd = new VideoGameBacklogItem(id,title,genre,"",rating,Integer.parseInt(priority));
+		 			int vgid = vgdb.getMaxID() + 1;
+		 			VideoGame VGtoAdd = new VideoGame(title,genre,rating,releaseInt,vgid," ");
+		 			VideoGameBacklogItem VGBackToAdd = new VideoGameBacklogItem(vgid,title,genre,"",rating,Integer.parseInt(priority));
 		 			vgdb.Insert(VGtoAdd);
 		 			vgbdb.Insert(VGBackToAdd, vidEnum, rating,Integer.parseInt(priority));
 		 			vbox.getChildren().set(1, loadTVTable());
