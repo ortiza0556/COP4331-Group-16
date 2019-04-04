@@ -598,6 +598,7 @@ public class GetYourShitTogether extends Application {
 		 		}
 		 			
 			 
+		 		addStage.close();
 		    }
 		 );
 		 
