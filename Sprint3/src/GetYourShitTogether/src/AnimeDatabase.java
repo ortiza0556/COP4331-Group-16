@@ -106,4 +106,23 @@ public class AnimeDatabase extends Database<Anime> {
         
     }
 	
+	public int getMaxID() {
+		connect();
+		int max = -1;
+		
+		String sql = "SELECT MAX(AnimeID) FROM Anime";
+		
+		try {
+			Statement stmt = this.conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			max = rs.getInt(1);
+		} catch (SQLException e) {
+			
+			
+		}
+		close();
+		return max;
+	}
+	
 }
