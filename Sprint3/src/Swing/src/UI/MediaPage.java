@@ -6,14 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import UI.GystUI;
 public class MediaPage extends JPanel{
 
-    CardList backlog;
+     public CardList backlog;
+    
+     public CardList reccomended;
 
-    CardList reccomended;
-
-    CardList completed;
+     public CardList completed;
 
     JScrollPane pane;
 
@@ -24,36 +24,44 @@ public class MediaPage extends JPanel{
 
 
 
-        lists.setLayout(new GridLayout(3,1));
+        lists.setLayout(new GridBagLayout());
 
-
-        lists.add(backlog);
-        lists.add(reccomended);
-        lists.add(completed);
+        GridBagConstraints c=new GridBagConstraints();
+        
+        c.weighty=0;
+        c.gridy=0;
+        lists.add(new JLabel("Backlog"),c);
+        c.gridy=1;
+        lists.add(backlog,c);
+        c.gridy=2;
+        lists.add(new JLabel("Recommended"),c);
+        c.gridy=3;
+        lists.add(reccomended,c);
+        c.gridy=4;
+        lists.add(new JLabel("Finished"),c);
+        c.gridy=5;
+        lists.add(completed,c);
+        
+        backlog.page=this;
+        reccomended.page=this;
+        completed.page=this;
 
         pane = new JScrollPane(lists,ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        pane.setPreferredSize(new Dimension(950,1080));
+        pane.setPreferredSize(new Dimension(950,1000));
         pane.setWheelScrollingEnabled(false);
 
-        JPanel addmed=new JPanel();
 
-        addmed.setLayout(new GridLayout(2,1));
-
-        JTextArea search=new JTextArea();
-
-        addmed.add(search);
-
-        JButton addB=new JButton("ADD Media");
+        MediaPage t=this;
+        JButton addB=new JButton(" ",GystUI.createImageIcon("/images/add.png"));
         addB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[]args=new String[1];
-                args[0]=search.getText();
-                backlog.addCard(new MediaCard(new parseMedia().parse(args)));
+                
+            	new AddUI(t);
             }
         });
-        addmed.add(addB);
-        add(addmed);
+        addB.setPreferredSize(new Dimension(100,1080));
+        add(addB);
 
         add(pane);
 

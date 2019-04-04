@@ -18,27 +18,27 @@ public class GystUI extends JPanel {
         
 
         MediaPage movies=new MediaPage();
-        movies.reccomended=new CardList();
-        movies.backlog=new CardList();
-        movies.completed=new CardList();
+        movies.reccomended=new CardList(null,CardList.RECOMMENDED);
+        movies.backlog=new CardList(null,CardList.BACKLOG);
+        movies.completed=new CardList(null,CardList.COMPLETE);
         movies.populate();
 
         ImageIcon movieIcon = createImageIcon("/images/movie.png");
         tabbedPane.addTab("Movies", movieIcon,movies);
 
         MediaPage tv=new MediaPage();
-        tv.reccomended=new CardList();
-        tv.backlog=new CardList();
-        tv.completed=new CardList();
+        tv.reccomended=new CardList(null,CardList.RECOMMENDED);
+        tv.backlog=new CardList(null,CardList.BACKLOG);
+        tv.completed=new CardList(null,CardList.COMPLETE);
         tv.populate();
 
         ImageIcon tvIcon = createImageIcon("/images/tv.png");
         tabbedPane.addTab("TV", tvIcon, tv);
 
         MediaPage anime=new MediaPage();
-        anime.reccomended=new CardList();
-        anime.backlog=new CardList();
-        anime.completed=new CardList();
+        anime.reccomended=new CardList(null,CardList.RECOMMENDED);
+        anime.backlog=new CardList(null,CardList.BACKLOG);
+        anime.completed=new CardList(null,CardList.COMPLETE);
         anime.populate();
         
 
@@ -46,9 +46,9 @@ public class GystUI extends JPanel {
         tabbedPane.addTab("Anime", animeIcon, anime);
         
         MediaPage games=new MediaPage();
-        games.reccomended=new CardList();
-        games.backlog=new CardList();
-        games.completed=new CardList();
+        games.reccomended=new CardList(null,CardList.RECOMMENDED);
+        games.backlog=new CardList(null,CardList.BACKLOG);
+        games.completed=new CardList(null,CardList.COMPLETE);
         games.populate();
 
         ImageIcon gameIcon = createImageIcon("/images/game.png");
