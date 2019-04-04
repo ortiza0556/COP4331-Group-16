@@ -7,7 +7,13 @@ class AnimeRecommendationsTest {
 	void testAnimeRecommendations() {
 		AnimeRecommendations yeeehawww= new AnimeRecommendations();
 		//Used when testing sql statement on anime table
-		assertEquals(yeeehawww.animeBacklogSize, 12294);
+		assertEquals(yeeehawww.animeBacklogSize, 2);
+	}
+	
+	@Test
+	void testGetRecommendations() {
+		AnimeRecommendations yeeyourlasthaw = new AnimeRecommendations();
+		yeeyourlasthaw.getRecommendations();
 	}
 
 }
