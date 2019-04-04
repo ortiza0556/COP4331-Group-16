@@ -554,22 +554,43 @@ public class GetYourShitTogether extends Application {
 		 		case "TVShows":
 		 			TVShowDatabase tvdb = new TVShowDatabase();
 		 			TVShowBacklog tvbdb = new TVShowBacklog();
-		 			int id = tvdb.getMaxID() + 1;
-		 			TVShow TVtoAdd = new TVShow(title,genre,rating,releaseInt,id," ");
-		 			TVShowBacklogItem TVBackToAdd = new TVShowBacklogItem(id,title,genre,"",rating,Integer.parseInt(priority));
+		 			int tvid = tvdb.getMaxID() + 1;
+		 			TVShow TVtoAdd = new TVShow(title,genre,rating,releaseInt,tvid," ");
+		 			TVShowBacklogItem TVBackToAdd = new TVShowBacklogItem(tvid,title,genre,"",rating,Integer.parseInt(priority));
 		 			tvdb.Insert(TVtoAdd);
 		 			tvbdb.Insert(TVBackToAdd, watchEnum, rating,Integer.parseInt(priority));
 		 			vbox.getChildren().set(1, loadTVTable());
 		 			
         			break;
         		case "Movies":
-        		
+        			MovieDatabase mvdb = new MovieDatabase();
+		 			MovieBacklog mvbdb = new MovieBacklog();
+		 			int mid = mvdb.getMaxID() + 1;
+		 			Movie MovietoAdd = new Movie(title,genre,rating,releaseInt,mid," ");
+		 			MovieBacklogItem MovieBackToAdd = new MovieBacklogItem(mid,title,genre,"",rating,Integer.parseInt(priority));
+		 			mvdb.Insert(MovietoAdd);
+		 			mvbdb.Insert(MovieBackToAdd, watchEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadMovieTable());
         			break;
         		case "Anime":
-        		
+	        		AnimeDatabase adb = new AnimeDatabase();
+		 			AnimeBacklog abdb = new AnimeBacklog();
+		 			int aid = adb.getMaxID() + 1;
+		 			Anime AnimetoAdd = new Anime(title,genre,rating,aid);
+		 			AnimeBacklogItem AnimeBackToAdd = new AnimeBacklogItem(aid,title,genre,"",rating,Integer.parseInt(priority));
+		 			adb.Insert(AnimetoAdd);
+		 			abdb.Insert(AnimeBackToAdd, watchEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadAnimeTable());
         			break;
         		case "VideoGames":
-        		
+        			VideoGameDatabase vgdb = new VideoGameDatabase();
+		 			VideoGameBacklog vgbdb = new VideoGameBacklog();
+		 			int vgid = vgdb.getMaxID() + 1;
+		 			VideoGame VGtoAdd = new VideoGame(title,genre,rating,releaseInt,vgid," ");
+		 			VideoGameBacklogItem VGBackToAdd = new VideoGameBacklogItem(vgid,title,genre,"",rating,Integer.parseInt(priority));
+		 			vgdb.Insert(VGtoAdd);
+		 			vgbdb.Insert(VGBackToAdd, vidEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadTVTable());
         			break;
         		default:
         			System.out.println("Danger there be dragons in the Gap");
