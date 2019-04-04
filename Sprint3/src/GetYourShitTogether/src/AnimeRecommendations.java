@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 public class AnimeRecommendations {
 
 	public int animeBacklogSize;
-	public int numCompleted;
+	public int numCompletedWithHighRating;
 	private Connection conn;
 	protected FilePath fp = new FilePath();
 	protected String filePath = fp.getFilePath();
@@ -30,12 +30,12 @@ public class AnimeRecommendations {
           System.out.println(e.getMessage());
 		}
 		
-		//get the number of completed anime
-		sql = "SELECT count(Status) WHERE Status = 'Completed' FROM Anime_Backlog";
+		//get the number of completed anime with ratings above 7
+		sql = "SELECT count(Status) FROM Anime_Backlog WHERE Status = 'Completed' AND UserRating > 7 AND UserRating IS NOT NULL";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			this.numCompleted = rs.getInt(1);
+			this.numCompletedWithHighRating = rs.getInt(1);
 		} catch (SQLException e) {
           System.out.println(e.getMessage());
 		}
@@ -52,7 +52,7 @@ public class AnimeRecommendations {
 		//Empty backlog
 		if(animeBacklogSize == 0) {
 			//grab entries from anime table rated 8 or higher
-			String sql = "SELECT * FROM Anime WHERE Rating > 8.0 AND Rating is not NULL AND Genre NOT LIKE \"%Hentai%\" ORDER BY RANDOM() LIMIT 25";
+			String sql = "SELECT * FROM Anime WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Hentai%\" ORDER BY RANDOM() LIMIT 25";
 			
 			try {
 				Statement stmt = this.conn.createStatement();
@@ -74,21 +74,45 @@ public class AnimeRecommendations {
 			} catch(SQLException e) {
 				System.out.println(e.getMessage());
 			}
-		} else if(numCompleted == 0) {
+		} else if(numCompletedWithHighRating == 0) {
 			
 			if(animeBacklogSize < 5) {
-				String sql = "SELECT * FROM Anime_Backlog ORDER BY RANDOM() LIMIT " + Integer.toString(animeBacklogSize);
+				String sql = "SELECT Genre FROM Anime_Backlog JOIN Anime ON Anime_Backlog.AnimeID IS Anime.AnimeID ORDER BY RANDOM() LIMIT " + Integer.toString(animeBacklogSize);
+				try {
+					Statement stmt = this.conn.createStatement();
+					ResultSet rs = stmt.executeQuery(sql);
+					
+					//get the genres from the selected anime
+					while(rs.next()) {
+						
+					}
+					
+					sql = "SELECT * FROM Anime WHERE Rating > 7 AND Rating IS NOT NULL AND ";
+					sql = sql + "AND AnimeID NOT IN (SELECT AnimeID FROM Anime_Backlog) ORDER BY RANDOM() LIMIT 25";
+				} catch(SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				
 			} else {
 				String sql = "SELECT * FROM Anime_Backlog ORDER BY RANDOM() LIMIT 5";
+				try {
+					Statement stmt = this.conn.createStatement();
+					ResultSet rs = stmt.executeQuery(sql);
+					
+					//get the genres from the selected anime
+				} catch(SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				
 			}
 			
 			
-		} else if(numCompleted > 0) {
+		} else if(numCompletedWithHighRating > 0) {
 			
-			if(numCompleted < 5) {
-				String sql = "SELECT * FROM Anime_Backlog WHERE Status = 'Completed' ORDER BY RANDOM() LIMIT " + Integer.toString(numCompleted);
+			if(numCompletedWithHighRating < 5) {
+				String sql = "SELECT * FROM Anime_Backlog WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numCompletedWithHighRating);
 			} else {
-				String sql = "SELECT * FROM Anime_Backlog WHERE Status = 'Completed' ORDER BY RANDOM() LIMIT 5";
+				String sql = "SELECT * FROM Anime_Backlog WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT 5";
 			}
 		} 
 		
