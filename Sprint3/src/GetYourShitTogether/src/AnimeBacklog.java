@@ -93,7 +93,7 @@ public class AnimeBacklog {
 		
 		
         try {
-            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            PreparedStatement stmt =  this.conn.prepareStatement(sql);
             stmt.setInt(1,id);
             
             stmt.executeUpdate();
