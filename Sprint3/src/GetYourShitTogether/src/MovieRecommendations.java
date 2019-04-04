@@ -13,8 +13,9 @@ import javafx.collections.ObservableList;
 
 public class MovieRecommendations {
 	
-	public int movieBacklogSize;
-	public int numCompletedWithHighRating;
+	private int movieBacklogSize;
+	private int numCompletedWithHighRating;
+	final private int numRecommendations = 25;
 	private Connection conn;
 	protected FilePath fp = new FilePath();
 	protected String filePath = fp.getFilePath();
@@ -54,7 +55,7 @@ public class MovieRecommendations {
 		//Empty backlog
 		if(movieBacklogSize == 0) {
 			//grab entries from movie table rated 8 or higher
-			String sql = "SELECT * FROM Movies WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Adult%\" ORDER BY RANDOM() LIMIT 25";
+			String sql = "SELECT * FROM Movies WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Adult%\" ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 			
 			try {
 				Statement stmt = this.conn.createStatement();
@@ -116,7 +117,7 @@ public class MovieRecommendations {
 				}
 				
 				
-				sql = sql + ") AND MovieID NOT IN (SELECT MovieID FROM Movies_Backlog) ORDER BY RANDOM() LIMIT 25";
+				sql = sql + ") AND MovieID NOT IN (SELECT MovieID FROM Movies_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
@@ -179,7 +180,7 @@ public class MovieRecommendations {
 				}
 				
 				
-				sql = sql + ") AND MovieID NOT IN (SELECT MovieID FROM Movies_Backlog) ORDER BY RANDOM() LIMIT 25";
+				sql = sql + ") AND MovieID NOT IN (SELECT MovieID FROM Movies_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
