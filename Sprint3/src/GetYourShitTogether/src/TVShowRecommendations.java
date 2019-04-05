@@ -24,7 +24,7 @@ public class TVShowRecommendations {
 		connect();
 		
 		//get size of the TVShow backlog
-		String sql = "SELECT count(TVShowID) FROM TVShows_Backlog";
+		String sql = "SELECT count(TVID) FROM TVShows_Backlog";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -84,7 +84,7 @@ public class TVShowRecommendations {
 			if(tvShowBacklogSize < 5)
 				numToGet = tvShowBacklogSize;
 			
-			String sql = "SELECT Genre FROM TVShows_Backlog JOIN TVShows ON TVShows_Backlog.TVShowID IS TVShows.TVShowID ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
+			String sql = "SELECT Genre FROM TVShows_Backlog JOIN TVShows ON TVShows_Backlog.TVID IS TVShows.TVID ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
 			try {
 				Statement stmt = this.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
@@ -117,7 +117,7 @@ public class TVShowRecommendations {
 				}
 				
 				
-				sql = sql + ") AND TVShowID NOT IN (SELECT TVShowID FROM TVShows_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
+				sql = sql + ") AND TVID NOT IN (SELECT TVID FROM TVShows_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
@@ -146,7 +146,7 @@ public class TVShowRecommendations {
 			int numToGet = 5;
 			if(numCompletedWithHighRating < 5)
 				numToGet = numCompletedWithHighRating;
-			String sql = "SELECT Genre FROM TVShows_Backlog JOIN TVShows ON TVShows_Backlog.TVShowID IS TVShows.TVShowID WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
+			String sql = "SELECT Genre FROM TVShows_Backlog JOIN TVShows ON TVShows_Backlog.TVID IS TVShows.TVID WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
 			
 			try {
 				Statement stmt = this.conn.createStatement();
@@ -180,7 +180,7 @@ public class TVShowRecommendations {
 				}
 				
 				
-				sql = sql + ") AND TVShowID NOT IN (SELECT TVShowID FROM TVShows_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
+				sql = sql + ") AND TVID NOT IN (SELECT TVID FROM TVShows_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);

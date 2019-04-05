@@ -24,7 +24,7 @@ public class VideoGameRecommendations {
 		connect();
 		
 		//get size of the VideoGame backlog
-		String sql = "SELECT count(VideoGameID) FROM VideoGames_Backlog";
+		String sql = "SELECT count(VGID) FROM VideoGames_Backlog";
 		try {
 			Statement stmt = this.conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -84,7 +84,7 @@ public class VideoGameRecommendations {
 			if(videoGameBacklogSize < 5)
 				numToGet = videoGameBacklogSize;
 			
-			String sql = "SELECT Genre FROM VideoGames_Backlog JOIN VideoGames ON VideoGames_Backlog.VideoGameID IS VideoGames.VideoGameID ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
+			String sql = "SELECT Genre FROM VideoGames_Backlog JOIN VideoGames ON VideoGames_Backlog.VGID IS VideoGames.VGID ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
 			try {
 				Statement stmt = this.conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
@@ -117,7 +117,7 @@ public class VideoGameRecommendations {
 				}
 				
 				
-				sql = sql + ") AND VideoGameID NOT IN (SELECT VideoGameID FROM VideoGames_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
+				sql = sql + ") AND VGID NOT IN (SELECT VGID FROM VideoGames_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
@@ -146,7 +146,7 @@ public class VideoGameRecommendations {
 			int numToGet = 5;
 			if(numCompletedWithHighRating < 5)
 				numToGet = numCompletedWithHighRating;
-			String sql = "SELECT Genre FROM VideoGames_Backlog JOIN VideoGames ON VideoGames_Backlog.VideoGameID IS VideoGames.VideoGameID WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
+			String sql = "SELECT Genre FROM VideoGames_Backlog JOIN VideoGames ON VideoGames_Backlog.VGID IS VideoGames.VGID WHERE Status = 'Completed' AND UserRating > 7 ORDER BY RANDOM() LIMIT " + Integer.toString(numToGet);
 			
 			try {
 				Statement stmt = this.conn.createStatement();
@@ -180,7 +180,7 @@ public class VideoGameRecommendations {
 				}
 				
 				
-				sql = sql + ") AND VideoGameID NOT IN (SELECT VideoGameID FROM VideoGames_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
+				sql = sql + ") AND VGID NOT IN (SELECT VGID FROM VideoGames_Backlog) ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 				
 				//Execute the constructed sql statement
 				rs = stmt.executeQuery(sql);
