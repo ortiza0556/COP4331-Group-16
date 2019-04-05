@@ -54,7 +54,7 @@ public class VideoGameRecommendations {
 		
 		//Empty backlog
 		if(videoGameBacklogSize == 0) {
-			//grab entries from VideoGame table rated 8 or higher
+			//grab entries from VideoGame table rated 7 or higher
 			String sql = "SELECT * FROM VideoGames WHERE Rating > 7 AND Rating IS NOT NULL ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 			
 			try {

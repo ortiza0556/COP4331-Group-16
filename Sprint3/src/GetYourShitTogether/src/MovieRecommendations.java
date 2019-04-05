@@ -54,7 +54,7 @@ public class MovieRecommendations {
 		
 		//Empty backlog
 		if(movieBacklogSize == 0) {
-			//grab entries from movie table rated 8 or higher
+			//grab entries from movie table rated 7 or higher
 			String sql = "SELECT * FROM Movies WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Adult%\" ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 			
 			try {

@@ -55,7 +55,7 @@ public class AnimeRecommendations {
 		
 		//Empty backlog
 		if(animeBacklogSize == 0) {
-			//grab entries from anime table rated 8 or higher
+			//grab entries from anime table rated 7 or higher
 			String sql = "SELECT * FROM Anime WHERE Rating > 7 AND Rating IS NOT NULL AND Genre NOT LIKE \"%Hentai%\" ORDER BY RANDOM() LIMIT " + Integer.toString(numRecommendations);
 			
 			try {
