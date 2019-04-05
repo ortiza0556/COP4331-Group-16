@@ -71,8 +71,7 @@ public class AnimeRecommendations {
 						System.out.println("Error, anime not added properly");
 					} else {
 						added = false;
-					}
-									
+					}									
 				}
 				close();
 				
@@ -94,7 +93,6 @@ public class AnimeRecommendations {
 				Set<String> genres = new HashSet<>();
 				
 				//get the genres from the selected anime
-				int resultSetInd = 0;
 				while(rs.next()) {
 					
 					List<String> currGenres = Arrays.asList(rs.getString("Genre").split(","));
