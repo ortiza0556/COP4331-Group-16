@@ -17,30 +17,22 @@
 |            020 |           010 | User ratings shall be stored in the database alongside the entry.| Verified |
 |            021 |  011,012,013,014 | Recommendations shall be offered to the user in a separate tab.| Verified |
 |            022 |  011,012,013,014 | Users shall have the ability to add recommended media to their backlogs on the recommendations tab.| Verified |
-|            023 |  011,012,013,014 | Recommendations shall be able to be ignored if the user is uninterested in the recommended media.| Verified |
 |            024 |           011 | Movie recommendations shall be based off of the user’s ratings of movies they have watched.| Verified |
 |            025 |           012 | TV show  recommendations shall be based off of the user’s ratings of TV shows they have watched.| Verified |
-|            026 |           013 |	Anime recommendations shall be based off of the user’s ratings of anime they have watched.| Verified |
+|            026 |           013 | Anime recommendations shall be based off of the user’s ratings of anime they have watched.| Verified |
 |            027 |           014 | Video game recommendations shall be based off of the user’s ratings of video games they have played.| Verified |
-|            028 |           015 | Get Your Shit Together shall have a separate tab in the movie backlog that shows all of the user’s completed movies.| Verified |
-|            029 |           016 |Get Your Shit Together shall have a separate tab in the TV show backlog that shows all of the user’s completed TV shows.| Verified |
-|            030 |           017 | Get Your Shit Together shall have a separate tab in the anime backlog that shows all of the user’s completed anime.| Verified |
-|            031 |           018 | Get Your Shit Together shall have a separate tab in the video game backlog that shows all of the user’s completed video games.| Verified |
 |            032 |           019 | Get Your Shit Together shall have a search feature that can query the database of media to see if an entry exists, or contains the entered keyword.| Verified |
 |            043 |           019 | Get Your Shit Together shall have the ability to display the movies, TV shows, anime, and video games in the database in separate locations the user can look through.| Verified |
 |            044 |           019 | Get Your Shit Together shall have the ability to display the movies, TV shows, anime, and video games in the database in separate locations the user can look through.| Verified |
 |            045 |           020 | Get Your Shit Together shall have a clickable link at the bottom of a user’s search that allows them to make a custom entry if they don’t find the piece of media they’re looking for.| Verified |
 |            046 |           020 | Get Your Shit Together shall have a form for a user to fill out for a custom media entry, including fields specific to each media type.| Verified |
 |            047 |           021 | Get Your Shit Together shall have a separate page where the user can get a random piece of media from each of their backlog, through specifying the media type from a drop down.| Verified |
-|            048 |           022 | Get Your Shit Together shall have a separate tab in each backlog that shows the user the media they have marked as “dropped.”| Verified |
-|            049 |           023 | Get Your Shit Together shall have a separate tab in each backlog that shows the user the media they have marked as “In Progress.”| Verified |
 |            050 |           024 | Get Your Shit Together shall have the option to add a priority number for each entry into a user’s backlog.| Verified |
 |            051 |           025 |Get Your Shit Together shall have a drop down that contains different options to order the backlog by.| Verified |
 |            052 |           025 |Get Your Shit Together shall have an option for displaying the backlogs alphabetically.| Verified |
 |            053 |           025 | Get Your Shit Together shall have an option for displaying the backlogs alphabetically by genre.| Verified |
-|            054 |           025 | Get Your Shit Together shall have an option for displaying each backlog by the date each entry was added to the backlog.| Verified |
 |            055 |           025 | Get Your Shit Together shall have an option for displaying each backlog by the current status of the entry (In Progress, To Watch/Play, Dropped, Completed).| Verified |
-|            056 |           025 | “Get Your Shit Together” shall have an option for displaying each backlog by the priority number.| Verified |
+|            056 |           025 | Get Your Shit Together shall have an option for displaying each backlog by the priority number.| Verified |
 |            057 |           026 | Get Your Shit Together shall have an incentive system that awards users badges for completing media in their various backlogs.| Verified |
 |            059 |            030|Get Your Shit Together shall provide an interface that allows for switching between any database at all times.| Verified |
 |            060 |            031|Get Your Shit Together shall allow users to delete personal backlog entries from the database through the UI| Verified |
