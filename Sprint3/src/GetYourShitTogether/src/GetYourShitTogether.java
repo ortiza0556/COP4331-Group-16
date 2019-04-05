@@ -339,7 +339,62 @@ public class GetYourShitTogether extends Application {
         editButton.setPrefHeight(50);
         editButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	System.out.println("edit button pressed");
+            	Stage editStage = new Stage();
+            	switch (mediaTypeDisplayed) {
+		 		case "TVShows":
+		 			TableView<TVShowBacklogItem> tvTable = (TableView<TVShowBacklogItem>) vbox.getChildren().get(1);
+		 			
+		 			if (tvTable.getSelectionModel().getSelectedItem() != null) {
+		 		        TVShowBacklogItem selectedShow = tvTable.getSelectionModel().getSelectedItem();
+		 		       createEditForm(editStage,selectedShow);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a row to edit.");
+			 			alert.showAndWait();
+		 		    }
+        			break;
+        		case "Movies":
+        			
+        			TableView<MovieBacklogItem> movieTable = (TableView<MovieBacklogItem>) vbox.getChildren().get(1);
+		 			
+		 			if (movieTable.getSelectionModel().getSelectedItem() != null) {
+		 		        MovieBacklogItem selectedMovie = movieTable.getSelectionModel().getSelectedItem();
+		 		       createEditForm(editStage,selectedMovie);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a row to edit.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		case "Anime":
+	        		
+        			TableView<AnimeBacklogItem> animeTable = (TableView<AnimeBacklogItem>) vbox.getChildren().get(1);
+		 			
+		 			if (animeTable.getSelectionModel().getSelectedItem() != null) {
+		 		        AnimeBacklogItem selectedAnime = animeTable.getSelectionModel().getSelectedItem();
+		 		       createEditForm(editStage,selectedAnime);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a row to edit.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		case "VideoGames":
+        			
+        			TableView<VideoGameBacklogItem> vgTable = (TableView<VideoGameBacklogItem>) vbox.getChildren().get(1);
+		 			
+		 			if (vgTable.getSelectionModel().getSelectedItem() != null) {
+		 				VideoGameBacklogItem selectedGame = vgTable.getSelectionModel().getSelectedItem();
+		 		       createEditForm(editStage,selectedGame);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a row to edit.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		default:
+        			System.out.println("Danger there be dragons in the Gap");
+		 		
+		 		}
             }
         });
         
@@ -395,19 +450,19 @@ public class GetYourShitTogether extends Application {
 		ObservableList<String> statuses;
 		if (mediaTypeDisplayed.contentEquals("VideoGames")) {
 			statuses = FXCollections.observableArrayList(
-						"TO_PLAY",
-				        "PLAYING",
-				        "ON_HOLD",
-				        "DROPPED"    
+						"To Play",
+				        "Playing",
+				        "On Hold",
+				        "Dropped"    
 					
 				    );
 			
 		} else {
 			statuses = FXCollections.observableArrayList(
-						"TO_WATCH",
-				        "WATCHING",
-				        "ON_HOLD",
-				        "DROPPED"
+						"To Watch",
+				        "Watching",
+				        "On Hold",
+				        "Dropped"
 				    );
 		}
 		ComboBox<String> statusBox = new ComboBox<String>(statuses);
@@ -481,16 +536,16 @@ public class GetYourShitTogether extends Application {
 			 			
 			 			switch (status) {
 				 		
-				 		case "TO_PLAY":
+				 		case "To Play":
 				 			vidEnum = VideoGameStatus.TO_PLAY;
 				 			break;
-				 		case "PLAYING":
+				 		case "Playing":
 				 			vidEnum = VideoGameStatus.PLAYING;
 				 			break;
-				 		case "ON_HOLD":
+				 		case "On Hold":
 				 			vidEnum = VideoGameStatus.ON_HOLD;
 				 			break;
-				 		case "DROPPED":
+				 		case "Dropped":
 				 			vidEnum = VideoGameStatus.DROPPED;
 				 			break;
 				 		default :
@@ -501,16 +556,16 @@ public class GetYourShitTogether extends Application {
 			 			
 				 		switch (status) {
 				 		
-				 		case "TO_WATCH":
+				 		case "To Watch":
 				 			watchEnum = WatchableMediaStatus.TO_WATCH;
 				 			break;
-				 		case "WATCHING":
+				 		case "Watching":
 				 			watchEnum = WatchableMediaStatus.WATCHING;
 				 			break;
-				 		case "ON_HOLD":
+				 		case "On Hold":
 				 			watchEnum = WatchableMediaStatus.ON_HOLD;
 				 			break;
-				 		case "DROPPED":
+				 		case "Dropped":
 				 			watchEnum = WatchableMediaStatus.DROPPED;
 				 			break;
 				 		default :
@@ -610,6 +665,291 @@ public class GetYourShitTogether extends Application {
 		 
 		 addStage.setScene(addScene);	
 		 addStage.show();
+		
+	}
+	
+	private void createEditForm(Stage editStage, Object media) {
+		TVShowBacklogItem selectedShow = null;
+		MovieBacklogItem selectedMovie = null;
+		AnimeBacklogItem selectedAnime = null;
+		VideoGameBacklogItem selectedGame = null;
+		switch (mediaTypeDisplayed) {
+ 		case "TVShows":
+ 			selectedShow = (TVShowBacklogItem) media;
+			break;
+		case "Movies":
+			selectedMovie = (MovieBacklogItem) media;
+			break;
+		case "Anime":
+			selectedAnime = (AnimeBacklogItem) media;
+			break;
+		case "VideoGames":
+			selectedGame = (VideoGameBacklogItem) media;
+			break;
+		default:
+			System.out.println("Danger there be dragons in the Gap");
+ 		
+ 		}
+		
+		 editStage.setTitle("Edit Media");
+		 HBox addButtons = new HBox();
+		 addButtons.setPadding(new Insets(20,20,20,20));
+		 GridPane addPane = new GridPane();
+		 addPane.setAlignment(Pos.CENTER);
+		 addPane.setHgap(15);
+		 addPane.setVgap(15);
+		 addPane.setPadding(new Insets(0,40,40,40));
+	
+	    ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
+	    columnOneConstraints.setHalignment(HPos.RIGHT);
+	    ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
+	    columnTwoConstrains.setHgrow(Priority.ALWAYS);
+	    addPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
+
+		 BorderPane addBox = new BorderPane();
+		 
+		 Scene addScene = new Scene(addBox,700,500);
+	     
+		 HBox labelBox = new HBox();
+		 Label pageTitle = new Label("Edit Media Backlog");
+		 pageTitle.setFont(new Font("Arial",30));
+		 addBox.setTop(labelBox);
+		 labelBox.getChildren().add(pageTitle);
+		 labelBox.setPadding(new Insets(20,20,20,0));
+		 labelBox.setAlignment(Pos.CENTER);
+		 
+		 
+		Label titleLabel = new Label("Title: ");
+		TextField titleInput = new TextField();
+		titleInput.setDisable(true);
+
+		Label statusLabel = new Label("Status: ");
+		ObservableList<String> statuses;
+		
+		if (mediaTypeDisplayed.contentEquals("VideoGames")) {
+			statuses = FXCollections.observableArrayList(
+						"To PLay",
+				        "Playing",
+				        "On Hold",
+				        "Dropped"    
+					
+				    );
+			
+		} else {
+			statuses = FXCollections.observableArrayList(
+						"To Watch",
+				        "Watching",
+				        "On Hold",
+				        "Dropped"
+				    );
+		}
+		ComboBox<String> statusBox = new ComboBox<String>(statuses);
+		
+		Label ratingLabel = new Label("Rating(1-10): ");
+		TextField ratingInput = new TextField();
+		
+		Label priorityLabel = new Label("Priority(Numeric): ");
+		TextField priorityInput = new TextField();
+		 
+		switch (this.mediaTypeDisplayed) {
+			case "TVShows":
+				titleInput.setText(selectedShow.getTitle());
+				statusBox.setValue(selectedShow.getStatus());
+				ratingInput.setText(selectedShow.getRating());
+				priorityInput.setText(Integer.toString(selectedShow.getPriority()));
+			break;
+			
+			case "Movies":
+				titleInput.setText(selectedMovie.getTitle());
+				statusBox.setValue(selectedMovie.getStatus());
+				ratingInput.setText(selectedMovie.getRating());
+				priorityInput.setText(Integer.toString(selectedMovie.getPriority()));
+			break;
+		 	case "Anime":
+		 		titleInput.setText(selectedAnime.getTitle());
+				statusBox.setValue(selectedAnime.getStatus());
+				ratingInput.setText(selectedAnime.getRating());
+				priorityInput.setText(Integer.toString(selectedAnime.getPriority()));
+		 	break;
+		 	case "VieoGames":
+		 		titleInput.setText(selectedGame.getTitle());
+				statusBox.setValue(selectedGame.getStatus());
+				ratingInput.setText(selectedGame.getRating());
+				priorityInput.setText(Integer.toString(selectedGame.getPriority()));
+		 	break;
+		 	default:
+		 		
+		 		
+		 }
+		
+		addPane.add(titleLabel,0,0);
+ 		addPane.add(titleInput, 1, 0);
+ 		addPane.add(statusLabel, 0, 2);
+ 		addPane.add(statusBox, 1, 2);
+ 		addPane.add(ratingLabel, 0, 3);
+ 		addPane.add(ratingInput, 1, 3);
+ 		addPane.add(priorityLabel, 0, 4);
+ 		addPane.add(priorityInput, 1, 4);
+		 
+		 
+		addBox.setCenter(addPane);
+		 
+		 Button cancelButton = new Button("Cancel");
+		 cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent e) {
+	            	editStage.close();
+	            }
+	        });
+		 cancelButton.setPrefWidth(100);
+		 cancelButton.setPrefHeight(50);
+		 Button addtoBacklogButton = new Button("Add");
+		 addtoBacklogButton.setPrefWidth(100);
+		 addtoBacklogButton.setPrefHeight(50);
+		 addtoBacklogButton.setOnAction(e -> 
+		 	{
+		 		String title = titleInput.getText();
+		 		String release = "";
+		 		String genre = "";
+		 		String status = statusBox.getValue();
+		 		String rating = ratingInput.getText();
+		 		String priority = priorityInput.getText();
+		 		VideoGameStatus vidEnum = null;
+		 		WatchableMediaStatus watchEnum = null;
+		 		try {
+			 		if (mediaTypeDisplayed.equals("VideoGames")) {
+			 			
+			 			
+			 			switch (status) {
+				 		
+				 		case "TO_PLAY":
+				 			vidEnum = VideoGameStatus.TO_PLAY;
+				 			break;
+				 		case "PLAYING":
+				 			vidEnum = VideoGameStatus.PLAYING;
+				 			break;
+				 		case "ON_HOLD":
+				 			vidEnum = VideoGameStatus.ON_HOLD;
+				 			break;
+				 		case "DROPPED":
+				 			vidEnum = VideoGameStatus.DROPPED;
+				 			break;
+				 		default :
+				 			vidEnum = VideoGameStatus.COMPLETED;
+				 		}
+			 			
+			 		} else {
+			 			
+				 		switch (status) {
+				 		
+				 		case "TO_WATCH":
+				 			watchEnum = WatchableMediaStatus.TO_WATCH;
+				 			break;
+				 		case "WATCHING":
+				 			watchEnum = WatchableMediaStatus.WATCHING;
+				 			break;
+				 		case "ON_HOLD":
+				 			watchEnum = WatchableMediaStatus.ON_HOLD;
+				 			break;
+				 		case "DROPPED":
+				 			watchEnum = WatchableMediaStatus.DROPPED;
+				 			break;
+				 		default :
+				 			watchEnum = WatchableMediaStatus.COMPLETED;
+				 		}
+			 		}
+		 	} catch (Exception exception) {
+		 		Alert alert = new Alert(AlertType.INFORMATION, "Select a Status");
+	 			alert.showAndWait();
+	 			
+	 			return;
+		 	}
+		 		if (!release.matches("\\d{4}") && !(release.equals(""))) {
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid year for the relase");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 			
+		 		} else if (!(rating.equals("")) && !(rating.equals("10.0")) && !rating.matches("[0-9][.][0-9]{0,2}")) {
+
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid rating (0-10). 2 decimal places");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 		} else if (!priority.matches("-?[0-9]*")) {
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid integer for priority");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 			
+		 		}
+		 	
+		 		int releaseInt;
+		 		if (release.equals("")) {
+		 			releaseInt = -1;
+		 		} else {
+		 			releaseInt = Integer.parseInt(release);
+		 		}
+		 		
+		 		switch (mediaTypeDisplayed) {
+		 		case "TVShows":
+		 			TVShowDatabase tvdb = new TVShowDatabase();
+		 			TVShowBacklog tvbdb = new TVShowBacklog();
+		 			int tvid = tvdb.getMaxID() + 1;
+		 			TVShow TVtoAdd = new TVShow(title,genre,rating,releaseInt,tvid," ");
+		 			TVShowBacklogItem TVBackToAdd = new TVShowBacklogItem(tvid,title,genre,"",rating,Integer.parseInt(priority));
+		 			tvdb.Insert(TVtoAdd);
+		 			tvbdb.Insert(TVBackToAdd, watchEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadTVTable());
+		 			
+       			break;
+       		case "Movies":
+       			MovieDatabase mvdb = new MovieDatabase();
+		 			MovieBacklog mvbdb = new MovieBacklog();
+		 			int mid = mvdb.getMaxID() + 1;
+		 			Movie MovietoAdd = new Movie(title,genre,rating,releaseInt,mid," ");
+		 			MovieBacklogItem MovieBackToAdd = new MovieBacklogItem(mid,title,genre,"",rating,Integer.parseInt(priority));
+		 			mvdb.Insert(MovietoAdd);
+		 			mvbdb.Insert(MovieBackToAdd, watchEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadMovieTable());
+       			break;
+       		case "Anime":
+	        		AnimeDatabase adb = new AnimeDatabase();
+		 			AnimeBacklog abdb = new AnimeBacklog();
+		 			int aid = adb.getMaxID() + 1;
+		 			Anime AnimetoAdd = new Anime(title,genre,rating,aid);
+		 			AnimeBacklogItem AnimeBackToAdd = new AnimeBacklogItem(aid,title,genre,"",rating,Integer.parseInt(priority));
+		 			adb.Insert(AnimetoAdd);
+		 			abdb.Insert(AnimeBackToAdd, watchEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadAnimeTable());
+       			break;
+       		case "VideoGames":
+       			VideoGameDatabase vgdb = new VideoGameDatabase();
+		 			VideoGameBacklog vgbdb = new VideoGameBacklog();
+		 			int vgid = vgdb.getMaxID() + 1;
+		 			VideoGame VGtoAdd = new VideoGame(title,genre,rating,releaseInt,vgid," ");
+		 			VideoGameBacklogItem VGBackToAdd = new VideoGameBacklogItem(vgid,title,genre,"",rating,Integer.parseInt(priority));
+		 			vgdb.Insert(VGtoAdd);
+		 			vgbdb.Insert(VGBackToAdd, vidEnum, rating,Integer.parseInt(priority));
+		 			vbox.getChildren().set(1, loadTVTable());
+       			break;
+       		default:
+       			System.out.println("Danger there be dragons in the Gap");
+		 		
+		 		}
+		 			
+			 
+		 		editStage.close();
+		    }
+		 );
+		 
+		 addButtons.setAlignment(Pos.CENTER);
+		 addButtons.setSpacing(20);
+		 
+		 addButtons.getChildren().addAll(addtoBacklogButton,cancelButton);
+		 addBox.setBottom(addButtons);
+		 
+		 editStage.setScene(addScene);	
+		 editStage.show();
 		
 	}
     
