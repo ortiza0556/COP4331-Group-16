@@ -21,6 +21,7 @@ import javafx.stage.Window;
 public class GetYourShitTogether extends Application {
 	
 	private String mediaTypeDisplayed;
+	private String tableTypeDisplayed;
 	private AnimeBacklog animeBacklog = new AnimeBacklog();
 	private TVShowBacklog tvBacklog = new TVShowBacklog();
 	private VideoGameBacklog vgBacklog = new VideoGameBacklog();
@@ -40,7 +41,7 @@ public class GetYourShitTogether extends Application {
         GridPane gridPane = new GridPane();
         vbox.getChildren().add(gridPane);
         // Add UI controls to the registration form grid pane
-        addUIControls(vbox,"TVShows");
+        addUIControls(vbox,"TVShows","Backlogs");
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(vbox, 1440, 760);
         // Set the scene in primary stage	
@@ -49,21 +50,22 @@ public class GetYourShitTogether extends Application {
         primaryStage.show();
     }
 
-    private void addUIControls(VBox vbox, String mediaType) {
+    private void addUIControls(VBox vbox, String mediaType, String tableType) {
     	
         this.InitializeButtonPane(vbox);
         mediaTypeDisplayed = mediaType;
+        tableTypeDisplayed = tableType;
     	TableView<TVShowBacklogItem> tvTable = loadTVTable();
+    	HBox dummyBox = new HBox();
         vbox.getChildren().add(tvTable);
+        vbox.getChildren().add(dummyBox);
           
         
-        this.InitializeBottomButtons(vbox);
+        this.InitializeBacklogButtons(vbox);
         
     }
     
     private void InitializeButtonPane(VBox vbox) {
-    	
-// Add Header
     	
     	GridPane gridPane = (GridPane) vbox.getChildren().get(0);
     	
@@ -95,7 +97,21 @@ public class GetYourShitTogether extends Application {
         Button recommendButton = new Button("Recommendations");
         recommendButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	System.out.println("recommendations button pressed");
+            	tableTypeDisplayed = "Recommendations";
+            	switch (mediaTypeDisplayed) {
+            		case "TVShows":
+            			vbox.getChildren().set(1,loadTVRecommendations());
+            		break;
+            		case "Movies":
+            			vbox.getChildren().set(1,loadMovieRecommendations());
+            		break;
+            		case "Anime":
+            			vbox.getChildren().set(1,loadAnimeRecommendations());
+            		break;
+            		case "VideoGames":
+            			vbox.getChildren().set(1,loadVideoGameRecommendations());
+            		break;
+            	}
             }
         });
         
@@ -103,7 +119,24 @@ public class GetYourShitTogether extends Application {
         Button backlogButton = new Button("Backlogs");
         backlogButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	System.out.println("backlogs button pressed");
+            	tableTypeDisplayed = "Backlogs";
+            	switch (mediaTypeDisplayed) {
+            		case "TVShows":
+            			vbox.getChildren().set(1, loadTVTable());
+            		break;
+            		case "Movies":
+            			vbox.getChildren().set(1, loadMovieTable());
+            		break;
+            		case "Anime":
+            			vbox.getChildren().set(1, loadAnimeTable());
+            		break;
+            		case "VideoGames":
+            			vbox.getChildren().set(1, loadVideoGameTable());
+            		break;
+            	
+            	}
+            	
+            	InitializeBacklogButtons(vbox);
             }
         });
 
@@ -129,7 +162,14 @@ public class GetYourShitTogether extends Application {
         tvButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	mediaTypeDisplayed = "TVShows";
-            	vbox.getChildren().set(1, loadTVTable());
+            	switch (tableTypeDisplayed) {
+            		case "Backlogs":
+            			vbox.getChildren().set(1, loadTVTable());
+            		break;
+            		case "Recommendations":
+            			vbox.getChildren().set(1, loadTVRecommendations());
+            		break;
+            	}
             }
         });
 
@@ -138,7 +178,14 @@ public class GetYourShitTogether extends Application {
         movieButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	mediaTypeDisplayed = "Movies";
-            	vbox.getChildren().set(1, loadMovieTable());
+            	switch (tableTypeDisplayed) {
+        			case "Backlogs":
+        				vbox.getChildren().set(1, loadMovieTable());
+        			break;
+        			case "Recommendations":
+        				vbox.getChildren().set(1, loadMovieRecommendations());
+        			break;
+            	}
             }
         });
 
@@ -147,16 +194,30 @@ public class GetYourShitTogether extends Application {
         animeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	mediaTypeDisplayed = "Anime";
-            	vbox.getChildren().set(1, loadAnimeTable());
+            	switch (tableTypeDisplayed) {
+	    			case "Backlogs":
+	    				vbox.getChildren().set(1, loadAnimeTable());
+	    			break;
+	    			case "Recommendations":
+	    				vbox.getChildren().set(1, loadAnimeRecommendations());
+	    			break;
+	        	}
             }
         });
 
-        // initialize Videogames button
+        // initialize VideoGames button
         Button vidyaButton = new Button("Videogames");
         vidyaButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
             	mediaTypeDisplayed = "VideoGames";
-            	vbox.getChildren().set(1, loadVideoGameTable());
+	            switch (tableTypeDisplayed) {
+	    			case "Backlogs":
+	    				vbox.getChildren().set(1, loadVideoGameTable());
+	    			break;
+	    			case "Recommendations":
+	    				vbox.getChildren().set(1, loadVideoGameRecommendations());
+	    			break;
+	        	}
             }
         });
         
@@ -273,7 +334,111 @@ public class GetYourShitTogether extends Application {
     }
 
 	@SuppressWarnings("unchecked")
-    private void InitializeBottomButtons(VBox vbox) {
+	private TableView<TVShow> loadTVRecommendations() {
+		TableView<TVShow> table = new TableView<TVShow>();
+		
+		TVShowRecommendations tvrecs = new TVShowRecommendations();
+		ObservableList<TVShow> data = tvrecs.getRecommendations();
+		table.setItems(data);
+		
+		TableColumn<TVShow,String> titleCol = new TableColumn<TVShow,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("title"));
+        TableColumn<TVShow,String> genreCol = new TableColumn<TVShow,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("genre"));
+        TableColumn<TVShow,String> ratingcol = new TableColumn<TVShow,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("rating"));
+        TableColumn<TVShow,Integer> releaseCol = new TableColumn<TVShow,Integer>("Release Date");
+        releaseCol.setCellValueFactory(new PropertyValueFactory<TVShow,Integer>("releaseDate"));
+        TableColumn<TVShow,String> directorCol = new TableColumn<TVShow,String>("Directors");
+        directorCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("directors"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol, releaseCol, directorCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+	}
+	
+	@SuppressWarnings("unchecked")	
+	private TableView<Movie> loadMovieRecommendations() {
+			
+		TableView<Movie> table = new TableView<Movie>();
+		
+		MovieRecommendations movrecs = new MovieRecommendations();
+		ObservableList<Movie> data = movrecs.getRecommendations();
+		table.setItems(data);
+		
+		TableColumn<Movie,String> titleCol = new TableColumn<Movie,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
+        TableColumn<Movie,String> genreCol = new TableColumn<Movie,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("genre"));
+        TableColumn<Movie,String> ratingcol = new TableColumn<Movie,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<Movie,String>("rating"));
+        TableColumn<Movie,Integer> releaseCol = new TableColumn<Movie,Integer>("Release Date");
+        releaseCol.setCellValueFactory(new PropertyValueFactory<Movie,Integer>("releaseDate"));
+        TableColumn<Movie,String> directorCol = new TableColumn<Movie,String>("Directors");
+        directorCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("directors"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol, releaseCol, directorCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+		
+	}
+	
+	private TableView<Anime> loadAnimeRecommendations() {
+		TableView<Anime> table = new TableView<Anime>();
+		
+		AnimeRecommendations tvrecs = new AnimeRecommendations();
+		ObservableList<Anime> data = tvrecs.getRecommendations();
+		table.setItems(data);
+		
+		TableColumn<Anime,String> titleCol = new TableColumn<Anime,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<Anime,String>("title"));
+        TableColumn<Anime,String> genreCol = new TableColumn<Anime,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<Anime,String>("genre"));
+        TableColumn<Anime,String> ratingcol = new TableColumn<Anime,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<Anime,String>("rating"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+	}
+	
+	private TableView<VideoGame> loadVideoGameRecommendations() {
+		TableView<VideoGame> table = new TableView<VideoGame>();
+		
+		VideoGameRecommendations tvrecs = new VideoGameRecommendations();
+		ObservableList<VideoGame> data = tvrecs.getRecommendations();
+		table.setItems(data);
+		
+		TableColumn<VideoGame,String> titleCol = new TableColumn<VideoGame,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("title"));
+        TableColumn<VideoGame,String> genreCol = new TableColumn<VideoGame,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("genre"));
+        TableColumn<VideoGame,String> ratingcol = new TableColumn<VideoGame,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("rating"));
+        TableColumn<VideoGame,Integer> releaseCol = new TableColumn<VideoGame,Integer>("Release Date");
+        releaseCol.setCellValueFactory(new PropertyValueFactory<VideoGame,Integer>("releaseDate"));
+        TableColumn<VideoGame,String> platformCol = new TableColumn<VideoGame,String>("Platforms");
+        platformCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("platforms"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol, releaseCol, platformCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+	}
+	
+	@SuppressWarnings("unchecked")
+    private void InitializeBacklogButtons(VBox vbox) {
     	HBox bottomRow = new HBox();
     	
     	// initialize delete button
@@ -404,7 +569,7 @@ public class GetYourShitTogether extends Application {
         
         bottomRow.getChildren().addAll(addButton,deleteButton,editButton);
         
-        vbox.getChildren().addAll(bottomRow);
+        vbox.getChildren().set(2,bottomRow);
     	
     }
 	
@@ -453,7 +618,8 @@ public class GetYourShitTogether extends Application {
 						"To Play",
 				        "Playing",
 				        "On Hold",
-				        "Dropped"    
+				        "Dropped",
+				        "Completed"
 					
 				    );
 			
@@ -462,7 +628,8 @@ public class GetYourShitTogether extends Application {
 						"To Watch",
 				        "Watching",
 				        "On Hold",
-				        "Dropped"
+				        "Dropped",
+				        "Completed"
 				    );
 		}
 		ComboBox<String> statusBox = new ComboBox<String>(statuses);
@@ -731,7 +898,8 @@ public class GetYourShitTogether extends Application {
 						"To PLay",
 				        "Playing",
 				        "On Hold",
-				        "Dropped"    
+				        "Dropped",
+				        "Completed"
 					
 				    );
 			
@@ -740,7 +908,8 @@ public class GetYourShitTogether extends Application {
 						"To Watch",
 				        "Watching",
 				        "On Hold",
-				        "Dropped"
+				        "Dropped",
+				        "Completed"
 				    );
 		}
 		ComboBox<String> statusBox = new ComboBox<String>(statuses);
@@ -806,6 +975,10 @@ public class GetYourShitTogether extends Application {
 		 Button editBacklogButton = new Button("Edit");
 		 editBacklogButton.setPrefWidth(100);
 		 editBacklogButton.setPrefHeight(50);
+		 final TVShowBacklogItem selectedShowFinal = selectedShow;
+		 final MovieBacklogItem selectedMovieFinal = selectedMovie;
+		 final AnimeBacklogItem selectedAnimeFinal = selectedAnime;
+		 final VideoGameBacklogItem selectedGameFinal = selectedGame;
 		 editBacklogButton.setOnAction(e -> 
 		 	{
 		 		String status = statusBox.getValue();
@@ -832,40 +1005,31 @@ public class GetYourShitTogether extends Application {
 		 		switch (mediaTypeDisplayed) {
 			 		case "TVShows":
 			 			TVShowBacklog tvbdb = new TVShowBacklog();
-			 			selectedShow.setStatus(status);
-			 			selectedShow.setRating(rating);
-			 			selectedShow.setPriority(priorityInt);
-			 			
-			 			tvbdb.Update(selectedShow);
+			 			TVShowBacklogItem updateShow = new TVShowBacklogItem(selectedShowFinal.getID(),selectedShowFinal.getTitle(),selectedShowFinal.getGenre(),status,rating,priorityInt);
+			 			tvbdb.Update(updateShow);
 			 			vbox.getChildren().set(1, loadTVTable());
 			 			
 		       		break;
 		       		case "Movies":
 		       			
 			 			MovieBacklog mvbdb = new MovieBacklog();
-			 			selectedMovie.setStatus(status);
-			 			selectedMovie.setRating(rating);
-			 			selectedMovie.setPriority(priorityInt);
-			 			
-			 			mvbdb.Update(selectedMovie);
+			 			MovieBacklogItem updateMovie = new MovieBacklogItem(selectedMovieFinal.getID(),selectedMovieFinal.getTitle(),selectedMovieFinal.getGenre(),status,rating,priorityInt);
+			 			mvbdb.Update(updateMovie);
+
 			 			vbox.getChildren().set(1, loadMovieTable());
 		       		break;
 		       		case "Anime":
 			 			AnimeBacklog abdb = new AnimeBacklog();
-			 			selectedAnime.setStatus(status);
-			 			selectedAnime.setRating(rating);
-			 			selectedAnime.setPriority(priorityInt);
+			 			AnimeBacklogItem updateAnime = new AnimeBacklogItem(selectedAnimeFinal.getID(),selectedAnimeFinal.getTitle(),selectedAnimeFinal.getGenre(),status,rating,priorityInt);
 			 			
-			 			abdb.Update(selectedAnime);
+			 			abdb.Update(updateAnime);
 			 			vbox.getChildren().set(1, loadAnimeTable());
 	       			break;
 		       		case "VideoGames":
 			 			VideoGameBacklog vgbdb = new VideoGameBacklog();
-			 			selectedGame.setStatus(status);
-			 			selectedGame.setRating(rating);
-			 			selectedGame.setPriority(priorityInt);
+			 			VideoGameBacklogItem updateGame = new VideoGameBacklogItem(selectedGameFinal.getID(),selectedGameFinal.getTitle(),selectedGameFinal.getGenre(),status,rating,priorityInt);
 			 			
-			 			vgbdb.Update(selectedGame);
+			 			vgbdb.Update(updateGame);
 			 			vbox.getChildren().set(1, loadVideoGameTable());
 	       			break;
 		       		default:
