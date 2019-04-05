@@ -53,7 +53,7 @@ public class TVShowDatabase extends Database<TVShow> {
 		int release = t.getReleaseDate();
 		String genre = t.getGenre();
 		String rating = t.getRating();
-		String director = t.getCreators();
+		String director = t.getDirectors();
 		
 		String sql = "INSERT INTO TVShows (Title,Release,Genre,Rating,Director) "
                 + "VALUES(?,?,?,?,?)";

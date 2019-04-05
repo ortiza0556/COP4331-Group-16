@@ -3,7 +3,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class TVShow extends Media{
 	
-	private SimpleStringProperty directors;
+	public SimpleStringProperty directors;
 	
 	public TVShow(String title, String genre, String rating, int releaseDate, String directors){
 		this.title = new SimpleStringProperty(title);;
@@ -27,7 +27,7 @@ public class TVShow extends Media{
 		
 	}
 	
-	public String getCreators(){
+	public String getDirectors(){
 		return this.directors.get();
 	}
 }
