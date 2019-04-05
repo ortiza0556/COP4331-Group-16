@@ -1,6 +1,3 @@
-import java.sql.ResultSet;
-
-import javafx.collections.ObservableList;
 
 abstract class Database<M extends Media> {
 	

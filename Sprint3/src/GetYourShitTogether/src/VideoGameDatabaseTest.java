@@ -2,8 +2,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-
 class VideoGameDatabaseTest {
 
 	@Test

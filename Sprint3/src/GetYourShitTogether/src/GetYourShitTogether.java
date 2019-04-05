@@ -12,11 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.stage.Window;
 
 public class GetYourShitTogether extends Application {
 	
@@ -112,6 +108,8 @@ public class GetYourShitTogether extends Application {
             			vbox.getChildren().set(1,loadVideoGameRecommendations());
             		break;
             	}
+            	
+            	initializeRecommendationButtons();
             }
         });
         
@@ -389,6 +387,7 @@ public class GetYourShitTogether extends Application {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	private TableView<Anime> loadAnimeRecommendations() {
 		TableView<Anime> table = new TableView<Anime>();
 		
@@ -411,6 +410,7 @@ public class GetYourShitTogether extends Application {
         return table;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private TableView<VideoGame> loadVideoGameRecommendations() {
 		TableView<VideoGame> table = new TableView<VideoGame>();
 		
@@ -435,6 +435,83 @@ public class GetYourShitTogether extends Application {
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
         return table;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void initializeRecommendationButtons() {
+		
+		HBox bottomRow = new HBox();
+		
+		Button addButton = new Button("Add Recommended Media");
+		addButton.setPrefWidth(300);
+		addButton.setPrefHeight(50);
+		addButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				
+				Stage addRecommendedStage = new Stage();
+            	switch (mediaTypeDisplayed) {
+		 		case "TVShows":
+		 			TableView<TVShow> tvTable = (TableView<TVShow>) vbox.getChildren().get(1);
+		 			
+		 			if (tvTable.getSelectionModel().getSelectedItem() != null) {
+		 		        TVShow selectedShow = tvTable.getSelectionModel().getSelectedItem();
+		 		       createAddRecommendedStage(addRecommendedStage,selectedShow);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a recommendation to add.");
+			 			alert.showAndWait();
+		 		    }
+        			break;
+        		case "Movies":
+        			
+        			TableView<Movie> movieTable = (TableView<Movie>) vbox.getChildren().get(1);
+		 			
+		 			if (movieTable.getSelectionModel().getSelectedItem() != null) {
+		 		        Movie selectedMovie = movieTable.getSelectionModel().getSelectedItem();
+		 		       createAddRecommendedStage(addRecommendedStage,selectedMovie);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a recommendation to add.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		case "Anime":
+	        		
+        			TableView<Anime> animeTable = (TableView<Anime>) vbox.getChildren().get(1);
+		 			
+		 			if (animeTable.getSelectionModel().getSelectedItem() != null) {
+		 		        Anime selectedAnime = animeTable.getSelectionModel().getSelectedItem();
+		 		       createAddRecommendedStage(addRecommendedStage,selectedAnime);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a recommendation to add.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		case "VideoGames":
+        			
+        			TableView<VideoGame> vgTable = (TableView<VideoGame>) vbox.getChildren().get(1);
+		 			
+		 			if (vgTable.getSelectionModel().getSelectedItem() != null) {
+		 				VideoGame selectedGame = vgTable.getSelectionModel().getSelectedItem();
+		 				createAddRecommendedStage(addRecommendedStage,selectedGame);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a recommendation to add.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		default:
+        			System.out.println("Danger there be dragons in the Gap");
+		 		
+		 		}
+				
+			}
+		});
+		
+		bottomRow.setAlignment(Pos.CENTER);
+		bottomRow.getChildren().add(addButton);
+		vbox.getChildren().set(2, bottomRow);
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -895,7 +972,7 @@ public class GetYourShitTogether extends Application {
 		
 		if (mediaTypeDisplayed.contentEquals("VideoGames")) {
 			statuses = FXCollections.observableArrayList(
-						"To PLay",
+						"To Play",
 				        "Playing",
 				        "On Hold",
 				        "Dropped",
@@ -1053,6 +1130,252 @@ public class GetYourShitTogether extends Application {
 		
 	}
     
+	public void createAddRecommendedStage(Stage recStage, Object media) {
+		TVShow selectedShow = null;
+		Movie selectedMovie = null;
+		Anime selectedAnime = null;
+		VideoGame selectedGame = null;
+		switch (mediaTypeDisplayed) {
+ 		case "TVShows":
+ 			selectedShow = (TVShow) media;
+			break;
+		case "Movies":
+			selectedMovie = (Movie) media;
+			break;
+		case "Anime":
+			selectedAnime = (Anime) media;
+			break;
+		case "VideoGames":
+			selectedGame = (VideoGame) media;
+			break;
+		default:
+			System.out.println("Danger there be dragons in the Gap");
+ 		
+ 		}
+		
+		recStage.setTitle("Add Recommendation");
+		HBox addButtons = new HBox();
+		addButtons.setPadding(new Insets(20,20,20,20));
+		GridPane addPane = new GridPane();
+		addPane.setAlignment(Pos.CENTER);
+		addPane.setHgap(15);
+		addPane.setVgap(15);
+		addPane.setPadding(new Insets(0,40,40,40));
+		
+		ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
+		columnOneConstraints.setHalignment(HPos.RIGHT);
+		ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
+		columnTwoConstrains.setHgrow(Priority.ALWAYS);
+		addPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
+		
+		BorderPane addBox = new BorderPane();
+		 
+		Scene addScene = new Scene(addBox,700,500);
+		 
+		HBox labelBox = new HBox();
+		Label pageTitle = new Label("Add Recommended Media");
+		pageTitle.setFont(new Font("Arial",30));
+		addBox.setTop(labelBox);
+		labelBox.getChildren().add(pageTitle);
+		labelBox.setPadding(new Insets(20,20,20,0));
+		labelBox.setAlignment(Pos.CENTER);
+		
+		Label titleLabel = new Label("Title: ");
+		TextField titleInput = new TextField();
+		titleInput.setDisable(true);
+		
+		switch (this.mediaTypeDisplayed) {
+			case "TVShows":
+				titleInput.setText(selectedShow.getTitle());
+			break;
+			case "Movies":
+				titleInput.setText(selectedMovie.getTitle());
+			break;
+		 	case "Anime":
+		 		titleInput.setText(selectedAnime.getTitle());
+		 	break;
+		 	case "VideoGames":
+		 		titleInput.setText(selectedGame.getTitle());
+		 	break;
+		 	default:
+	 			
+		}
+
+		Label statusLabel = new Label("Status: ");
+		ObservableList<String> statuses;
+		
+		if (mediaTypeDisplayed.contentEquals("VideoGames")) {
+			statuses = FXCollections.observableArrayList(
+						"To Play",
+				        "Playing",
+				        "On Hold",
+				        "Dropped",
+				        "Completed"
+					
+				    );
+			
+		} else {
+			statuses = FXCollections.observableArrayList(
+						"To Watch",
+				        "Watching",
+				        "On Hold",
+				        "Dropped",
+				        "Completed"
+				    );
+		}
+		ComboBox<String> statusBox = new ComboBox<String>(statuses);
+		
+		Label ratingLabel = new Label("Rating(1-10): ");
+		TextField ratingInput = new TextField();
+		
+		Label priorityLabel = new Label("Priority(Numeric): ");
+		TextField priorityInput = new TextField();
+		
+		addPane.add(titleLabel,0,0);
+ 		addPane.add(titleInput, 1, 0);
+ 		addPane.add(statusLabel, 0, 2);
+ 		addPane.add(statusBox, 1, 2);
+ 		addPane.add(ratingLabel, 0, 3);
+ 		addPane.add(ratingInput, 1, 3);
+ 		addPane.add(priorityLabel, 0, 4);
+ 		addPane.add(priorityInput, 1, 4);
+ 		
+ 		addBox.setCenter(addPane);
+		 
+		Button cancelButton = new Button("Cancel");
+		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent e) {
+	            	recStage.close();
+	            }
+	        });
+		cancelButton.setPrefWidth(100);
+		cancelButton.setPrefHeight(50);
+		
+		 Button addRecommended = new Button("Add");
+		 addRecommended.setPrefWidth(100);
+		 addRecommended.setPrefHeight(50);
+		 final TVShow selectedShowFinal = selectedShow;
+		 final Movie selectedMovieFinal = selectedMovie;
+		 final Anime selectedAnimeFinal = selectedAnime;
+		 final VideoGame selectedGameFinal = selectedGame;
+		 addRecommended.setOnAction(e -> 
+		 	{
+		 		String status = statusBox.getValue();
+		 		String rating = ratingInput.getText();
+		 		String priority = priorityInput.getText();
+		 		VideoGameStatus vidEnum = null;
+		 		WatchableMediaStatus watchEnum = null;
+		 		try {
+			 		if (mediaTypeDisplayed.equals("VideoGames")) {
+			 			
+			 			
+			 			switch (status) {
+				 		
+				 		case "To Play":
+				 			vidEnum = VideoGameStatus.TO_PLAY;
+				 			break;
+				 		case "Playing":
+				 			vidEnum = VideoGameStatus.PLAYING;
+				 			break;
+				 		case "On Hold":
+				 			vidEnum = VideoGameStatus.ON_HOLD;
+				 			break;
+				 		case "Dropped":
+				 			vidEnum = VideoGameStatus.DROPPED;
+				 			break;
+				 		default :
+				 			vidEnum = VideoGameStatus.COMPLETED;
+				 		}
+			 			
+			 		} else {
+			 			
+				 		switch (status) {
+				 		
+				 		case "To Watch":
+				 			watchEnum = WatchableMediaStatus.TO_WATCH;
+				 			break;
+				 		case "Watching":
+				 			watchEnum = WatchableMediaStatus.WATCHING;
+				 			break;
+				 		case "On Hold":
+				 			watchEnum = WatchableMediaStatus.ON_HOLD;
+				 			break;
+				 		case "Dropped":
+				 			watchEnum = WatchableMediaStatus.DROPPED;
+				 			break;
+				 		default :
+				 			watchEnum = WatchableMediaStatus.COMPLETED;
+				 		}
+			 		}
+			 	} catch (Exception exception) {
+			 		Alert alert = new Alert(AlertType.INFORMATION, "Select a Status");
+		 			alert.showAndWait();
+		 			
+		 			return;
+			 	}
+		 	
+		 		if (!(rating.equals("")) && !(rating.equals("10.0")) && !rating.matches("[0-9][.][0-9]{0,2}")) {
+
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid rating (0-10). 2 decimal places");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 		} else if (!priority.matches("-?[0-9]*")) {
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid integer for priority");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 			
+		 		}
+		 		
+		 		
+		 		int priorityInt = Integer.parseInt(priority);
+		 		switch (mediaTypeDisplayed) {
+			 		case "TVShows":
+			 			TVShowBacklog tvbdb = new TVShowBacklog();
+			 			TVShowBacklogItem updateShow = new TVShowBacklogItem(selectedShowFinal.getID(),selectedShowFinal.getTitle(),selectedShowFinal.getGenre(),status,rating,priorityInt);
+			 			tvbdb.Insert(updateShow,watchEnum,rating,priorityInt);
+			 			
+		       		break;
+		       		case "Movies":
+		       			
+			 			MovieBacklog mvbdb = new MovieBacklog();
+			 			MovieBacklogItem updateMovie = new MovieBacklogItem(selectedMovieFinal.getID(),selectedMovieFinal.getTitle(),selectedMovieFinal.getGenre(),status,rating,priorityInt);
+			 			mvbdb.Insert(updateMovie,watchEnum,rating,priorityInt);
+
+		       		break;
+		       		case "Anime":
+			 			AnimeBacklog abdb = new AnimeBacklog();
+			 			AnimeBacklogItem updateAnime = new AnimeBacklogItem(selectedAnimeFinal.getID(),selectedAnimeFinal.getTitle(),selectedAnimeFinal.getGenre(),status,rating,priorityInt);
+			 			
+			 			abdb.Insert(updateAnime,watchEnum,rating,priorityInt);
+	       			break;
+		       		case "VideoGames":
+			 			VideoGameBacklog vgbdb = new VideoGameBacklog();
+			 			VideoGameBacklogItem updateGame = new VideoGameBacklogItem(selectedGameFinal.getID(),selectedGameFinal.getTitle(),selectedGameFinal.getGenre(),status,rating,priorityInt);
+			 			
+			 			vgbdb.Insert(updateGame,vidEnum,rating,priorityInt);
+	       			break;
+		       		default:
+		       			System.out.println("Danger there be dragons in the Gap");
+				 		
+			 	}
+			 			
+			 
+		 		recStage.close();
+		    }
+		 );
+		 
+		 addButtons.setAlignment(Pos.CENTER);
+		 addButtons.setSpacing(20);
+		 
+		 addButtons.getChildren().addAll(addRecommended,cancelButton);
+		 addBox.setBottom(addButtons);
+		 
+		 recStage.setScene(addScene);	
+		 recStage.show();
+		
+	}
     public static void main(String[] args) {
         launch(args);
     }
