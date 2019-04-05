@@ -67,7 +67,12 @@ public class TVShowBacklog {
 	         };
 	            
 	        stmt.setString(3, userRating);
-	        stmt.setInt(4, priority);
+	       	
+    		//Completed -> "null" priority, don't need priority for a completed item
+    		if(s == WatchableMediaStatus.COMPLETED)
+    			stmt.setNull(4, java.sql.Types.INTEGER);
+    		else
+    			 stmt.setInt(4,priority);
 	            
 	        stmt.executeUpdate();
 	            
