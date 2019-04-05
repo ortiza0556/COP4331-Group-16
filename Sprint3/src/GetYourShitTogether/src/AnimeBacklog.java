@@ -110,20 +110,28 @@ public class AnimeBacklog {
 		
 	}
 
-	public void Update(AnimeBacklogItem a, String status, String userRating, int priority) {
+	public void Update(AnimeBacklogItem a) {
 		connect();
 		resultText = null;
 		int id = a.getID();
+		String userRating = a.getRating();
+		String status = a.getStatus();
+		int priority = a.getPriority();
 		
 		String sql = "UPDATE Anime_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE AnimeID = ?";
-		
 		
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
 
             stmt.setString(1,status);
             stmt.setString(2,userRating);
-            stmt.setInt(3,priority);
+            
+    		//Completed -> "null" priority, don't need priority for a completed item
+    		if(status == "Completed")
+    			stmt.setNull(3, java.sql.Types.INTEGER);
+    		else
+    			 stmt.setInt(3,priority);
+           
             stmt.setInt(4,id);
             stmt.executeUpdate();
             

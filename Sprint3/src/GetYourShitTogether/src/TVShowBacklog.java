@@ -106,11 +106,14 @@ public class TVShowBacklog {
 		
 	}
 
-	public void Update(TVShowBacklogItem t, String status, String userRating, int priority) {
+	public void Update(TVShowBacklogItem t) {
 		
 		connect();
 		
 		int id = t.getID();
+		int priority = t.getPriority();
+		String status = t.getStatus();
+		String userRating = t.getRating();
 		
 		String sql = "UPDATE TVShows_Backlog SET Status = ?, UserRating = ?, Priority = ? WHERE TVID = ?";		
 		
@@ -119,8 +122,14 @@ public class TVShowBacklog {
 
             stmt.setString(1,status);
             stmt.setString(2,userRating);
-            stmt.setInt(3,priority);
-            stmt.setInt(4,id);
+            
+            //Completed -> "null" priority, don't need priority for a completed item
+    		if(status == "Completed")
+    			stmt.setNull(3, java.sql.Types.INTEGER);
+    		else
+    			 stmt.setInt(3,priority);
+            
+    		stmt.setInt(4,id);
             stmt.executeUpdate();
             
             close();
