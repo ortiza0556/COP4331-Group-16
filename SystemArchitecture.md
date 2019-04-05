@@ -17,41 +17,41 @@ Populate each section with information as it applies to your project. If a secti
 
 * **Media Class (ABC)**
     
-    Data Fields: genre (String), title (String), rating (String), releaseDate (int), plot (String), id (int), studio (String)
+    Data Fields: genre (String), title (String), rating (String), id (int)
     
-    Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), String getPlot(), int getID(), String      getStudio()
+    Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), int getID()
     
     Description: Media class is an abstract base class with data fields shared by the 4 media types for this project, and has all of the associated get functions for each field.
    
 * **Movie Class extends Media Class**
     
-    Data Fields: directors(String[]), all data fields inherited from Media
+    Data Fields: releaseDate(int), directors(String), all data fields inherited from Media
     
-    Methods: Movie(title, genre, rating, releaseDate, plot, studio, String directors), Movie(title, genre, rating, releaseDate, plot, id, studio, String directors), String[] getDirectors(), and all the get methods inherited from Media
+    Methods: Movie(title, genre, rating, releaseDate, String directors), Movie(title, genre, rating, releaseDate, id,String directors), String getDirectors(), and all the get methods inherited from Media
     
-    Description: Movie class extends the Media class, but adds a data field for directors. This will be used to create Movie objects to add to the database, when we pull from the rest APIs.
+    Description: Movie class extends the Media class, but adds a data field for directors and releaseDate.
     
 * **TVShow Class extends Media Class**
     
-    Data Fields: creators(String[]), all data fields inherited from Media
+    Data Fields: directors(String), all data fields inherited from Media
     
-    Methods: TVShow(title, genre, rating, releaseDate, plot, studio, String creators), TVShow(title, genre, rating, releaseDate, plot, id, studio, String creators), String[] getCreators(), and all the get methods inherited from Media
+    Methods: TVShow(title, genre, rating, releaseDate, directors), TVShow(title, genre, rating, releaseDate, id, directors), String getDirectors(), and all the get methods inherited from Media
     
-    Description: TVShow class extends the Media class, but adds a data field for creators. This will be used to create TVShow objects to add to the database, when we pull from the rest APIs.
+    Description: TVShow class extends the Media class, but adds a data field for directors and releaseDate.
     
 * **Anime Class extends Media Class**
     
     Data Fields: all data fields inherited from Media
     
-    Methods: Anime(title, genre, rating, releaseDate, plot, studio), Anime(title, genre, rating, releaseDate, plot, id, studio), and all the get methods inherited from Media
+    Methods: Anime(title, genre, rating), Anime(title, genre, rating, id), and all the get methods inherited from Media
     
-    Description: Anime class extends the Media class. This will be used to create Anime objects to add to the database, when we pull from the rest APIs.
+    Description: Anime class extends the Media class.
     
 * **VideoGame Class extends Media Class**
     
-    Data Fields: platforms (String[])
+    Data Fields: platforms (String)
     
-    Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatform(), and all the get methods inherited from Media
+    Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatforms(), and all the get methods inherited from Media
     
     Description: VideoGame class extends the Media class, but adds a data field for platforms. This will be used to create VideoGame objects to add to the database, when we pull from the rest APIs.
    
@@ -60,7 +60,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Filepath fp, String filePath = fp.getFilePath()
     
-    Methods: abstract void connect(), abstract void close(), abstract void Insert(M m), abstract void ObservableList< M > Search(String title)
+    Methods: abstract void connect(), abstract void close(), abstract void Insert(M m)
     
     Description: An abstract base class with filepath data fields, and 4 methods for each of the database classes to implement/override.
     
@@ -68,33 +68,33 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
-    Methods: MovieDatabase(), connect, close, Insert(Movie m), ObservableList< Movie > Search (String title) 
+    Methods: MovieDatabase(), connect, close, Insert(Movie m)
     
-    Description: MovieDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add Movie objects to the SQLite database from the the IMDB rest api.
+    Description: MovieDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add Movie objects to the SQLite database.
         
 * **TVShowDatabase Class extends Database< TVShow >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
-    Methods: TVShowDatabase(), connect, close, Insert(TVShow t), ObservableList< TVShow > Search (String title)
+    Methods: TVShowDatabase(), connect, close, Insert(TVShow t)
     
-    Description: TVShowDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add TVShow objects to the SQLite database from the the IMDB rest api.
+    Description: TVShowDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add TVShow objects to the SQLite database.
     
 * **AnimeDatabase Class extends Database< Anime >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
-    Methods: AnimeDatabase(), connect, close, Insert(Anime t), ObservableList< Anime > Search (String title)
+    Methods: AnimeDatabase(), connect, close, Insert(Anime t)
     
-    Description: AnimeDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add Anime objects to the SQLite database from the the MyAnimeList rest api.
+    Description: AnimeDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add Anime objects to the SQLite database.
     
 * **VideoGameDatabase Class extends Database< Video Game >**
     
     Data Fields: Connection conn, String resultText, also filepath from the Database Class
     
-    Methods: VideoGameDatabase(), connect, close, Insert(VideoGame t), ObservableList< VideoGame > Search (String title)
+    Methods: VideoGameDatabase(), connect, close, Insert(VideoGame t)
     
-    Description: VideoGameDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add VideoGame objects to the SQLite database from the the IGDB rest api.
+    Description: VideoGameDatabase extends Database and offers it's own implementations of its abstract methods. Will be used to add VideoGame objects to the SQLite database.
  
 * **MovieBacklogItem Class**
     
@@ -167,6 +167,70 @@ Populate each section with information as it applies to your project. If a secti
     Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), InitializeBottomButtons(VBox vbox)
     
     Description: The main class of the program, defines the GUI and uses the other classes to interact with the database and display relevant information.
+    
+* **AnimeRecommendations **
+    
+    Data Fields: animeBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: AnimeRecommendations(), ObservableList< Anime > getRecommendations(), connect(), close()
+    
+    Description: Used to return recommendations for anime based on the user's anime backlog.
+    
+* **MovieRecommendations **
+    
+    Data Fields: movieBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: MovieRecommendations(), ObservableList< Movie > getRecommendations(), connect(), close()
+    
+    Description: Used to return recommendations for movies based on the user's movie backlog.
+
+* **TVShowRecommendations **
+    
+    Data Fields: tvShowBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: TVShowRecommendations(), ObservableList< TVShow > getRecommendations(), connect(), close()
+    
+    Description: Used to return recommendations for TV shows based on the user's TVShow backlog.
+
+* **VideoGameRecommendations **
+    
+    Data Fields: videoGameBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: VideoGameRecommendations(), ObservableList< VideoGame > getRecommendations(), connect(), close()
+    
+    Description: Used to return recommendations for video games based on the user's video games backlog.
+
+* **AnimeSearch**
+
+    Data Fields: conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: AnimeSearch(), ObservableList< Anime > search(String title), connect(), close()
+    
+    Description: Used to search the anime table in the database, and return the search results set as an observable list to display to the user.
+    
+* **MovieSearch**
+
+    Data Fields: conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: MovieSearch(), ObservableList< Movie > search(String title), connect(), close()
+    
+    Description: Used to search the movie table in the database, and return the search results set as an observable list to display to the user.
+    
+* **TVShowSearch**
+
+    Data Fields: conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: TVShowSearch(), ObservableList< TVShow > search(String title), connect(), close()
+    
+    Description: Used to search the TV show table in the database, and return the search results set as an observable list to display to the user.
+    
+* **VideoGameSearch**
+
+    Data Fields: conn (Connection) fp (FilePath), filePath (String)
+    
+    Methods: VideoGameSearch(), ObservableList< VideoGame > search(String title), connect(), close()
+    
+    Description: Used to search the video game table in the database, and return the search results set as an observable list to display to the user.
 
 # Media Classes Diagram
 ![mainpage](https://i.imgur.com/kOUbMKO.png)
