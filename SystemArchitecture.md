@@ -17,7 +17,7 @@ Populate each section with information as it applies to your project. If a secti
 
 * **Media Class (ABC)**
     
-    Data Fields: genre (String), title (String), rating (String), id (int)
+    Data Fields: genre (String), title (String), rating (String), id (int), releaseDate (int)
     
     Methods: String getTitle(), String getGenre(), String getRating(), int getReleaseDate(), int getID()
     
@@ -25,7 +25,7 @@ Populate each section with information as it applies to your project. If a secti
    
 * **Movie Class extends Media Class**
     
-    Data Fields: releaseDate(int), directors(String), all data fields inherited from Media
+    Data Fields: directors(String), all data fields inherited from Media
     
     Methods: Movie(title, genre, rating, releaseDate, String directors), Movie(title, genre, rating, releaseDate, id,String directors), String getDirectors(), and all the get methods inherited from Media
     
@@ -49,7 +49,7 @@ Populate each section with information as it applies to your project. If a secti
     
 * **VideoGame Class extends Media Class**
     
-    Data Fields: platforms (String)
+    Data Fields: platforms (String), all data fields inherited from Media
     
     Methods: VideoGame(title, genre, rating, releaseDate, plot, studio, String platforms), VideoGame(title, genre, rating, releaseDate, plot, id, studio, String platforms), String[] getPlatforms(), and all the get methods inherited from Media
     
@@ -132,7 +132,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: MovieBacklog(), connect(), close(), Insert(MovieBacklogItem m, WatchableMediaStatus s, String userRating, int priority), Delete(MovieBacklogItem a), Update(Movie m, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< MovieBacklogItem > fetchAll()
+    Methods: MovieBacklog(), connect(), close(), Insert(MovieBacklogItem m, WatchableMediaStatus s, String userRating, int priority), Delete(MovieBacklogItem a), Update(MovieBacklogItem m), ObservableList< MovieBacklogItem > fetchAll()
     
     Description: Used to interact with the Movies_Backlog table in the database (insertion, deletion, updates, fetching).
 
@@ -140,7 +140,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: TVShowBacklog(), connect(), close(), Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority), Delete(TVShowBacklogItem t), Update(TVShow t, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< TVShowBacklogItem > fetchAll()
+    Methods: TVShowBacklog(), connect(), close(), Insert(TVShowBacklogItem t, WatchableMediaStatus s, String userRating, int priority), Delete(TVShowBacklogItem t), Update(TVShowBacklogItem t), ObservableList< TVShowBacklogItem > fetchAll()
     
     Description: Used to interact with the TVShows_Backlog table in the database (insertion, deletion, updates, fetching).
 
@@ -148,7 +148,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: AnimeBacklog(), connect(), close(), Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority), Delete(AnimeBacklogItem a), Update(Anime a, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< AnimeBacklogItem > fetchAll()
+    Methods: AnimeBacklog(), connect(), close(), Insert(AnimeBacklogItem a, WatchableMediaStatus s, String userRating, int priority), Delete(AnimeBacklogItem a), Update(AnimeBacklogItem a), ObservableList< AnimeBacklogItem > fetchAll()
     
     Description: Used to interact with the Anime_Backlog table in the database (insertion, deletion, updates, fetching).
 
@@ -156,7 +156,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Data Fields: Connection conn, Filepath fp, String filepath
     
-    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGameBacklogItem v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGame v, String status, String userRating, int priority), int CheckIfExists(int id), ObservableList< VideoGameBacklogItem > fetchAll()
+    Methods: VideoGameBacklog(), connect(), close(), Insert(VideoGameBacklogItem v, VideoGameStatus s, String userRating, int priority), Delete(VideoGameBacklogItem v), Update(VideoGameBacklogItem v), ObservableList< VideoGameBacklogItem > fetchAll()
     
     Description: Used to interact with the VideoGames_Backlog table in the database (insertion, deletion, updates, fetching).
     
@@ -233,13 +233,13 @@ Populate each section with information as it applies to your project. If a secti
     Description: Used to search the video game table in the database, and return the search results set as an observable list to display to the user.
 
 # Media Classes Diagram
-![mainpage](https://i.imgur.com/kOUbMKO.png)
+![mainpage](https://i.imgur.com/H3FIgB3.png)
 
 # Database Classes Diagram
-![mainpage](https://i.imgur.com/W97Ipjf.png)
+![mainpage](https://i.imgur.com/Bf1vKxB.png)
 
 # Backlog Classes Diagram
-![mainpage](https://i.imgur.com/m0b5k4B.png)
+![mainpage](https://i.imgur.com/bqzDTy0.png)
 
 # Backlog Item Classes Diagram
 ![mainpage](https://i.imgur.com/3Wux1BE.png)
