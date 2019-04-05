@@ -15,14 +15,14 @@ class TVShowTest {
 		assertEquals(show2.getGenre(), "Fantasy");
 		assertEquals(show2.getRating(), "10");
 		assertEquals(show2.getReleaseDate(), 2011);
-		assertEquals(show2.getCreators(), creators2);
+		assertEquals(show2.getDirectors(), creators2);
 		assertEquals(show2.getID(), -1);
 		
 	}
 
 	@Test
 	void testGetCreators() {
-		assertEquals(show.getCreators(),creators);
+		assertEquals(show.getDirectors(),creators);
 	}
 
 	@Test
