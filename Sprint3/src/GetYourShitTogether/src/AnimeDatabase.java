@@ -72,40 +72,6 @@ public class AnimeDatabase extends Database<Anime> {
 		
 	}
 
-	@Override
-	public ObservableList<Anime> Search (String title) {
-        String sql = "SELECT AnimeID,Title,Release,Genre,Rating,Plot,ProductionStudio FROM Anime WHERE "
-                + "Title LIKE '%" + title + "%'";
-        resultText = null;
-        ObservableList<Anime> result = FXCollections.observableArrayList();
-        boolean added = false;
-        
-        try {
-            Statement stmt = this.conn.createStatement();
-            
-            ResultSet rs = stmt.executeQuery(sql);
-            
-            while(rs.next()) {
-            	Anime currAnime = new Anime(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("AnimeID"));
-            	
-            	added = result.add(currAnime);
-            	
-            	if(!added){
-            		System.out.println("Error, anime not added properly");
-            	}else {
-            		added = false;
-            	}
-            }
-            resultText = "Results found";
-            return result;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        return null;
-        
-    }
-	
 	public int getMaxID() {
 		connect();
 		int max = -1;

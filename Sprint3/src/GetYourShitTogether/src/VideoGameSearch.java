@@ -42,12 +42,13 @@ public class VideoGameSearch {
 			}
 			
 			close();
+			return searchResults;	
 		} catch(SQLException e) {
 			close();
 			System.out.println(e.getMessage());
 		}
 		
-		return searchResults;		
+		return null;		
 	}
 	
 	protected void connect() {

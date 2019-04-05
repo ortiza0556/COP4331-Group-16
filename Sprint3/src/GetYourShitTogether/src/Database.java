@@ -13,7 +13,5 @@ abstract class Database<M extends Media> {
 		protected abstract void close();
 		
 		protected abstract void Insert (M m);
-		
-		protected abstract ObservableList<M> Search (String title);
 
 }

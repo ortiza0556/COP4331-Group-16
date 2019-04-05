@@ -80,46 +80,6 @@ public class MovieDatabase extends Database<Movie> {
         
 		
 	}
-
-	@Override
-	public ObservableList<Movie> Search (String title) {
-        connect();
-		resultText = null;
-		
-		String sql = "SELECT MovieID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM Movies WHERE "
-                + "Title LIKE '%" + title + "%'";
-        
-        ObservableList<Movie> result = FXCollections.observableArrayList();
-        boolean added = false;
-        
-        try {
-            Statement stmt = this.conn.createStatement();
-            
-            ResultSet rs = stmt.executeQuery(sql);
-            
-            while(rs.next()) {
-                Movie currMovie = new Movie(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
-            			rs.getInt("Release"), rs.getInt("MovieID"), rs.getString("Director"));
-            	added = result.add(currMovie);
-            	
-            	if(!added){
-            		System.out.println("Error, movie not added properly");
-            	}else {
-            		added = false;
-            	}
-            }
-            
-            resultText = "Results found";
-            close();
-            return result;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            close();
-        }
-        
-        return null;
-        
-    }
 	
 	public int getMaxID() {
 		connect();

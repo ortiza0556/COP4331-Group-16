@@ -76,44 +76,6 @@ public class VideoGameDatabase extends Database<VideoGame> {
         
 		
 	}
-
-	@Override
-	public ObservableList<VideoGame> Search (String title) {
-        
-		resultText = null;
-        
-		String sql = "SELECT VGID,Title,Release,Genre,Rating,Synopsis,DevStudio,Platform FROM VideoGames WHERE "
-                + "Title LIKE '%" + title + "%'";
-        
-        ObservableList<VideoGame> result = FXCollections.observableArrayList();
-        boolean added = false;
-        
-        try {
-            Statement stmt = this.conn.createStatement();
-            
-            ResultSet rs = stmt.executeQuery(sql);
-            
-            while(rs.next()) {
-                VideoGame currVG = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), 
-                		rs.getInt("VGID"), rs.getString("Platform"));
-            	added = result.add(currVG);
-            	
-            	if(!added){
-            		System.out.println("Error, video game not added properly");
-            	}else {
-            		added = false;
-            	}
-            }
-            
-            resultText = "Results found";
-            return result;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        return null;
-        
-    }
 	
 	public int getMaxID() {
 		connect();

@@ -75,46 +75,6 @@ public class TVShowDatabase extends Database<TVShow> {
         
 		
 	}
-
-	@Override
-	public ObservableList<TVShow> Search (String title) {
-        connect();
-		resultText = null;
-		
-		String sql = "SELECT TVID,Title,Release,Genre,Rating,Plot,ProductionStudio,Director FROM TVShows WHERE "
-                + "Title LIKE '%" + title + "%'";
-        
-        ObservableList<TVShow> result = FXCollections.observableArrayList();
-        boolean added = false;
-        
-        try {
-            Statement stmt = this.conn.createStatement();
-            
-            ResultSet rs = stmt.executeQuery(sql);
-            
-            while(rs.next()) {
-            	TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), 
-            			rs.getInt("Release"), rs.getInt("TVID"), rs.getString("Director"));
-            	
-            	added = result.add(currTVShow);
-            	
-            	if(!added){
-            		System.out.println("Error, TV Show not added properly");
-            	}else {
-            		added = false;
-            	}
-            }
-            
-            resultText = "Results found";
-            close();
-            return result;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        close();
-        return null;
-        
-    }
 	
 	public int getMaxID() {
 		connect();
