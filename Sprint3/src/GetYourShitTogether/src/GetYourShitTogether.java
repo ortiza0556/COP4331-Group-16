@@ -802,74 +802,18 @@ public class GetYourShitTogether extends Application {
 	        });
 		 cancelButton.setPrefWidth(100);
 		 cancelButton.setPrefHeight(50);
-		 Button addtoBacklogButton = new Button("Add");
-		 addtoBacklogButton.setPrefWidth(100);
-		 addtoBacklogButton.setPrefHeight(50);
-		 addtoBacklogButton.setOnAction(e -> 
+		 
+		 Button editBacklogButton = new Button("Edit");
+		 editBacklogButton.setPrefWidth(100);
+		 editBacklogButton.setPrefHeight(50);
+		 editBacklogButton.setOnAction(e -> 
 		 	{
-		 		String title = titleInput.getText();
-		 		String release = "";
-		 		String genre = "";
 		 		String status = statusBox.getValue();
 		 		String rating = ratingInput.getText();
 		 		String priority = priorityInput.getText();
-		 		VideoGameStatus vidEnum = null;
-		 		WatchableMediaStatus watchEnum = null;
-		 		try {
-			 		if (mediaTypeDisplayed.equals("VideoGames")) {
-			 			
-			 			
-			 			switch (status) {
-				 		
-				 		case "TO_PLAY":
-				 			vidEnum = VideoGameStatus.TO_PLAY;
-				 			break;
-				 		case "PLAYING":
-				 			vidEnum = VideoGameStatus.PLAYING;
-				 			break;
-				 		case "ON_HOLD":
-				 			vidEnum = VideoGameStatus.ON_HOLD;
-				 			break;
-				 		case "DROPPED":
-				 			vidEnum = VideoGameStatus.DROPPED;
-				 			break;
-				 		default :
-				 			vidEnum = VideoGameStatus.COMPLETED;
-				 		}
-			 			
-			 		} else {
-			 			
-				 		switch (status) {
-				 		
-				 		case "TO_WATCH":
-				 			watchEnum = WatchableMediaStatus.TO_WATCH;
-				 			break;
-				 		case "WATCHING":
-				 			watchEnum = WatchableMediaStatus.WATCHING;
-				 			break;
-				 		case "ON_HOLD":
-				 			watchEnum = WatchableMediaStatus.ON_HOLD;
-				 			break;
-				 		case "DROPPED":
-				 			watchEnum = WatchableMediaStatus.DROPPED;
-				 			break;
-				 		default :
-				 			watchEnum = WatchableMediaStatus.COMPLETED;
-				 		}
-			 		}
-		 	} catch (Exception exception) {
-		 		Alert alert = new Alert(AlertType.INFORMATION, "Select a Status");
-	 			alert.showAndWait();
-	 			
-	 			return;
-		 	}
-		 		if (!release.matches("\\d{4}") && !(release.equals(""))) {
-		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid year for the relase");
-		 			alert.showAndWait();
-		 			
-		 			return;
-		 			
-		 		} else if (!(rating.equals("")) && !(rating.equals("10.0")) && !rating.matches("[0-9][.][0-9]{0,2}")) {
+		 		
+		 	
+		 		if (!(rating.equals("")) && !(rating.equals("10.0")) && !rating.matches("[0-9][.][0-9]{0,2}")) {
 
 		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid rating (0-10). 2 decimal places");
 		 			alert.showAndWait();
@@ -882,61 +826,53 @@ public class GetYourShitTogether extends Application {
 		 			return;
 		 			
 		 		}
-		 	
-		 		int releaseInt;
-		 		if (release.equals("")) {
-		 			releaseInt = -1;
-		 		} else {
-		 			releaseInt = Integer.parseInt(release);
-		 		}
 		 		
+		 		
+		 		int priorityInt = Integer.parseInt(priority);
 		 		switch (mediaTypeDisplayed) {
-		 		case "TVShows":
-		 			TVShowDatabase tvdb = new TVShowDatabase();
-		 			TVShowBacklog tvbdb = new TVShowBacklog();
-		 			int tvid = tvdb.getMaxID() + 1;
-		 			TVShow TVtoAdd = new TVShow(title,genre,rating,releaseInt,tvid," ");
-		 			TVShowBacklogItem TVBackToAdd = new TVShowBacklogItem(tvid,title,genre,"",rating,Integer.parseInt(priority));
-		 			tvdb.Insert(TVtoAdd);
-		 			tvbdb.Insert(TVBackToAdd, watchEnum, rating,Integer.parseInt(priority));
-		 			vbox.getChildren().set(1, loadTVTable());
-		 			
-       			break;
-       		case "Movies":
-       			MovieDatabase mvdb = new MovieDatabase();
-		 			MovieBacklog mvbdb = new MovieBacklog();
-		 			int mid = mvdb.getMaxID() + 1;
-		 			Movie MovietoAdd = new Movie(title,genre,rating,releaseInt,mid," ");
-		 			MovieBacklogItem MovieBackToAdd = new MovieBacklogItem(mid,title,genre,"",rating,Integer.parseInt(priority));
-		 			mvdb.Insert(MovietoAdd);
-		 			mvbdb.Insert(MovieBackToAdd, watchEnum, rating,Integer.parseInt(priority));
-		 			vbox.getChildren().set(1, loadMovieTable());
-       			break;
-       		case "Anime":
-	        		AnimeDatabase adb = new AnimeDatabase();
-		 			AnimeBacklog abdb = new AnimeBacklog();
-		 			int aid = adb.getMaxID() + 1;
-		 			Anime AnimetoAdd = new Anime(title,genre,rating,aid);
-		 			AnimeBacklogItem AnimeBackToAdd = new AnimeBacklogItem(aid,title,genre,"",rating,Integer.parseInt(priority));
-		 			adb.Insert(AnimetoAdd);
-		 			abdb.Insert(AnimeBackToAdd, watchEnum, rating,Integer.parseInt(priority));
-		 			vbox.getChildren().set(1, loadAnimeTable());
-       			break;
-       		case "VideoGames":
-       			VideoGameDatabase vgdb = new VideoGameDatabase();
-		 			VideoGameBacklog vgbdb = new VideoGameBacklog();
-		 			int vgid = vgdb.getMaxID() + 1;
-		 			VideoGame VGtoAdd = new VideoGame(title,genre,rating,releaseInt,vgid," ");
-		 			VideoGameBacklogItem VGBackToAdd = new VideoGameBacklogItem(vgid,title,genre,"",rating,Integer.parseInt(priority));
-		 			vgdb.Insert(VGtoAdd);
-		 			vgbdb.Insert(VGBackToAdd, vidEnum, rating,Integer.parseInt(priority));
-		 			vbox.getChildren().set(1, loadTVTable());
-       			break;
-       		default:
-       			System.out.println("Danger there be dragons in the Gap");
-		 		
-		 		}
-		 			
+			 		case "TVShows":
+			 			TVShowBacklog tvbdb = new TVShowBacklog();
+			 			selectedShow.setStatus(status);
+			 			selectedShow.setRating(rating);
+			 			selectedShow.setPriority(priorityInt);
+			 			
+			 			tvbdb.Update(selectedShow);
+			 			vbox.getChildren().set(1, loadTVTable());
+			 			
+		       		break;
+		       		case "Movies":
+		       			
+			 			MovieBacklog mvbdb = new MovieBacklog();
+			 			selectedMovie.setStatus(status);
+			 			selectedMovie.setRating(rating);
+			 			selectedMovie.setPriority(priorityInt);
+			 			
+			 			mvbdb.Update(selectedMovie);
+			 			vbox.getChildren().set(1, loadMovieTable());
+		       		break;
+		       		case "Anime":
+			 			AnimeBacklog abdb = new AnimeBacklog();
+			 			selectedAnime.setStatus(status);
+			 			selectedAnime.setRating(rating);
+			 			selectedAnime.setPriority(priorityInt);
+			 			
+			 			abdb.Update(selectedAnime);
+			 			vbox.getChildren().set(1, loadAnimeTable());
+	       			break;
+		       		case "VideoGames":
+			 			VideoGameBacklog vgbdb = new VideoGameBacklog();
+			 			selectedGame.setStatus(status);
+			 			selectedGame.setRating(rating);
+			 			selectedGame.setPriority(priorityInt);
+			 			
+			 			vgbdb.Update(selectedGame);
+			 			vbox.getChildren().set(1, loadVideoGameTable());
+	       			break;
+		       		default:
+		       			System.out.println("Danger there be dragons in the Gap");
+				 		
+			 	}
+			 			
 			 
 		 		editStage.close();
 		    }
@@ -945,7 +881,7 @@ public class GetYourShitTogether extends Application {
 		 addButtons.setAlignment(Pos.CENTER);
 		 addButtons.setSpacing(20);
 		 
-		 addButtons.getChildren().addAll(addtoBacklogButton,cancelButton);
+		 addButtons.getChildren().addAll(editBacklogButton,cancelButton);
 		 addBox.setBottom(addButtons);
 		 
 		 editStage.setScene(addScene);	
