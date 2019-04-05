@@ -19,7 +19,7 @@ class VideoGameTest {
 	}
 
 	@Test
-	void testGetPlatform() {
+	void testGetPlatforms() {
 		assertEquals(game.getPlatforms(), platforms);
 	}
 

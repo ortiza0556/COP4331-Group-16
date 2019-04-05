@@ -6,7 +6,7 @@ public class VideoGame extends Media{
 	private SimpleStringProperty platforms;
 	
 	public VideoGame(String title, String genre, String rating, int releaseDate, String platforms){
-		this.title = new SimpleStringProperty(title);;
+		this.title = new SimpleStringProperty(title);
 		this.genre = new SimpleStringProperty(genre);
 		this.rating = new SimpleStringProperty(rating);
 		this.releaseDate = new SimpleIntegerProperty(releaseDate);

@@ -31,7 +31,7 @@ while {[gets $InFile line] != -1} {
 
 foreach name $gameList {
 	set gameArr($name,platform) [join $gameArr($name,platform) ,]
-	puts $OutFile "[incr counter]\t$name\t$gameArr($name,release)\t$gameArr($name,genre)\t$gameArr($name,rating)\t\t\t$gameArr($name,platform)"
+	puts $OutFile "[incr counter]\t$name\t$gameArr($name,release)\t$gameArr($name,genre)\t$gameArr($name,rating)\t$gameArr($name,platform)"
 }
 
 	close $OutFile
