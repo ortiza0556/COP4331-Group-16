@@ -49,29 +49,4 @@ public class VideoGameBacklogItem {
     	
     	return this.id;
     }
-    
-    public void setTitle(String t) {
-   	 
-        title.set(t);
-    }
-    
-    public void setGenre(String g) {
- 
-        genre.set(g);
-    }
-    
-    public void setStatus(String s) {
-    	
-    	status.set(s);
-    }
-    
-    public void setRating(String r) {
-    	
-    	rating.set(r);
-    }
-    
-    public void setPriority(int p) {
-    	
-    	priority.set(p);
-    }
 }
