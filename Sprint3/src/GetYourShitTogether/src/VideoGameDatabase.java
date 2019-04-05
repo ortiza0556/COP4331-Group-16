@@ -52,7 +52,7 @@ public class VideoGameDatabase extends Database<VideoGame> {
 		int release = v.getReleaseDate();
 		String genre = v.getGenre();
 		String rating = v.getRating();
-		String platform = v.getPlatform();
+		String platform = v.getPlatforms();
 		platform = platform.substring(1, platform.length()-1);
 		
 		String sql = "INSERT INTO VideoGames (Title,Release,Genre,Rating,Platform) "

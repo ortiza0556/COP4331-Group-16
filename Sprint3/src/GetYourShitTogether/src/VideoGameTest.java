@@ -15,12 +15,12 @@ class VideoGameTest {
 		assertEquals(game2.getGenre(), "Horror");
 		assertEquals(game2.getRating(), "9.2");
 		assertEquals(game2.getReleaseDate(), 2019);
-		assertEquals(game2.getPlatform(), platforms);
+		assertEquals(game2.getPlatforms(), platforms);
 	}
 
 	@Test
 	void testGetPlatform() {
-		assertEquals(game.getPlatform(), platforms);
+		assertEquals(game.getPlatforms(), platforms);
 	}
 
 	@Test
