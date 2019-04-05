@@ -168,7 +168,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Description: The main class of the program, defines the GUI and uses the other classes to interact with the database and display relevant information.
     
-* **AnimeRecommendations **
+* **AnimeRecommendations**
     
     Data Fields: animeBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
     
@@ -176,7 +176,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Description: Used to return recommendations for anime based on the user's anime backlog.
     
-* **MovieRecommendations **
+* **MovieRecommendations**
     
     Data Fields: movieBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
     
@@ -184,7 +184,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Description: Used to return recommendations for movies based on the user's movie backlog.
 
-* **TVShowRecommendations **
+* **TVShowRecommendations**
     
     Data Fields: tvShowBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
     
@@ -192,7 +192,7 @@ Populate each section with information as it applies to your project. If a secti
     
     Description: Used to return recommendations for TV shows based on the user's TVShow backlog.
 
-* **VideoGameRecommendations **
+* **VideoGameRecommendations**
     
     Data Fields: videoGameBacklogSize(int), numCompletedWithHighRating (int), numRecommendations (int), conn (Connection) fp (FilePath), filePath (String)
     
