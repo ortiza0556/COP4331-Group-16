@@ -62,7 +62,7 @@ public class VideoGameRecommendations {
 				ResultSet rs = stmt.executeQuery(sql);
 				
 				while(rs.next()) {
-					VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VideoGameID"), rs.getString("Platform"));
+					VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VGID"), rs.getString("Platform"));
 					
 					added = results.add(currVideoGame);
 					
@@ -124,7 +124,7 @@ public class VideoGameRecommendations {
 				
 				//Add the recommendations to the observable list
 				while(rs.next()) {
-					VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VideoGameID"), rs.getString("Platform"));
+					VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VGID"), rs.getString("Platform"));
 					
 					added = results.add(currVideoGame);
 					
@@ -187,7 +187,7 @@ public class VideoGameRecommendations {
 				
 				//Add the recommendations to the observable list
 				while(rs.next()) {
-					VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VideoGameID"), rs.getString("Platform"));
+					VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VGID"), rs.getString("Platform"));
 					added = results.add(currVideoGame);
 					
 					if(!added) {

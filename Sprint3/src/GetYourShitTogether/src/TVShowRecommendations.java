@@ -62,7 +62,7 @@ public class TVShowRecommendations {
 				ResultSet rs = stmt.executeQuery(sql);
 				
 				while(rs.next()) {
-					TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVShowID"), rs.getString("Director"));
+					TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVID"), rs.getString("Director"));
 					
 					added = results.add(currTVShow);
 					
@@ -124,7 +124,7 @@ public class TVShowRecommendations {
 				
 				//Add the recommendations to the observable list
 				while(rs.next()) {
-					TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVShowID"), rs.getString("Director"));
+					TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVID"), rs.getString("Director"));
 					
 					added = results.add(currTVShow);
 					
@@ -187,7 +187,7 @@ public class TVShowRecommendations {
 				
 				//Add the recommendations to the observable list
 				while(rs.next()) {
-					TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVShowID"), rs.getString("Director"));
+					TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVID"), rs.getString("Director"));
 					added = results.add(currTVShow);
 					
 					if(!added) {
