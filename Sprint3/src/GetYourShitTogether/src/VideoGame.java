@@ -25,7 +25,7 @@ public class VideoGame extends Media{
 		
 	}
 	
-	public String getPlatform() {
+	public String getPlatforms() {
 		return this.platforms.get();
 	}
 }
