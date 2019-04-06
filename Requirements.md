@@ -26,7 +26,6 @@
 |            044 |           019 | Get Your Shit Together shall have the ability to display the movies, TV shows, anime, and video games in the database in separate locations the user can look through.| Verified |
 |            045 |           020 | Get Your Shit Together shall have a clickable link at the bottom of a user’s search that allows them to make a custom entry if they don’t find the piece of media they’re looking for.| Verified |
 |            046 |           020 | Get Your Shit Together shall have a form for a user to fill out for a custom media entry, including fields specific to each media type.| Verified |
-|            047 |           021 | Get Your Shit Together shall have a separate page where the user can get a random piece of media from each of their backlog, through specifying the media type from a drop down.| Verified |
 |            050 |           024 | Get Your Shit Together shall have the option to add a priority number for each entry into a user’s backlog.| Verified |
 |            051 |           025 |Get Your Shit Together shall have a drop down that contains different options to order the backlog by.| Verified |
 |            052 |           025 |Get Your Shit Together shall have an option for displaying the backlogs alphabetically.| Verified |
