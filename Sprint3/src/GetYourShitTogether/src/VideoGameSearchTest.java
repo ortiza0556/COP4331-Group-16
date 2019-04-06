@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 
-class AnimeSearchTest {
+class VideoGameSearchTest {
 	
-	private AnimeSearch animeTestSearch;
+	private VideoGameSearch vidyaTestSearch;
 
 	@Test
 	void testAnimeSearch() {
-		animeTestSearch = new AnimeSearch();
+		vidyaTestSearch = new VideoGameSearch();
 	}
 
 	@Test
 	void testSearch() {
-		ObservableList<Anime> testList = animeTestSearch.search("Jojo's Bizarre Adventure");
+		ObservableList<VideoGame> testList = vidyaTestSearch.search("Apex");
 		System.out.println(testList.size());
 		// check if testList is legit
 	}

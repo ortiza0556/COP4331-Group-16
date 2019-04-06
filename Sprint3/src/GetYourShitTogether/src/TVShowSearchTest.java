@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 
-class AnimeSearchTest {
+class TVShowSearchTest {
 	
-	private AnimeSearch animeTestSearch;
+	private TVShowSearch tvShowTestSearch;
 
 	@Test
 	void testAnimeSearch() {
-		animeTestSearch = new AnimeSearch();
+		tvShowTestSearch = new TVShowSearch();
 	}
 
 	@Test
 	void testSearch() {
-		ObservableList<Anime> testList = animeTestSearch.search("Jojo's Bizarre Adventure");
+		ObservableList<TVShow> testList = tvShowTestSearch.search("The Office");
 		System.out.println(testList.size());
 		// check if testList is legit
 	}
