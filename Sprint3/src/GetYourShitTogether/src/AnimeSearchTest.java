@@ -8,9 +8,6 @@ import javafx.collections.ObservableList;
 
 class AnimeSearchTest {
 	
-	private Connection conn;
-	private FilePath fp = new FilePath();
-	private String filePath = fp.getFilePath();
 	private AnimeSearch animeTestSearch;
 
 	@Test
@@ -20,20 +17,20 @@ class AnimeSearchTest {
 
 	@Test
 	void testSearch() {
-		ObservableList<Anime> testList = animeTestSearch.search("");
+		ObservableList<Anime> testList = animeTestSearch.search("Jojo's Bizarre Adventure");
+		System.out.println(testList.size());
 		// check if testList is legit
 	}
 
+	/*
 	@Test
 	void testConnect() {
 		animeTestSearch.connect();
-		animeTestSearch.close();
 	}
 
 	@Test
 	void testClose() {
-		animeTestSearch.connect();
 		animeTestSearch.close();
-	}
+	}*/
 
 }
