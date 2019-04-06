@@ -30,7 +30,7 @@ public class TVShowSearch {
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVShowID"), rs.getString("Director"));
+				TVShow currTVShow = new TVShow(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("TVID"), rs.getString("Director"));
 				
 				added = searchResults.add(currTVShow);
 				

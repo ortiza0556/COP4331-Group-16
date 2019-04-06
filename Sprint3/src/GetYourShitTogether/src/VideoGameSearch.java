@@ -30,7 +30,7 @@ public class VideoGameSearch {
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VideoGameID"), rs.getString("Platform"));
+				VideoGame currVideoGame = new VideoGame(rs.getString("Title"), rs.getString("Genre"), rs.getString("Rating"), rs.getInt("Release"), rs.getInt("VGID"), rs.getString("Platform"));
 				
 				added = searchResults.add(currVideoGame);
 				

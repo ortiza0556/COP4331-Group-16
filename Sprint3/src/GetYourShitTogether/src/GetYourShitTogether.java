@@ -1,3 +1,5 @@
+import com.sun.glass.events.KeyEvent;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -151,6 +154,14 @@ public class GetYourShitTogether extends Application {
         TextField searchField = new TextField();
         searchField.setPrefHeight(40);
         searchField.setPrefWidth(550);
+        searchField.setOnKeyReleased(event -> {
+        	  if (event.getCode() == KeyCode.ENTER){
+        	     String searchText = searchField.getText();
+        	     searchMedia(searchText);
+        	     
+        	  }
+        	});
+        
         gridPane.add(searchField, 3,0);
 
         HBox categories = new HBox();
@@ -166,6 +177,9 @@ public class GetYourShitTogether extends Application {
             		break;
             		case "Recommendations":
             			vbox.getChildren().set(1, loadTVRecommendations());
+            		break;
+            		case "Search":
+            			searchMedia(searchField.getText());
             		break;
             	}
             }
@@ -183,6 +197,9 @@ public class GetYourShitTogether extends Application {
         			case "Recommendations":
         				vbox.getChildren().set(1, loadMovieRecommendations());
         			break;
+        			case "Search":
+            			searchMedia(searchField.getText());
+            		break;
             	}
             }
         });
@@ -199,6 +216,9 @@ public class GetYourShitTogether extends Application {
 	    			case "Recommendations":
 	    				vbox.getChildren().set(1, loadAnimeRecommendations());
 	    			break;
+	    			case "Search":
+            			searchMedia(searchField.getText());
+            		break;
 	        	}
             }
         });
@@ -215,6 +235,9 @@ public class GetYourShitTogether extends Application {
 	    			case "Recommendations":
 	    				vbox.getChildren().set(1, loadVideoGameRecommendations());
 	    			break;
+	    			case "Search":
+            			searchMedia(searchField.getText());
+            		break;
 	        	}
             }
         });
@@ -438,6 +461,111 @@ public class GetYourShitTogether extends Application {
 	}
 	
 	@SuppressWarnings("unchecked")
+	private TableView<TVShow> loadTVSearch(String searchText) {
+		TableView<TVShow> table = new TableView<TVShow>();
+		
+		TVShowSearch tvsearch = new TVShowSearch();
+		ObservableList<TVShow> data = tvsearch.search(searchText);
+		table.setItems(data);
+		
+		TableColumn<TVShow,String> titleCol = new TableColumn<TVShow,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("title"));
+        TableColumn<TVShow,String> genreCol = new TableColumn<TVShow,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("genre"));
+        TableColumn<TVShow,String> ratingcol = new TableColumn<TVShow,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("rating"));
+        TableColumn<TVShow,Integer> releaseCol = new TableColumn<TVShow,Integer>("Release Date");
+        releaseCol.setCellValueFactory(new PropertyValueFactory<TVShow,Integer>("releaseDate"));
+        TableColumn<TVShow,String> directorCol = new TableColumn<TVShow,String>("Directors");
+        directorCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("directors"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol, releaseCol, directorCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        return table;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	private TableView<Movie> loadMovieSearch(String searchText) {
+		TableView<Movie> table = new TableView<Movie>();
+		
+		MovieSearch movsearch = new MovieSearch();
+		ObservableList<Movie> data = movsearch.search(searchText);
+		table.setItems(data);
+		
+		TableColumn<Movie,String> titleCol = new TableColumn<Movie,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
+        TableColumn<Movie,String> genreCol = new TableColumn<Movie,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("genre"));
+        TableColumn<Movie,String> ratingcol = new TableColumn<Movie,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<Movie,String>("rating"));
+        TableColumn<Movie,Integer> releaseCol = new TableColumn<Movie,Integer>("Release Date");
+        releaseCol.setCellValueFactory(new PropertyValueFactory<Movie,Integer>("releaseDate"));
+        TableColumn<Movie,String> directorCol = new TableColumn<Movie,String>("Directors");
+        directorCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("directors"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol, releaseCol, directorCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private TableView<Anime> loadAnimeSearch(String searchText) {
+		TableView<Anime> table = new TableView<Anime>();
+		
+		AnimeSearch animesearch = new AnimeSearch();
+		ObservableList<Anime> data = animesearch.search(searchText);
+		table.setItems(data);
+		
+		TableColumn<Anime,String> titleCol = new TableColumn<Anime,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<Anime,String>("title"));
+        TableColumn<Anime,String> genreCol = new TableColumn<Anime,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<Anime,String>("genre"));
+        TableColumn<Anime,String> ratingcol = new TableColumn<Anime,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<Anime,String>("rating"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private TableView<VideoGame> loadVideoGameSearch(String searchText) {
+		TableView<VideoGame> table = new TableView<VideoGame>();
+		
+		VideoGameSearch vidsearch = new VideoGameSearch();
+		ObservableList<VideoGame> data = vidsearch.search(searchText);
+		table.setItems(data);
+		
+		TableColumn<VideoGame,String> titleCol = new TableColumn<VideoGame,String>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("title"));
+        TableColumn<VideoGame,String> genreCol = new TableColumn<VideoGame,String>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("genre"));
+        TableColumn<VideoGame,String> ratingcol = new TableColumn<VideoGame,String>("Rating");
+        ratingcol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("rating"));
+        TableColumn<VideoGame,Integer> releaseCol = new TableColumn<VideoGame,Integer>("Release Date");
+        releaseCol.setCellValueFactory(new PropertyValueFactory<VideoGame,Integer>("releaseDate"));
+        TableColumn<VideoGame,String> platformCol = new TableColumn<VideoGame,String>("Platforms");
+        platformCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("platforms"));
+		
+        table.getColumns().setAll(titleCol, genreCol, ratingcol, releaseCol, platformCol);
+        table.setPrefWidth(1430);
+        table.setPrefHeight(635);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+        return table;
+	}
+	
+	@SuppressWarnings("unchecked")
 	private void initializeRecommendationButtons() {
 		
 		HBox bottomRow = new HBox();
@@ -511,6 +639,105 @@ public class GetYourShitTogether extends Application {
 		bottomRow.setAlignment(Pos.CENTER);
 		bottomRow.getChildren().add(addButton);
 		vbox.getChildren().set(2, bottomRow);
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void initializeSearchButtons() {
+		
+		HBox bottomRow = new HBox();
+		
+		Button addButton = new Button("Add Searched Media");
+		addButton.setPrefWidth(300);
+		addButton.setPrefHeight(50);
+		addButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				
+				Stage addSearchedStage = new Stage();
+            	switch (mediaTypeDisplayed) {
+		 		case "TVShows":
+		 			TableView<TVShow> tvTable = (TableView<TVShow>) vbox.getChildren().get(1);
+		 			
+		 			if (tvTable.getSelectionModel().getSelectedItem() != null) {
+		 		        TVShow selectedShow = tvTable.getSelectionModel().getSelectedItem();
+		 		       createAddSearchedStage(addSearchedStage,selectedShow);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a media to add.");
+			 			alert.showAndWait();
+		 		    }
+        			break;
+        		case "Movies":
+        			
+        			TableView<Movie> movieTable = (TableView<Movie>) vbox.getChildren().get(1);
+		 			
+		 			if (movieTable.getSelectionModel().getSelectedItem() != null) {
+		 		        Movie selectedMovie = movieTable.getSelectionModel().getSelectedItem();
+		 		       createAddSearchedStage(addSearchedStage,selectedMovie);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a media to add.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		case "Anime":
+	        		
+        			TableView<Anime> animeTable = (TableView<Anime>) vbox.getChildren().get(1);
+		 			
+		 			if (animeTable.getSelectionModel().getSelectedItem() != null) {
+		 		        Anime selectedAnime = animeTable.getSelectionModel().getSelectedItem();
+		 		       createAddSearchedStage(addSearchedStage,selectedAnime);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a media to add.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		case "VideoGames":
+        			
+        			TableView<VideoGame> vgTable = (TableView<VideoGame>) vbox.getChildren().get(1);
+		 			
+		 			if (vgTable.getSelectionModel().getSelectedItem() != null) {
+		 				VideoGame selectedGame = vgTable.getSelectionModel().getSelectedItem();
+		 				createAddSearchedStage(addSearchedStage,selectedGame);
+		 		    } else {
+		 		    	Alert alert = new Alert(AlertType.INFORMATION, "Select a media to add.");
+			 			alert.showAndWait();
+		 		    }
+        			
+        			break;
+        		default:
+        			System.out.println("Danger there be dragons in the Gap");
+		 		
+		 		}
+				
+			}
+		});
+		
+		bottomRow.setAlignment(Pos.CENTER);
+		bottomRow.getChildren().add(addButton);
+		vbox.getChildren().set(2, bottomRow);
+		
+	}
+	
+	private void searchMedia(String searchText) {
+		tableTypeDisplayed = "Search";
+		switch (mediaTypeDisplayed) {
+			case "TVShows":
+				vbox.getChildren().set(1, loadTVSearch(searchText));
+			break;
+			case "Movies":
+				vbox.getChildren().set(1, loadMovieSearch(searchText));
+				break;
+			case "Anime":
+				vbox.getChildren().set(1, loadAnimeSearch(searchText));
+				break;
+			case "VideoGames":
+				vbox.getChildren().set(1, loadVideoGameSearch(searchText));
+				break;
+		
+		}
+		
+		initializeSearchButtons();
 		
 	}
 	
@@ -1376,6 +1603,254 @@ public class GetYourShitTogether extends Application {
 		 recStage.show();
 		
 	}
+	
+	public void createAddSearchedStage(Stage recStage, Object media) {
+		TVShow selectedShow = null;
+		Movie selectedMovie = null;
+		Anime selectedAnime = null;
+		VideoGame selectedGame = null;
+		switch (mediaTypeDisplayed) {
+ 		case "TVShows":
+ 			selectedShow = (TVShow) media;
+			break;
+		case "Movies":
+			selectedMovie = (Movie) media;
+			break;
+		case "Anime":
+			selectedAnime = (Anime) media;
+			break;
+		case "VideoGames":
+			selectedGame = (VideoGame) media;
+			break;
+		default:
+			System.out.println("Danger there be dragons in the Gap");
+ 		
+ 		}
+		
+		recStage.setTitle("Add Searched Media");
+		HBox addButtons = new HBox();
+		addButtons.setPadding(new Insets(20,20,20,20));
+		GridPane addPane = new GridPane();
+		addPane.setAlignment(Pos.CENTER);
+		addPane.setHgap(15);
+		addPane.setVgap(15);
+		addPane.setPadding(new Insets(0,40,40,40));
+		
+		ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
+		columnOneConstraints.setHalignment(HPos.RIGHT);
+		ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
+		columnTwoConstrains.setHgrow(Priority.ALWAYS);
+		addPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
+		
+		BorderPane addBox = new BorderPane();
+		 
+		Scene addScene = new Scene(addBox,700,500);
+		 
+		HBox labelBox = new HBox();
+		Label pageTitle = new Label("Add Searched Media");
+		pageTitle.setFont(new Font("Arial",30));
+		addBox.setTop(labelBox);
+		labelBox.getChildren().add(pageTitle);
+		labelBox.setPadding(new Insets(20,20,20,0));
+		labelBox.setAlignment(Pos.CENTER);
+		
+		Label titleLabel = new Label("Title: ");
+		TextField titleInput = new TextField();
+		titleInput.setDisable(true);
+		
+		switch (this.mediaTypeDisplayed) {
+			case "TVShows":
+				titleInput.setText(selectedShow.getTitle());
+			break;
+			case "Movies":
+				titleInput.setText(selectedMovie.getTitle());
+			break;
+		 	case "Anime":
+		 		titleInput.setText(selectedAnime.getTitle());
+		 	break;
+		 	case "VideoGames":
+		 		titleInput.setText(selectedGame.getTitle());
+		 	break;
+		 	default:
+	 			
+		}
+
+		Label statusLabel = new Label("Status: ");
+		ObservableList<String> statuses;
+		
+		if (mediaTypeDisplayed.contentEquals("VideoGames")) {
+			statuses = FXCollections.observableArrayList(
+						"To Play",
+				        "Playing",
+				        "On Hold",
+				        "Dropped",
+				        "Completed"
+					
+				    );
+			
+		} else {
+			statuses = FXCollections.observableArrayList(
+						"To Watch",
+				        "Watching",
+				        "On Hold",
+				        "Dropped",
+				        "Completed"
+				    );
+		}
+		ComboBox<String> statusBox = new ComboBox<String>(statuses);
+		
+		Label ratingLabel = new Label("Rating(1-10): ");
+		TextField ratingInput = new TextField();
+		
+		Label priorityLabel = new Label("Priority(Numeric): ");
+		TextField priorityInput = new TextField();
+		
+		addPane.add(titleLabel,0,0);
+ 		addPane.add(titleInput, 1, 0);
+ 		addPane.add(statusLabel, 0, 2);
+ 		addPane.add(statusBox, 1, 2);
+ 		addPane.add(ratingLabel, 0, 3);
+ 		addPane.add(ratingInput, 1, 3);
+ 		addPane.add(priorityLabel, 0, 4);
+ 		addPane.add(priorityInput, 1, 4);
+ 		
+ 		addBox.setCenter(addPane);
+		 
+		Button cancelButton = new Button("Cancel");
+		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent e) {
+	            	recStage.close();
+	            }
+	        });
+		cancelButton.setPrefWidth(100);
+		cancelButton.setPrefHeight(50);
+		
+		 Button addRecommended = new Button("Add");
+		 addRecommended.setPrefWidth(100);
+		 addRecommended.setPrefHeight(50);
+		 final TVShow selectedShowFinal = selectedShow;
+		 final Movie selectedMovieFinal = selectedMovie;
+		 final Anime selectedAnimeFinal = selectedAnime;
+		 final VideoGame selectedGameFinal = selectedGame;
+		 addRecommended.setOnAction(e -> 
+		 	{
+		 		String status = statusBox.getValue();
+		 		String rating = ratingInput.getText();
+		 		String priority = priorityInput.getText();
+		 		VideoGameStatus vidEnum = null;
+		 		WatchableMediaStatus watchEnum = null;
+		 		try {
+			 		if (mediaTypeDisplayed.equals("VideoGames")) {
+			 			
+			 			
+			 			switch (status) {
+				 		
+				 		case "To Play":
+				 			vidEnum = VideoGameStatus.TO_PLAY;
+				 			break;
+				 		case "Playing":
+				 			vidEnum = VideoGameStatus.PLAYING;
+				 			break;
+				 		case "On Hold":
+				 			vidEnum = VideoGameStatus.ON_HOLD;
+				 			break;
+				 		case "Dropped":
+				 			vidEnum = VideoGameStatus.DROPPED;
+				 			break;
+				 		default :
+				 			vidEnum = VideoGameStatus.COMPLETED;
+				 		}
+			 			
+			 		} else {
+			 			
+				 		switch (status) {
+				 		
+				 		case "To Watch":
+				 			watchEnum = WatchableMediaStatus.TO_WATCH;
+				 			break;
+				 		case "Watching":
+				 			watchEnum = WatchableMediaStatus.WATCHING;
+				 			break;
+				 		case "On Hold":
+				 			watchEnum = WatchableMediaStatus.ON_HOLD;
+				 			break;
+				 		case "Dropped":
+				 			watchEnum = WatchableMediaStatus.DROPPED;
+				 			break;
+				 		default :
+				 			watchEnum = WatchableMediaStatus.COMPLETED;
+				 		}
+			 		}
+			 	} catch (Exception exception) {
+			 		Alert alert = new Alert(AlertType.INFORMATION, "Select a Status");
+		 			alert.showAndWait();
+		 			
+		 			return;
+			 	}
+		 	
+		 		if (!(rating.equals("")) && !(rating.equals("10.0")) && !rating.matches("[0-9][.][0-9]{0,2}")) {
+
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid rating (0-10). 2 decimal places");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 		} else if (!priority.matches("-?[0-9]*")) {
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid integer for priority");
+		 			alert.showAndWait();
+		 			
+		 			return;
+		 			
+		 		}
+		 		
+		 		
+		 		int priorityInt = Integer.parseInt(priority);
+		 		switch (mediaTypeDisplayed) {
+			 		case "TVShows":
+			 			TVShowBacklog tvbdb = new TVShowBacklog();
+			 			TVShowBacklogItem updateShow = new TVShowBacklogItem(selectedShowFinal.getID(),selectedShowFinal.getTitle(),selectedShowFinal.getGenre(),status,rating,priorityInt);
+			 			tvbdb.Insert(updateShow,watchEnum,rating,priorityInt);
+			 			
+		       		break;
+		       		case "Movies":
+		       			
+			 			MovieBacklog mvbdb = new MovieBacklog();
+			 			MovieBacklogItem updateMovie = new MovieBacklogItem(selectedMovieFinal.getID(),selectedMovieFinal.getTitle(),selectedMovieFinal.getGenre(),status,rating,priorityInt);
+			 			mvbdb.Insert(updateMovie,watchEnum,rating,priorityInt);
+
+		       		break;
+		       		case "Anime":
+			 			AnimeBacklog abdb = new AnimeBacklog();
+			 			AnimeBacklogItem updateAnime = new AnimeBacklogItem(selectedAnimeFinal.getID(),selectedAnimeFinal.getTitle(),selectedAnimeFinal.getGenre(),status,rating,priorityInt);
+			 			
+			 			abdb.Insert(updateAnime,watchEnum,rating,priorityInt);
+	       			break;
+		       		case "VideoGames":
+			 			VideoGameBacklog vgbdb = new VideoGameBacklog();
+			 			VideoGameBacklogItem updateGame = new VideoGameBacklogItem(selectedGameFinal.getID(),selectedGameFinal.getTitle(),selectedGameFinal.getGenre(),status,rating,priorityInt);
+			 			
+			 			vgbdb.Insert(updateGame,vidEnum,rating,priorityInt);
+	       			break;
+		       		default:
+		       			System.out.println("Danger there be dragons in the Gap");
+				 		
+			 	}
+			 			
+			 
+		 		recStage.close();
+		    }
+		 );
+		 
+		 addButtons.setAlignment(Pos.CENTER);
+		 addButtons.setSpacing(20);
+		 
+		 addButtons.getChildren().addAll(addRecommended,cancelButton);
+		 addBox.setBottom(addButtons);
+		 
+		 recStage.setScene(addScene);	
+		 recStage.show();
+		
+	}
+	
     public static void main(String[] args) {
         launch(args);
     }

@@ -54,9 +54,9 @@ public class VideoGameBacklog {
             stmt.setInt(1,id);
             
             switch(s) {
-            	case TO_PLAY: stmt.setString(2, "To Watch"); 
+            	case TO_PLAY: stmt.setString(2, "To Play"); 
             	break;
-            	case PLAYING: stmt.setString(2, "Watching"); 
+            	case PLAYING: stmt.setString(2, "Playing"); 
             	break;
             	case ON_HOLD: stmt.setString(2, "On Hold"); 
             	break;
