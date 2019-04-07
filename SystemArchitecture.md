@@ -162,9 +162,9 @@ Populate each section with information as it applies to your project. If a secti
     
 * **GetYourShitTogether Class**
     
-    Data Fields: String mediaTypeDisplayed, AnimeBacklog animeBacklog, TVShowBacklog tvBacklog, VideoGameBacklog vgBacklog, MovieBacklog movieBacklog, VBox vbox
+    Data Fields: String tableTypeDisplayed, String mediaTypeDisplayed, AnimeBacklog animeBacklog, TVShowBacklog tvBacklog, VideoGameBacklog vgBacklog, MovieBacklog movieBacklog, VBox vbox
     
-    Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), InitializeBottomButtons(VBox vbox)
+    Methods: start(Stage primaryStage), addUIControls(VBox vbox, String mediaType), InitializeButtonPane(VBox vbox), TableView< TVShowBacklogItem > loadTVTable(), TableView< MovieBacklogItem > loadMovieTable(), TableView< AnimeBacklogItem > loadAnimeTable(), TableView< VideoGameBacklogItem > loadVideoGameTable(), TableView<Anime> loadAnimeRecommendations(), TableView<Movie>, loadMovieRecommendations(), TableView<TVShow> loadTVRecommendations(), TableView<VideoGame> loadVideoGameRecommendations(), TableView<Anime> loadAnimeSearch(), TableView<Movie> loadMovieSearch(), TableView<TVShow> loadTVSearch(), TableView<VideoGame> loadVideoGameSearch(), InitializeBacklogButtons(), initializeRecommendationsButtons(), searchMedia(), initializeSearchButtons(), createAddForm(), createEditForm(), createAddRecommendations(), createAddSearchedStage()
     
     Description: The main class of the program, defines the GUI and uses the other classes to interact with the database and display relevant information.
     
@@ -251,7 +251,7 @@ Populate each section with information as it applies to your project. If a secti
 ![mainpage](https://i.imgur.com/AEhykFe.png)
 
 # Class Diagram
-![mainpage](https://i.imgur.com/okLCWHh.png)
+![mainpage](https://i.imgur.com/FP3eJWu.png)
 
 # Data Design
 Database ERD: ![mainpage](https://i.imgur.com/wFDEXKv.jpg)
