@@ -1,4 +1,4 @@
 
-public class RandomBacklogEntry {
-
+public class RandomBacklogEntry <m extends Media> {
+	
 }
