@@ -84,11 +84,11 @@ public class GetYourShitTogether extends Application {
 
     	HBox buttons = new HBox();
 
-    	// initialize badge button
-        Button badgeButton = new Button("Badge");
-        badgeButton.setOnAction(new EventHandler<ActionEvent>() {
+    	// initialize about button
+        Button aboutButton = new Button("About");
+        aboutButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-            	System.out.println("badge button pressed");
+            	System.out.println("about button pressed");
             }
         });
         
@@ -141,7 +141,7 @@ public class GetYourShitTogether extends Application {
             }
         });
 
-        buttons.getChildren().addAll(badgeButton,recommendButton,backlogButton);
+        buttons.getChildren().addAll(aboutButton,recommendButton,backlogButton);
         gridPane.add(buttons, 0, 0);
         
         Label bufferLabel1 = new Label();
@@ -257,6 +257,7 @@ public class GetYourShitTogether extends Application {
     	ObservableList<TVShowBacklogItem> data = tvBacklog.fetchAll();
     	table.setItems(data);
  
+    	// initialize table with Title, Genre, Status, Rating, and Priority headers
         TableColumn<TVShowBacklogItem,String> titleCol = new TableColumn<TVShowBacklogItem,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<TVShowBacklogItem,String>("title"));
         TableColumn<TVShowBacklogItem,String> authorCol = new TableColumn<TVShowBacklogItem,String>("Genre");
@@ -282,7 +283,8 @@ public class GetYourShitTogether extends Application {
     	TableView<MovieBacklogItem> table = new TableView<MovieBacklogItem>();
     	ObservableList<MovieBacklogItem> data = movieBacklog.fetchAll();
     	table.setItems(data);
- 
+
+    	// initialize table with Title, Genre, Status, Rating, and Priority headers
         TableColumn<MovieBacklogItem,String> titleCol = new TableColumn<MovieBacklogItem,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<MovieBacklogItem,String>("title"));
         TableColumn<MovieBacklogItem,String> authorCol = new TableColumn<MovieBacklogItem,String>("Genre");
@@ -308,7 +310,8 @@ public class GetYourShitTogether extends Application {
     	TableView<AnimeBacklogItem> table = new TableView<AnimeBacklogItem>();
     	ObservableList<AnimeBacklogItem> data = animeBacklog.fetchAll();
     	table.setItems(data);
- 
+
+    	// initialize table with Title, Genre, Status, Rating, and Priority headers
         TableColumn<AnimeBacklogItem,String> titleCol = new TableColumn<AnimeBacklogItem,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<AnimeBacklogItem,String>("title"));
         TableColumn<AnimeBacklogItem,String> authorCol = new TableColumn<AnimeBacklogItem,String>("Genre");
@@ -334,7 +337,8 @@ public class GetYourShitTogether extends Application {
     	TableView<VideoGameBacklogItem> table = new TableView<VideoGameBacklogItem>();
     	ObservableList<VideoGameBacklogItem> data = vgBacklog.fetchAll();
     	table.setItems(data);
- 
+
+    	// initialize table with Title, Genre, Status, Rating, and Priority headers
         TableColumn<VideoGameBacklogItem,String> titleCol = new TableColumn<VideoGameBacklogItem,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<VideoGameBacklogItem,String>("title"));
         TableColumn<VideoGameBacklogItem,String> authorCol = new TableColumn<VideoGameBacklogItem,String>("Genre");
@@ -361,7 +365,8 @@ public class GetYourShitTogether extends Application {
 		TVShowRecommendations tvrecs = new TVShowRecommendations();
 		ObservableList<TVShow> data = tvrecs.getRecommendations();
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, Rating, Release Date, and Directors headers
 		TableColumn<TVShow,String> titleCol = new TableColumn<TVShow,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("title"));
         TableColumn<TVShow,String> genreCol = new TableColumn<TVShow,String>("Genre");
@@ -389,7 +394,8 @@ public class GetYourShitTogether extends Application {
 		MovieRecommendations movrecs = new MovieRecommendations();
 		ObservableList<Movie> data = movrecs.getRecommendations();
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Rating, Release Date, and Directors headers
 		TableColumn<Movie,String> titleCol = new TableColumn<Movie,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
         TableColumn<Movie,String> genreCol = new TableColumn<Movie,String>("Genre");
@@ -417,7 +423,8 @@ public class GetYourShitTogether extends Application {
 		AnimeRecommendations tvrecs = new AnimeRecommendations();
 		ObservableList<Anime> data = tvrecs.getRecommendations();
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, Rating headers
 		TableColumn<Anime,String> titleCol = new TableColumn<Anime,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<Anime,String>("title"));
         TableColumn<Anime,String> genreCol = new TableColumn<Anime,String>("Genre");
@@ -440,7 +447,8 @@ public class GetYourShitTogether extends Application {
 		VideoGameRecommendations tvrecs = new VideoGameRecommendations();
 		ObservableList<VideoGame> data = tvrecs.getRecommendations();
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, Rating, Release Date, and Platforms
 		TableColumn<VideoGame,String> titleCol = new TableColumn<VideoGame,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("title"));
         TableColumn<VideoGame,String> genreCol = new TableColumn<VideoGame,String>("Genre");
@@ -467,7 +475,8 @@ public class GetYourShitTogether extends Application {
 		TVShowSearch tvsearch = new TVShowSearch();
 		ObservableList<TVShow> data = tvsearch.search(searchText);
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, Rating, Release Date, and Directors
 		TableColumn<TVShow,String> titleCol = new TableColumn<TVShow,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<TVShow,String>("title"));
         TableColumn<TVShow,String> genreCol = new TableColumn<TVShow,String>("Genre");
@@ -495,7 +504,8 @@ public class GetYourShitTogether extends Application {
 		MovieSearch movsearch = new MovieSearch();
 		ObservableList<Movie> data = movsearch.search(searchText);
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, Rating, Release Date, and Directors
 		TableColumn<Movie,String> titleCol = new TableColumn<Movie,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
         TableColumn<Movie,String> genreCol = new TableColumn<Movie,String>("Genre");
@@ -522,7 +532,8 @@ public class GetYourShitTogether extends Application {
 		AnimeSearch animesearch = new AnimeSearch();
 		ObservableList<Anime> data = animesearch.search(searchText);
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, and Rating
 		TableColumn<Anime,String> titleCol = new TableColumn<Anime,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<Anime,String>("title"));
         TableColumn<Anime,String> genreCol = new TableColumn<Anime,String>("Genre");
@@ -545,7 +556,8 @@ public class GetYourShitTogether extends Application {
 		VideoGameSearch vidsearch = new VideoGameSearch();
 		ObservableList<VideoGame> data = vidsearch.search(searchText);
 		table.setItems(data);
-		
+
+    	// initialize table with Title, Genre, Rating, Release Date, and Platforms
 		TableColumn<VideoGame,String> titleCol = new TableColumn<VideoGame,String>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<VideoGame,String>("title"));
         TableColumn<VideoGame,String> genreCol = new TableColumn<VideoGame,String>("Genre");
@@ -577,6 +589,7 @@ public class GetYourShitTogether extends Application {
 			@Override public void handle(ActionEvent e) {
 				
 				Stage addRecommendedStage = new Stage();
+				// show recommended media depending on which media type is currently selected
             	switch (mediaTypeDisplayed) {
 		 		case "TVShows":
 		 			TableView<TVShow> tvTable = (TableView<TVShow>) vbox.getChildren().get(1);
@@ -906,6 +919,7 @@ public class GetYourShitTogether extends Application {
 		 labelBox.setAlignment(Pos.CENTER);
 		 
 		 
+		 // add labels for Title, Release Year, Genre, Rating, and Priority
 		Label titleLabel = new Label("Title: ");
 		TextField titleInput = new TextField();
 		
@@ -980,6 +994,7 @@ public class GetYourShitTogether extends Application {
 		 
 		addBox.setCenter(addPane);
 		 
+		// initialize Cancel button
 		 Button cancelButton = new Button("Cancel");
 		 cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override public void handle(ActionEvent e) {
@@ -1043,6 +1058,7 @@ public class GetYourShitTogether extends Application {
 				 			watchEnum = WatchableMediaStatus.COMPLETED;
 				 		}
 			 		}
+			 		// catch errors
 		 	} catch (Exception exception) {
 		 		Alert alert = new Alert(AlertType.INFORMATION, "Select a Status");
 	 			alert.showAndWait();
@@ -1050,7 +1066,7 @@ public class GetYourShitTogether extends Application {
 	 			return;
 		 	}
 		 		if (!release.matches("\\d{4}") && !(release.equals(""))) {
-		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid year for the relase");
+		 			Alert alert = new Alert(AlertType.INFORMATION, "Please enter a valid year for the release");
 		 			alert.showAndWait();
 		 			
 		 			return;
@@ -1076,6 +1092,7 @@ public class GetYourShitTogether extends Application {
 		 			releaseInt = Integer.parseInt(release);
 		 		}
 		 		
+		 		// determine which table should have media added to it based on currently selected media type
 		 		switch (mediaTypeDisplayed) {
 		 		case "TVShows":
 		 			TVShowDatabase tvdb = new TVShowDatabase();
@@ -1144,6 +1161,7 @@ public class GetYourShitTogether extends Application {
 		MovieBacklogItem selectedMovie = null;
 		AnimeBacklogItem selectedAnime = null;
 		VideoGameBacklogItem selectedGame = null;
+		// determine which media type is selected, create media for 
 		switch (mediaTypeDisplayed) {
  		case "TVShows":
  			selectedShow = (TVShowBacklogItem) media;
@@ -1162,6 +1180,7 @@ public class GetYourShitTogether extends Application {
  		
  		}
 		
+		// initialize edit media box
 		 editStage.setTitle("Edit Media");
 		 HBox addButtons = new HBox();
 		 addButtons.setPadding(new Insets(20,20,20,20));
@@ -1224,6 +1243,7 @@ public class GetYourShitTogether extends Application {
 		Label priorityLabel = new Label("Priority(Numeric): ");
 		TextField priorityInput = new TextField();
 		 
+		// determine what the Title, Status, Rating, and Priority should say based on currently selected media
 		switch (this.mediaTypeDisplayed) {
 			case "TVShows":
 				titleInput.setText(selectedShow.getTitle());
@@ -1267,6 +1287,7 @@ public class GetYourShitTogether extends Application {
 		 
 		addBox.setCenter(addPane);
 		 
+		// initialize cancel button
 		 Button cancelButton = new Button("Cancel");
 		 cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override public void handle(ActionEvent e) {
@@ -1276,6 +1297,7 @@ public class GetYourShitTogether extends Application {
 		 cancelButton.setPrefWidth(100);
 		 cancelButton.setPrefHeight(50);
 		 
+		 // initialize edit button
 		 Button editBacklogButton = new Button("Edit");
 		 editBacklogButton.setPrefWidth(100);
 		 editBacklogButton.setPrefHeight(50);
@@ -1304,7 +1326,7 @@ public class GetYourShitTogether extends Application {
 		 			
 		 		}
 		 		
-		 		
+		 		// update the currently selected media in the database based on the currently selected media type
 		 		int priorityInt = Integer.parseInt(priority);
 		 		switch (mediaTypeDisplayed) {
 			 		case "TVShows":
@@ -1380,6 +1402,7 @@ public class GetYourShitTogether extends Application {
  		
  		}
 		
+		// initialize add recommendation box
 		recStage.setTitle("Add Recommendation");
 		HBox addButtons = new HBox();
 		addButtons.setPadding(new Insets(20,20,20,20));
