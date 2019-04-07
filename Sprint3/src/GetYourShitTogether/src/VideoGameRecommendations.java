@@ -13,8 +13,8 @@ import javafx.collections.ObservableList;
 
 public class VideoGameRecommendations {
 
-	private int videoGameBacklogSize;
-	private int numCompletedWithHighRating;
+	public int videoGameBacklogSize;
+	public int numCompletedWithHighRating;
 	final private int numRecommendations = 25;
 	private Connection conn;
 	protected FilePath fp = new FilePath();
