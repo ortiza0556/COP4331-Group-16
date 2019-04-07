@@ -1,7 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Connection;
-
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
