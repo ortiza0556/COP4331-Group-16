@@ -16,6 +16,7 @@ class AnimeSearchTest {
 	@Test
 	void testSearch() {
 		ObservableList<Anime> testList = animeTestSearch.search("Jojo's Bizarre Adventure");
+		
 		System.out.println(testList.size());
 		// check if testList is legit
 	}
