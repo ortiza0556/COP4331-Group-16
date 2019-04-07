@@ -1,3 +1,5 @@
+import com.sun.glass.events.KeyEvent;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,12 +9,9 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -31,12 +30,11 @@ public class GetYourShitTogether extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Get Thine Shite Together, Cur");
-		primaryStage.getIcons().add(new Image ("https://i.imgur.com/9yHis7J.png"));
+
 		// Create the registration form grid pane
 		this.vbox = new VBox();
 
 		vbox.setSpacing(10);
-		vbox.setAlignment(Pos.CENTER);
 
 		GridPane gridPane = new GridPane();
 		vbox.getChildren().add(gridPane);
@@ -90,17 +88,7 @@ public class GetYourShitTogether extends Application {
 		aboutButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				Stage aboutStage = new Stage();
-				aboutStage.setTitle("About");
-				StackPane aboutPane = new StackPane();
-				Canvas c = new Canvas(700,500);
-				aboutPane.setAlignment(Pos.CENTER);
-				ImageView image = new ImageView("https://i.imgur.com/un34ojo.png");
-				Scene aboutScene = new Scene(aboutPane,700,500);
-				aboutPane.getChildren().addAll(c,image);
-				
-				aboutStage.setScene(aboutScene);
-				aboutStage.show();
+				System.out.println("about button pressed");
 			}
 		});
 
@@ -917,7 +905,6 @@ public class GetYourShitTogether extends Application {
 	}
 
 	private void createAddForm(Stage addStage) {
-		addStage.getIcons().add(new Image ("https://i.imgur.com/9yHis7J.png"));
 		addStage.setTitle("Add Media");
 		HBox addButtons = new HBox();
 		addButtons.setPadding(new Insets(20, 20, 20, 20));
@@ -1172,7 +1159,6 @@ public class GetYourShitTogether extends Application {
 	}
 
 	private void createEditForm(Stage editStage, Object media) {
-		editStage.getIcons().add(new Image ("https://i.imgur.com/9yHis7J.png"));
 		TVShowBacklogItem selectedShow = null;
 		MovieBacklogItem selectedMovie = null;
 		AnimeBacklogItem selectedAnime = null;
@@ -1385,7 +1371,6 @@ public class GetYourShitTogether extends Application {
 	}
 
 	public void createAddRecommendedStage(Stage recStage, Object media) {
-		recStage.getIcons().add(new Image ("https://i.imgur.com/9yHis7J.png"));
 		TVShow selectedShow = null;
 		Movie selectedMovie = null;
 		Anime selectedAnime = null;
@@ -1624,8 +1609,6 @@ public class GetYourShitTogether extends Application {
 	}
 
 	public void createAddSearchedStage(Stage recStage, Object media) {
-		recStage.getIcons().add(new Image ("https://i.imgur.com/9yHis7J.png"));
-		
 		TVShow selectedShow = null;
 		Movie selectedMovie = null;
 		Anime selectedAnime = null;
