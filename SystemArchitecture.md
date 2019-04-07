@@ -247,6 +247,9 @@ Populate each section with information as it applies to your project. If a secti
 # Search Classes Diagram
 ![mainpage](https://i.imgur.com/91oZukk.png)
 
+# Recommendations Classes Diagram
+![mainpage](https://i.imgur.com/AEhykFe.png)
+
 # Class Diagram
 ![mainpage](https://i.imgur.com/okLCWHh.png)
 
