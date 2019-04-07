@@ -236,7 +236,7 @@ Populate each section with information as it applies to your project. If a secti
 ![mainpage](https://i.imgur.com/H3FIgB3.png)
 
 # Database Classes Diagram
-![mainpage](https://i.imgur.com/Bf1vKxB.png)
+![mainpage](https://i.imgur.com/yGc4s2j.png)
 
 # Backlog Classes Diagram
 ![mainpage](https://i.imgur.com/bqzDTy0.png)
