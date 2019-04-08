@@ -48,5 +48,5 @@ For a consumer of media who needs to keep track of the individual status of cons
 -  [System Architecture and Design Specification](https://github.com/ortiza0556/COP4331-Group-16/blob/master/SystemArchitecture.md)
 -  [Source Code](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint3/src)
 -  [Test Cases](https://github.com/ortiza0556/COP4331-Group-16/tree/master/Sprint3/TestCases)
--  [Product Demonstration](https://google.com)
+-  [Product Demonstration](https://youtu.be/A3KIE3yGgVQ)
 
