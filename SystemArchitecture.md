@@ -2,7 +2,7 @@
 
 Populate each section with information as it applies to your project. If a section does not apply, explain why. Include diagrams (or links to diagrams) in each section, as appropriate. For example, sketches of the user interfaces along with an explanation of how the interface components will work; ERD diagrams of the database; rough class diagrams; context diagrams showing the system boundary; etc.
 # Architecture Diagram
-![mainpage](https://i.imgur.com/sjq0oRE.jpg)
+![mainpage](https://imgur.com/dbt1xk8)
 
 **Description**
     Get your Shit Together pulls data from three major data centers using thier rest apis. Movie and TV Show data is fetched from IMDB, Videgame data from IGDB, and Anime data from MyAnimeList. This information is stored in a SQLite databse. Users will construct backlogs of shows to watch using the UI, which will be stored in a relational table within the database. Using the JDBC library, java code will be able to insert, delete, update, and fetch these relational backlog items so that the user can easily view media they have watched or wish to watch in the future. GYST will also use data gathered through the rest API to create recommendations for the user based on media they have watched/played in the past.
