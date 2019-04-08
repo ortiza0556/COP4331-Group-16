@@ -1,6 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.Connection;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +15,10 @@ class VideoGameSearchTest {
 
 	@Test
 	void testSearch() {
+		vidyaTestSearch = new VideoGameSearch();
+		
 		ObservableList<VideoGame> testList = vidyaTestSearch.search("Apex");
-		System.out.println(testList.size());
-		// check if testList is legit
+
+		assertEquals(testList.size(), 1);
 	}
 }

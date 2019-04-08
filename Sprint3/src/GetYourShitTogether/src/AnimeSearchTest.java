@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +15,11 @@ class AnimeSearchTest {
 
 	@Test
 	void testSearch() {
-		ObservableList<Anime> testList = animeTestSearch.search("Jojo's Bizarre Adventure");
+		animeTestSearch = new AnimeSearch();
 		
-		System.out.println(testList.size());
-		// check if testList is legit
+		ObservableList<Anime> testList = animeTestSearch.search("Jojo");
+		
+		// should find 7 instances of anime with Jojo in the title
+		assertEquals(testList.size(), 7);
 	}
 }

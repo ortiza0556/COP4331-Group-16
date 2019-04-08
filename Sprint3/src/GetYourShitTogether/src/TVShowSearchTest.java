@@ -1,6 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.Connection;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +15,10 @@ class TVShowSearchTest {
 
 	@Test
 	void testSearch() {
+		tvShowTestSearch = new TVShowSearch();
+		
 		ObservableList<TVShow> testList = tvShowTestSearch.search("The Office");
-		System.out.println(testList.size());
-		// check if testList is legit
+
+		assertEquals(testList.size(), 27);
 	}
 }

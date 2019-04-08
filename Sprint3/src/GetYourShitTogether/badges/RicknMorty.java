@@ -1,1 +1,0 @@
-text="wubba lubba dub dub";

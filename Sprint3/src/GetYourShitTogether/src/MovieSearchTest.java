@@ -1,4 +1,4 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +11,9 @@ class MovieSearchTest {
 	@Test
 	void testMovieSearch() {
 		movieTestSearch = new MovieSearch();
-	}
-
-	@Test
-	void testSearch() {
-		ObservableList<Movie> testList = movieTestSearch.search("Snatch");
-		System.out.println(testList.size());
-		// check if testList is legit
+		
+		ObservableList<Movie> testList = movieTestSearch.search("Titanic");
+		
+		assertEquals(testList.size(), 56);
 	}
 }
