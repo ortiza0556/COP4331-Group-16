@@ -47,17 +47,19 @@ public class AnimeDatabase extends Database<Anime> {
 	@Override
 	protected void Insert(Anime a) {
 		resultText = null;
+		int id = a.getID();
 		String title = a.getTitle();
 		String genre = a.getGenre();
 		String rating = a.getRating();
 		
-		String sql = "INSERT INTO Anime (Title,Genre,Rating) "
-                + "VALUES(?,?,?)";
+		String sql = "INSERT INTO Anime (AnimeID,Title,Genre,Rating) "
+                + "VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setString(1,title);
-            stmt.setString(2, genre);
-            stmt.setString(3, rating);
+            stmt.setInt(1, id);
+            stmt.setString(2,title);
+            stmt.setString(3, genre);
+            stmt.setString(4, rating);
             
             stmt.executeUpdate();
             

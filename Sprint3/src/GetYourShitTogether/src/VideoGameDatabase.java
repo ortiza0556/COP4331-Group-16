@@ -44,22 +44,23 @@ public class VideoGameDatabase extends Database<VideoGame> {
 	@Override
 	protected void Insert(VideoGame v) {
 		resultText = null;
+		int id = v.getID();
 		String title = v.getTitle();
 		int release = v.getReleaseDate();
 		String genre = v.getGenre();
 		String rating = v.getRating();
 		String platform = v.getPlatforms();
-		platform = platform.substring(1, platform.length()-1);
 		
-		String sql = "INSERT INTO VideoGames (Title,Release,Genre,Rating,Platform) "
-                + "VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO VideoGames (VGID,Title,Release,Genre,Rating,Platform) "
+                + "VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setString(1,title);
-            stmt.setInt(2, release);
-            stmt.setString(3, genre);
-            stmt.setString(4, rating);
-            stmt.setString(5,  platform);
+            stmt.setInt(1, id);
+            stmt.setString(2,title);
+            stmt.setInt(3, release);
+            stmt.setString(4, genre);
+            stmt.setString(5, rating);
+            stmt.setString(6,  platform);
             
             stmt.executeUpdate();
             

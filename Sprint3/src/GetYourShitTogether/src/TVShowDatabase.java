@@ -45,21 +45,23 @@ public class TVShowDatabase extends Database<TVShow> {
 		connect();
 		resultText = null;
 		
+		int id = t.getID();
 		String title = t.getTitle();
 		int release = t.getReleaseDate();
 		String genre = t.getGenre();
 		String rating = t.getRating();
 		String director = t.getDirectors();
 		
-		String sql = "INSERT INTO TVShows (Title,Release,Genre,Rating,Director) "
-                + "VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO TVShows (TVID,Title,Release,Genre,Rating,Director) "
+                + "VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setString(1,title);
-            stmt.setInt(2, release);
-            stmt.setString(3, genre);
-            stmt.setString(4, rating);
-            stmt.setString(5, director);
+            stmt.setInt(1, id);
+            stmt.setString(2,title);
+            stmt.setInt(3, release);
+            stmt.setString(4, genre);
+            stmt.setString(5, rating);
+            stmt.setString(6, director);
             
             stmt.executeUpdate();
             close();
